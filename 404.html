@@ -9,14 +9,28 @@
 
 <link rel="icon" href="https://niicogarciiaaa.github.io/xallas-motorsport/assets/img/favicon.ico" sizes="any">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
 
 <!-- Sin CSS externo a propósito: GitHub Pages sirve este archivo para
      cualquier ruta inexistente, también /algo/muy/profundo, y desde ahí una
      ruta relativa a assets/ no resolvería. Todo va aquí dentro. -->
 <style>
+  /* Tipografías propias. Rutas absolutas porque este archivo se sirve para
+     rutas de cualquier profundidad; una relativa no resolvería. */
+  @font-face {
+    font-family: 'Archivo';
+    font-style: normal;
+    font-weight: 600 900;
+    font-display: swap;
+    src: url(https://niicogarciiaaa.github.io/xallas-motorsport/assets/fonts/archivo-600-900-latin.woff2) format('woff2');
+  }
+  @font-face {
+    font-family: 'Barlow';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://niicogarciiaaa.github.io/xallas-motorsport/assets/fonts/barlow-400-latin.woff2) format('woff2');
+  }
+
   :root {
     --green-800: #174C2F;   /* LOGO */
     --green-700: #1E5A37;   /* LOGO */

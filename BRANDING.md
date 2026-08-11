@@ -109,10 +109,30 @@ Por eso el acento es un verde aclarado y no el verde original del logo: a
 
 ## 6. Tipografía
 
-- **Archivo** (700–900), en mayúsculas y con tracking cerrado, para titulares:
+- **Archivo** (600–900), en mayúsculas y con tracking cerrado, para titulares:
   es la grotesca pesada y ligeramente cuadrada que más se acerca al logotipo.
 - **Barlow** para el texto corrido y los datos, con cifras tabulares en tablas
   y estadísticas.
+
+Ambas van **autohospedadas** en `assets/fonts/`, bajo SIL Open Font License 1.1
+(la licencia se distribuye en `assets/fonts/OFL.txt`, como exige la OFL). Las
+declaraciones están en `assets/css/fonts.css`.
+
+Ventajas frente a cargarlas de Google en cada visita: la web va más rápida,
+funciona sin conexión y deja de enviar datos de quien la visita a un tercero.
+
+Dos detalles del empaquetado:
+
+- **Archivo se sirve como fuente variable.** Un solo archivo cubre de 600 a 900
+  y ocupa 34 KB, frente a los 136 KB que sumaban los cuatro pesos por separado.
+  Barlow no tiene versión variable, así que van sus cuatro pesos sueltos.
+- Se incluyen los subconjuntos `latin` y `latin-ext`, pero gracias a
+  `unicode-range` el navegador **sólo descarga el que necesita**: en una web en
+  español, `latin-ext` no llega a pedirse. Comprobado en el navegador.
+
+`404.html` no puede enlazar el CSS de fuentes (es autocontenida), así que lleva
+sus dos `@font-face` en línea, con URL absoluta por el mismo motivo que el resto
+de sus enlaces.
 
 ## 7. Archivos del logo
 

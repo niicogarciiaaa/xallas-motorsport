@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://niicogarciiaaa.github.io/xallas-motorsport/sitemap.xml
