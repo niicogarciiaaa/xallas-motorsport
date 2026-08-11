@@ -707,6 +707,8 @@ a:hover { color: var(--green-100); }
 }
 .driver {
   position: relative;
+  display: flex;
+  flex-direction: column;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--r-md);
@@ -809,7 +811,12 @@ a:hover { color: var(--green-100); }
   --h-bars: var(--green-200);
 }
 
-.driver__body { padding: 24px 24px 26px; }
+.driver__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 24px 24px 26px;
+}
 .driver__role {
   font-size: .74rem;
   font-weight: 600;
@@ -820,12 +827,14 @@ a:hover { color: var(--green-100); }
 }
 .driver__name { font-size: 1.42rem; margin-bottom: 20px; }
 
-/* Sin palmarés todavía: etiquetas en lugar de cifras inventadas */
+/* Sin palmarés todavía: etiquetas en lugar de cifras inventadas.
+   margin-top:auto las ancla abajo, así quedan alineadas entre tarjetas
+   aunque un nombre ocupe dos líneas y otro solo una. */
 .driver__tags {
   display: flex;
   flex-wrap: wrap;
   gap: 7px;
-  margin: 0;
+  margin: auto 0 0;
   padding: 16px 0 0;
   list-style: none;
   border-top: 1px solid var(--border);
