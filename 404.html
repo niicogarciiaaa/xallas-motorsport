@@ -38,7 +38,8 @@
     --green-200: #74C79A;
     --green-100: #A3DFBD;
     --ink-950:   #0B100D;
-    --ink-600:   #2E3A33;
+    --green-400: #3F8F62;
+    --sage:      #6A917B;   /* LOGO */
     --mist:      #CDD8D2;   /* LOGO */
     --paper:     #FDFEFD;   /* LOGO */
     --x-skew: -14deg;
@@ -186,6 +187,8 @@
     border-top: 1px solid #232C27;
   }
 
+  /* green-500 daba 3,75:1 y el "Since 2026" en ink-600 se quedaba en 1,62:1,
+     prácticamente invisible. Con green-400 y sage suben a 4,86 y 5,44. */
   .wordmark {
     margin-top: 40px;
     font-family: "Archivo", Arial, sans-serif;
@@ -193,9 +196,9 @@
     font-weight: 900;
     letter-spacing: .05em;
     text-transform: uppercase;
-    color: var(--green-500);
+    color: var(--green-400);
   }
-  .wordmark span { color: var(--ink-600); }
+  .wordmark span { color: var(--sage); }
 
   @media (prefers-reduced-motion: reduce) {
     * { transition-duration: .01ms !important; animation: none !important; }

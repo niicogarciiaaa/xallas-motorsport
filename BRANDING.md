@@ -266,3 +266,44 @@ para saltarte su caché.
 un correo real o sustituir el botón por el enlace de Discord. Está marcado con
 comentarios `OJO:` en el HTML. Por eso también se ha quitado el campo `email`
 del JSON-LD: mejor no declarar un contacto que rebota.
+
+## 11. Accesibilidad
+
+Repaso hecho sobre el DOM ya renderizado, no leyendo el CSS: contraste real de
+cada combinación de texto y fondo, orden de titulares, recorrido con Tab y
+comportamiento a anchos pequeños.
+
+### Lo que se corrigió
+
+| Dónde | Problema | Arreglo |
+|---|---|---|
+| `.step__when` en «Próximo» | 3,49:1 a 11 px sobre la banda clara | `--green-500`, 5,06:1 |
+| `.footer__since` | 3,59:1 a 12 px | `--green-400`, 4,65:1 |
+| `.wordmark` de `404.html` | 3,75:1 | `--green-400`, 4,86:1 |
+| «· Since 2026» de `404.html` | **1,62:1**, casi invisible | `--sage`, 5,44:1 |
+| Titulares del pie | eran `h4` detrás de un `h2`: saltaba un nivel | pasan a `h3` |
+| `.hero__title` | a 320 px medía 340 px con 272 disponibles | mínimo del `clamp` a 2,4rem |
+| `.nav__toggle` | a 320 px quedaba **fuera de pantalla y aplastado a 21 px** | `flex-shrink: 0` y el logotipo se reduce (y desaparece bajo 380 px) |
+
+El del botón de menú era el grave: en una pantalla de 320 px no se podía
+navegar. Lo tapaba el `overflow-x: hidden` del `body`, que ocultaba el
+desbordamiento en lugar de resolverlo.
+
+### Lo que ya estaba bien
+
+Un solo `h1`; landmarks `header`, `nav`, `main` y `footer`; `lang="es"`; todas
+las imágenes con `alt` (vacío en las decorativas); ningún `id` repetido; ningún
+elemento enfocable dentro de `aria-hidden`; todos los controles con nombre
+accesible y de 24 px o más; foco visible en los 16 elementos del recorrido, en
+orden lógico; y `prefers-reduced-motion` respetado.
+
+Comprobado a 320, 360, 390, 430 y 1280 px: sin desbordes horizontales salvo las
+marcas de agua decorativas, que van recortadas por su contenedor a propósito.
+
+### Pendiente, porque depende de contenido
+
+Quedan **ocho enlaces con `href="#"`** (Discord, Twitch y YouTube del bloque de
+seguimiento, más los cinco iconos del pie). Un enlace sin destino se anuncia
+como enlace, recibe el foco y al activarlo salta al principio de la página. En
+cuanto haya URLs reales se resuelve solo; si no va a haberlas, lo correcto es
+quitarlos.

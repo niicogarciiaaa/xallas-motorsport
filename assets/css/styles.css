@@ -405,6 +405,8 @@ a:hover { color: var(--green-100); }
 .nav__toggle {
   display: none;
   width: 44px; height: 44px;
+  /* Nunca se encoge: es el único acceso al menú en móvil */
+  flex-shrink: 0;
   padding: 0;
   background: transparent;
   border: 1px solid var(--border-strong);
@@ -498,7 +500,10 @@ a:hover { color: var(--green-100); }
 }
 
 .hero__title {
-  font-size: clamp(3.1rem, 8.2vw, 6.2rem);
+  /* El mínimo era 3,1rem: a 320 px "EMPEZAMOS" medía 340 px con 272 disponibles
+     y lo recortaba el overflow del body. Con 2,4rem entra con margen y a partir
+     de 468 px manda el vw, así que en tablet y escritorio no cambia nada. */
+  font-size: clamp(2.4rem, 8.2vw, 6.2rem);
   font-weight: 900;
   letter-spacing: -.035em;
   margin-bottom: 26px;
@@ -1152,7 +1157,9 @@ a:hover { color: var(--green-100); }
   color: var(--green-600);
   margin-bottom: 8px;
 }
-.step[data-state="next"] .step__when { color: var(--sage); }
+/* --sage sobre la banda clara se queda en 3,49:1 y este texto es de 11 px:
+   green-500 da 5,06 y sigue leyéndose más apagado que los hitos activos. */
+.step[data-state="next"] .step__when { color: var(--green-500); }
 .step__title {
   font-size: 1.3rem;
   color: var(--green-900);
@@ -1302,7 +1309,9 @@ a:hover { color: var(--green-100); }
 .footer__brand p { color: var(--text-muted); font-size: .95rem; max-width: 38ch; }
 
 .footer__col { display: flex; flex-direction: column; gap: 11px; }
-.footer__col h4 {
+/* h3, no h4: venían detrás de un h2 y saltarse un nivel rompe el esquema
+   con el que un lector de pantalla recorre la página */
+.footer__col-title {
   font-size: .78rem;
   font-weight: 700;
   letter-spacing: .18em;
@@ -1357,7 +1366,8 @@ a:hover { color: var(--green-100); }
   font-family: var(--font-body);
   letter-spacing: .26em;
   text-transform: uppercase;
-  color: var(--green-500);
+  /* green-500 daba 3,59:1 a 12 px; green-400 sube a 4,65 sin destacar más */
+  color: var(--green-400);
   font-size: .78rem;
 }
 
@@ -1441,8 +1451,17 @@ a:hover { color: var(--green-100); }
 @media (max-width: 460px) {
   .brand__since { display: none; }
   .brand__mark { height: 40px; }
+  /* El logotipo va en nowrap y empujaba el botón del menú fuera de pantalla */
+  .brand__word { font-size: 13px; }
+  .brand__word b { font-size: 17px; }
   .btn { width: 100%; justify-content: center; }
   .hero__actions, .cta__actions { width: 100%; }
+}
+
+/* Por debajo de 380 px no caben emblema, logotipo y botón de menú a la vez.
+   Se queda el emblema, que ya identifica al equipo por sí solo. */
+@media (max-width: 380px) {
+  .brand__type { display: none; }
 }
 
 /* ── 17. MOVIMIENTO REDUCIDO ────────────────────────────────────────────── */
