@@ -1294,24 +1294,6 @@ a:hover { color: var(--green-100); }
 }
 .step__text { color: var(--ink-700); font-size: .96rem; }
 
-/* Aviso de "aquí irán los resultados" */
-.note {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  padding: 24px 26px;
-  background: var(--green-050);
-  border: 1px solid var(--green-100);
-  border-left: 4px solid var(--green-600);
-  border-radius: var(--r-md);
-}
-.note__bars { display: inline-flex; gap: 3px; transform: skewX(var(--x-skew)); margin-top: 5px; }
-.note__bars i { width: 4px; height: 15px; background: var(--green-600); display: block; }
-.note__bars i:nth-child(2) { background: var(--green-500); }
-.note__bars i:nth-child(3) { background: var(--green-300); }
-.note p { color: var(--ink-700); font-size: .97rem; }
-.note b { color: var(--green-900); font-family: var(--font-display); text-transform: uppercase; letter-spacing: .01em; }
-
 /* ── 14. CTA ────────────────────────────────────────────────────────────── */
 .cta {
   position: relative;

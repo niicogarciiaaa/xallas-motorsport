@@ -226,9 +226,9 @@ Contenido **de ejemplo**, marcado con comentarios en `index.html`:
 
 ### Cuando lleguen los primeros resultados
 
-La sección **Hoja de ruta** lleva un aviso (`.note`) que anticipa que ese será
-el sitio de la hoja de tiempos. Cuando se dispute la primera carrera, ahí van
-ronda, circuito, salida, posición final y mejor vuelta.
+La **Hoja de ruta** es el sitio natural para la hoja de tiempos: cuando se
+dispute la primera carrera, ahí van ronda, circuito, salida, posición final y
+mejor vuelta.
 
 La galería se retiró por no tener fotos todavía; cuando las haya, es el momento
 de volver a montarla.
