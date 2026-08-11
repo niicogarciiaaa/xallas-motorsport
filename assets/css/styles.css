@@ -983,110 +983,65 @@ a:hover { color: var(--green-100); }
   color: var(--text-muted);
 }
 
-/* Anatomía de una carrera ------------------------------------------------ */
-.anatomy {
-  margin-top: 50px;
-  padding-top: 46px;
-  border-top: 1px solid var(--border);
-}
-.anatomy__title { font-size: 1.5rem; margin-bottom: 12px; }
-.anatomy__lead {
-  color: var(--text-secondary);
-  max-width: 64ch;
-  margin-bottom: 34px;
-}
-
-.race { margin: 0 0 36px; }
-.race__hours {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 9px;
-  font-family: var(--font-display);
-  font-size: .7rem;
-  font-weight: 700;
-  letter-spacing: .14em;
-  color: var(--text-muted);
-  font-variant-numeric: tabular-nums;
-}
-
-.race__bar {
-  display: flex;
-  height: 64px;
-  border: 1px solid var(--border-strong);
-  border-radius: var(--r-sm);
-  overflow: hidden;
-}
-
-/* --w es la proporción del stint dentro de la carrera */
-.race__stint {
-  flex: var(--w) 1 0;
+/* Por qué resistencia ---------------------------------------------------- */
+.why {
+  position: relative;
   display: grid;
-  place-items: center;
-  background: linear-gradient(160deg, var(--green-600), var(--green-800));
-  transition: filter .3s var(--ease);
-}
-.race__stint:hover { filter: brightness(1.18); }
-.race__stint span {
-  font-family: var(--font-display);
-  font-size: .74rem;
-  font-weight: 700;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--paper);
-}
-/* De noche el coche sigue en pista, pero la luz se va */
-.race__stint--night {
-  background: linear-gradient(160deg, var(--ink-750), var(--ink-950));
-  box-shadow: inset 0 0 0 1px var(--green-800);
-}
-.race__stint--night span { color: var(--green-200); }
-
-/* La parada, con la bandera de cuadros del logo */
-.race__pit {
-  flex: 0 0 17px;
-  background-image:
-    conic-gradient(var(--green-200) 25%, var(--ink-900) 0 50%, var(--green-200) 0 75%, var(--ink-900) 0);
-  background-size: 8.5px 8.5px;
-}
-
-.race__legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 9px 24px;
-  margin-top: 14px;
-}
-.race__key {
-  display: inline-flex;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 46px;
   align-items: center;
-  gap: 9px;
-  font-size: .84rem;
-  color: var(--text-muted);
-}
-.race__key::before {
-  content: "";
-  width: 15px; height: 15px;
-  border-radius: 2px;
-  flex-shrink: 0;
-}
-.race__key--stint::before { background: linear-gradient(160deg, var(--green-600), var(--green-800)); }
-.race__key--night::before { background: var(--ink-750); box-shadow: inset 0 0 0 1px var(--green-800); }
-.race__key--pit::before {
-  background-image:
-    conic-gradient(var(--green-200) 25%, var(--ink-900) 0 50%, var(--green-200) 0 75%, var(--ink-900) 0);
-  background-size: 7.5px 7.5px;
+  margin-top: 26px;
+  padding: 46px 42px;
+  overflow: hidden;
+  background:
+    radial-gradient(90% 130% at 8% 0%, rgba(30, 90, 55, .26) 0%, transparent 62%),
+    var(--surface-raised);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-md);
 }
 
-.phases {
+/* Aspa del logo, recortada por el borde del bloque */
+.why__x {
+  position: absolute;
+  top: 50%; right: -8%;
+  width: 420px; aspect-ratio: 1;
+  transform: translateY(-50%);
+  opacity: .07;
+  pointer-events: none;
+  background:
+    linear-gradient(59deg, transparent calc(50% - 26px), var(--green-100) calc(50% - 26px),
+                    var(--green-100) calc(50% + 26px), transparent calc(50% + 26px)),
+    linear-gradient(-59deg, transparent calc(50% - 26px), var(--green-100) calc(50% - 26px),
+                    var(--green-100) calc(50% + 26px), transparent calc(50% + 26px));
+}
+
+.why__lead { position: relative; }
+.why__statement {
+  font-family: var(--font-display);
+  font-size: clamp(1.65rem, 3.3vw, 2.4rem);
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -.025em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.why__points {
+  position: relative;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(205px, 1fr));
-  gap: 24px;
+  gap: 22px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
-.phase { position: relative; padding-left: 24px; }
+.why__points li {
+  position: relative;
+  padding-left: 24px;
+  font-size: .95rem;
+  color: var(--text-secondary);
+}
 /* Barra de la visera como viñeta */
-.phase::before {
+.why__points li::before {
   content: "";
   position: absolute;
   left: 0; top: .5em;
@@ -1094,8 +1049,16 @@ a:hover { color: var(--green-100); }
   background: var(--green-400);
   transform: skewX(var(--x-skew));
 }
-.phase h4 { font-size: 1.02rem; margin-bottom: 7px; letter-spacing: .01em; }
-.phase p { font-size: .93rem; color: var(--text-secondary); }
+.why__points b {
+  display: block;
+  margin-bottom: 4px;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: .01em;
+  text-transform: uppercase;
+  color: var(--text);
+}
 
 /* ── 12. HOJA DE RUTA (banda clara) ─────────────────────────────────────── */
 .roadmap {
@@ -1413,6 +1376,8 @@ a:hover { color: var(--green-100); }
   .hero { min-height: auto; padding-top: 122px; }
   .section__head--row { flex-direction: column; align-items: flex-start; gap: 20px; }
   .endurance { grid-template-columns: 1fr; }
+  .why { grid-template-columns: 1fr; gap: 30px; padding: 36px 30px; }
+  .why__x { right: -28%; opacity: .05; }
   .cta__inner { flex-direction: column; align-items: flex-start; }
 }
 
@@ -1449,19 +1414,6 @@ a:hover { color: var(--green-100); }
   .stats__grid { grid-template-columns: 1fr; }
   .spec { grid-template-columns: 1fr; }
 
-  /* En la barra de carrera no cabe "Stint 1": queda solo el número */
-  .race__bar { height: 54px; }
-  .race__stint span { display: none; }
-  .race__stint::after {
-    content: attr(data-n);
-    font-family: var(--font-display);
-    font-size: .95rem;
-    font-weight: 800;
-    color: var(--paper);
-  }
-  .race__stint--night::after { color: var(--green-200); }
-  .race__hours span:nth-child(even) { display: none; }
-  .race__pit { flex-basis: 13px; }
   .footer__grid { grid-template-columns: 1fr; }
   .footer__bottom { justify-content: center; text-align: center; }
 }

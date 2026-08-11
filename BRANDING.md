@@ -171,10 +171,9 @@ Contenido **de ejemplo**, marcado con comentarios en `index.html`:
   reducido para que quepa en la columna, y por eso no lleva contador.
 - **Resistencia**: el coche, su ficha técnica y los cuatro datos de
   `.facts` (duración, stint, pilotos por coche, objetivo).
-- **Anatomía de una carrera**: el ejemplo es una prueba de seis horas. El ancho
-  de cada stint sale de `style="--w:25"`; los valores son proporciones entre sí,
-  no horas, así que basta con que sumen algo coherente. Si cambias el número de
-  stints, revisa también las etiquetas de `.race__hours`.
+- **Por qué resistencia** (`.why`): texto de opinión del equipo, no datos.
+  Explica la elección de la disciplina, que es lo único que la web no contaba.
+  Cambiadlo con libertad, pero sin prometer resultados que aún no existen.
 - **Síguenos**: los tres `.follow__item` y los iconos del pie llevan `href="#"`.
   **Hay que poner las URLs reales de Discord, Twitch y YouTube** o quitar los
   que no se usen.
