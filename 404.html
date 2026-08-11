@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Página no encontrada — Xallas MotorSport</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0B100D">
+
+<link rel="icon" href="https://niicogarciiaaa.github.io/xallas-motorsport/assets/img/favicon.ico" sizes="any">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- Sin CSS externo a propósito: GitHub Pages sirve este archivo para
+     cualquier ruta inexistente, también /algo/muy/profundo, y desde ahí una
+     ruta relativa a assets/ no resolvería. Todo va aquí dentro. -->
+<style>
+  :root {
+    --green-800: #174C2F;   /* LOGO */
+    --green-700: #1E5A37;   /* LOGO */
+    --green-500: #347B53;   /* LOGO */
+    --green-200: #74C79A;
+    --green-100: #A3DFBD;
+    --ink-950:   #0B100D;
+    --ink-600:   #2E3A33;
+    --mist:      #CDD8D2;   /* LOGO */
+    --paper:     #FDFEFD;   /* LOGO */
+    --x-skew: -14deg;
+    --ease: cubic-bezier(.22, .61, .36, 1);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100svh;
+    display: grid;
+    place-items: center;
+    padding: 40px 24px 64px;
+    background:
+      radial-gradient(110% 80% at 70% 15%, rgba(30, 90, 55, .34) 0%, transparent 60%),
+      var(--ink-950);
+    color: var(--paper);
+    font-family: "Barlow", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* Aspa del logo como marca de agua, con su mismo ángulo */
+  .x {
+    position: fixed;
+    top: 50%; left: 50%;
+    width: min(84vw, 760px);
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+    opacity: .06;
+    pointer-events: none;
+    background:
+      linear-gradient(59deg, transparent calc(50% - 42px), var(--green-200) calc(50% - 42px),
+                      var(--green-200) calc(50% + 42px), transparent calc(50% + 42px)),
+      linear-gradient(-59deg, transparent calc(50% - 42px), var(--green-200) calc(50% - 42px),
+                      var(--green-200) calc(50% + 42px), transparent calc(50% + 42px));
+  }
+
+  main { position: relative; text-align: center; max-width: 560px; }
+
+  /* Las tres barras del visor del casco */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 22px;
+    font-family: "Archivo", Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--green-200);
+  }
+  .bars { display: inline-flex; gap: 3px; transform: skewX(var(--x-skew)); }
+  .bars i { display: block; width: 4px; height: 13px; background: var(--green-500); }
+  .bars i:nth-child(2) { background: #3F8F62; }
+  .bars i:nth-child(3) { background: #55A87A; }
+
+  .code {
+    margin: 0;
+    font-family: "Archivo", Arial, sans-serif;
+    font-size: clamp(5.5rem, 20vw, 11rem);
+    font-weight: 900;
+    line-height: .88;
+    letter-spacing: -.05em;
+    background: linear-gradient(140deg, var(--green-100) 0%, var(--green-500) 55%, var(--green-800) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  h1 {
+    margin: 18px 0 14px;
+    font-family: "Archivo", Arial, sans-serif;
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -.02em;
+    text-transform: uppercase;
+  }
+
+  p { margin: 0 0 34px; color: var(--mist); }
+
+  .btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 30px;
+    overflow: hidden;
+    isolation: isolate;
+    font-family: "Archivo", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--paper);
+    background: linear-gradient(135deg, var(--green-500) 0%, var(--green-700) 45%, var(--green-800) 100%);
+    border-radius: 3px;
+    box-shadow: 0 2px 8px rgba(10, 22, 15, .5);
+    transition: transform .25s var(--ease), box-shadow .25s var(--ease);
+  }
+  /* Barrido diagonal, el trazo de velocidad del logo */
+  .btn::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 -120%;
+    width: 60%;
+    background: linear-gradient(100deg, transparent, rgba(253, 254, 253, .22), transparent);
+    transform: skewX(var(--x-skew));
+    transition: left .55s var(--ease);
+    z-index: -1;
+  }
+  .btn:hover::before { left: 130%; }
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px -8px rgba(10, 22, 15, .75), 0 0 40px -6px rgba(52, 123, 83, .55);
+  }
+  .btn svg {
+    width: 17px; height: 17px;
+    fill: none; stroke: currentColor; stroke-width: 2.2;
+    stroke-linecap: round; stroke-linejoin: round;
+    transition: transform .3s var(--ease);
+  }
+  .btn:hover svg { transform: translateX(-4px); }
+
+  a:focus-visible, .btn:focus-visible {
+    outline: 2px solid #55A87A;
+    outline-offset: 3px;
+  }
+
+  /* Bandera de cuadros del logo */
+  .checker {
+    position: fixed;
+    inset: auto 0 0 0;
+    height: 22px;
+    background-image:
+      conic-gradient(var(--green-700) 25%, transparent 0 50%, var(--green-700) 0 75%, transparent 0);
+    background-size: 22px 22px;
+    opacity: .6;
+    border-top: 1px solid #232C27;
+  }
+
+  .wordmark {
+    margin-top: 40px;
+    font-family: "Archivo", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    color: var(--green-500);
+  }
+  .wordmark span { color: var(--ink-600); }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition-duration: .01ms !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="x" aria-hidden="true"></div>
+
+<main>
+  <p class="eyebrow">
+    <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
+    Error 404
+  </p>
+
+  <p class="code" aria-hidden="true">404</p>
+
+  <h1>Te has salido de pista</h1>
+
+  <p>Esta página no existe o ha cambiado de sitio. Vuelve al trazado principal.</p>
+
+  <!-- URL absoluta: este archivo se sirve desde rutas de cualquier profundidad,
+       así que una relativa no llevaría siempre al inicio. Si algún día hay
+       dominio propio, cambiar también aquí. Ver BRANDING.md §10. -->
+  <a class="btn" href="https://niicogarciiaaa.github.io/xallas-motorsport/">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H6M12 19l-7-7 7-7"/></svg>
+    Volver al inicio
+  </a>
+
+  <p class="wordmark">Xallas MotorSport <span>· Since 2026</span></p>
+</main>
+
+<div class="checker" aria-hidden="true"></div>
+
+</body>
+</html>

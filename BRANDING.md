@@ -132,10 +132,10 @@ La tarjeta social se compone con el emblema sobre el fondo de marca, el mismo
 resplandor verde del hero, el aspa de marca de agua y la franja de cuadros. El
 cuerpo del logotipo se calcula solo para que nunca toque el borde derecho.
 
-> **Sin dominio todavía:** las rutas de `og:image`, `twitter:image` y el JSON-LD
-> son **relativas** a propósito. Un dominio inventado haría que la miniatura no
-> cargase en ningún sitio, así que es mejor esto: casi todos los rastreadores
-> actuales resuelven la ruta relativa contra la URL de la página. Ver §10.
+> **Rutas de compartir:** `og:image` y `twitter:image` apuntan en **absoluto** a
+> GitHub Pages, porque los rastreadores no siempre resuelven las relativas y sin
+> eso la miniatura no aparece. El resto del sitio sigue con rutas relativas.
+> Ver §10.
 
 El fondo se recortó con relleno por inundación desde los bordes, de modo que
 los blancos **interiores** (brillos del casco, cuadros de la bandera) siguen
@@ -222,6 +222,12 @@ cinco:
 | `<head>` | `og:image` |
 | `<head>` | `twitter:image` |
 | JSON-LD | `url`, `logo` e `image` |
+| `404.html` | el `href` del botón «Volver al inicio» y el del favicon |
+
+`404.html` es una página **autocontenida**: los estilos van en línea y no usa
+ninguna imagen. GitHub Pages la sirve para cualquier ruta inexistente, también
+`/algo/muy/profundo`, y desde ahí una ruta relativa a `assets/` no resolvería.
+Por eso no depende de nada externo salvo las tipografías.
 
 ### Si algún día hay dominio propio
 
