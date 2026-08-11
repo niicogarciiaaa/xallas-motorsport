@@ -447,43 +447,20 @@
   </div>
 </section>
 
-<!-- ═════════════════════════════ EL TRAZADO ═══════════════════════════ -->
-<!-- El trazado es genérico a propósito: no representa ningún circuito real -->
-<section class="circuit" id="trazado">
-  <div class="wrap circuit__inner">
-    <div class="circuit__texto">
-      <p class="eyebrow reveal">
-        <span class="eyebrow__bars" aria-hidden="true"><i></i><i></i><i></i></span>
-        El trazado
-      </p>
-      <h2 class="section__title reveal" style="--d:60ms">La misma vuelta,<br><span class="grad">cientos de veces</span></h2>
-      <p class="section__lead reveal" style="--d:120ms">
-        Una carrera larga es un bucle repetido hasta que aparece el error. Ganar
-        no va de encontrar la vuelta perfecta, va de no perderla nunca.
-      </p>
-    </div>
-
-    <figure class="circuit__figura reveal" style="--d:100ms" aria-label="Ilustración de un trazado de circuito">
-      <svg viewBox="0 0 1000 340" role="img">
-        <title>Trazado genérico de circuito</title>
-        <path class="circuit__sombra" d="M150 265 L700 265 C800 265 860 240 870 195 C878 158 845 128 800 130 L640 140 C600 143 585 120 600 98 C612 80 645 72 670 78 L720 88 C760 96 790 80 786 55 C782 32 750 22 720 30 L300 120 C250 132 200 120 175 95 C148 68 100 72 82 105 C60 145 78 200 110 235 C122 250 135 262 150 265 Z"/>
-        <path class="circuit__linea" d="M150 265 L700 265 C800 265 860 240 870 195 C878 158 845 128 800 130 L640 140 C600 143 585 120 600 98 C612 80 645 72 670 78 L720 88 C760 96 790 80 786 55 C782 32 750 22 720 30 L300 120 C250 132 200 120 175 95 C148 68 100 72 82 105 C60 145 78 200 110 235 C122 250 135 262 150 265 Z"/>
-        <!-- Línea de meta, con la bandera de cuadros del logo -->
-        <g class="circuit__meta">
-          <rect x="330" y="249" width="9" height="32"/>
-          <rect x="339" y="249" width="9" height="16" class="alt"/>
-          <rect x="330" y="265" width="9" height="16" class="alt"/>
-        </g>
-      </svg>
-    </figure>
-  </div>
-</section>
-
 <!-- ════════════════════════ TEMPORADA / HOJA DE RUTA ══════════════════ -->
 <!-- Banda clara: recrea el lienzo blanco del propio logo (plan impreso).
      AJUSTAR: fechas y estado de cada hito (data-state: done | now | next) -->
 <section class="section section--paper" id="temporada">
-  <div class="wrap">
+  <!-- El trazado, ahora de fondo: se dibuja conforme se baja por la sección.
+       Es genérico, no representa ningún circuito real. -->
+  <div class="track" aria-hidden="true">
+    <svg viewBox="0 0 1000 340" preserveAspectRatio="xMidYMid meet">
+      <path class="track__base" d="M150 265 L700 265 C800 265 860 240 870 195 C878 158 845 128 800 130 L640 140 C600 143 585 120 600 98 C612 80 645 72 670 78 L720 88 C760 96 790 80 786 55 C782 32 750 22 720 30 L300 120 C250 132 200 120 175 95 C148 68 100 72 82 105 C60 145 78 200 110 235 C122 250 135 262 150 265 Z"/>
+      <path class="track__linea" d="M150 265 L700 265 C800 265 860 240 870 195 C878 158 845 128 800 130 L640 140 C600 143 585 120 600 98 C612 80 645 72 670 78 L720 88 C760 96 790 80 786 55 C782 32 750 22 720 30 L300 120 C250 132 200 120 175 95 C148 68 100 72 82 105 C60 145 78 200 110 235 C122 250 135 262 150 265 Z"/>
+    </svg>
+  </div>
+
+  <div class="wrap section--paper__contenido">
     <div class="section__head">
       <p class="eyebrow eyebrow--dark reveal">
         <span class="eyebrow__bars" aria-hidden="true"><i></i><i></i><i></i></span>

@@ -625,8 +625,39 @@ a:hover { color: var(--green-100); }
 .section--alt { background: var(--background-secondary); }
 
 .section--paper {
+  position: relative;
+  overflow: hidden;
   background: var(--paper);
   color: var(--ink-800);
+}
+.section--paper__contenido { position: relative; z-index: 1; }
+
+/* Trazado de fondo. Los verdes son claros a propósito: la línea pasa por
+   detrás de texto de 11 px y el contraste no puede bajar de 4,5:1. Medido,
+   el peor caso queda en 4,86. */
+.track {
+  position: absolute;
+  top: 50%; left: -4%;
+  width: 108%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  z-index: 0;
+}
+.track svg { width: 100%; height: auto; display: block; }
+.track__base {
+  fill: none;
+  stroke: var(--green-050);
+  stroke-width: 15;
+  stroke-linejoin: round;
+}
+/* El reparto lo calcula el JS a partir del scroll */
+.track__linea {
+  fill: none;
+  stroke: var(--green-200);
+  stroke-width: 9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: .4;
 }
 .section--paper .section__title { color: var(--green-900); }
 .section--paper .section__lead { color: var(--ink-700); }
@@ -964,41 +995,7 @@ a:hover { color: var(--green-100); }
   to   { transform: translateX(-50%); }
 }
 
-/* ── 12. EL TRAZADO ─────────────────────────────────────────────────────── */
-.circuit {
-  padding: clamp(70px, 9vw, 110px) 0;
-  background: var(--background-secondary);
-  overflow: hidden;
-}
-.circuit__inner {
-  display: grid;
-  grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr);
-  gap: 54px;
-  align-items: center;
-}
-.circuit__figura { margin: 0; }
-.circuit__figura svg { width: 100%; height: auto; overflow: visible; }
-
-/* Trazado apagado de fondo: se ve el recorrido completo antes de dibujarse */
-.circuit__sombra {
-  fill: none;
-  stroke: var(--ink-700);
-  stroke-width: 13;
-  stroke-linejoin: round;
-}
-/* La línea que se dibuja al bajar; el reparto lo calcula el JS */
-.circuit__linea {
-  fill: none;
-  stroke: var(--green-400);
-  stroke-width: 5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  filter: drop-shadow(0 0 10px rgba(63, 143, 98, .55));
-}
-.circuit__meta rect { fill: var(--paper); }
-.circuit__meta rect.alt { fill: var(--ink-950); }
-
-/* ── 13. RESISTENCIA ────────────────────────────────────────────────────── */
+/* ── 12. RESISTENCIA ────────────────────────────────────────────────────── */
 .endurance {
   display: grid;
   grid-template-columns: 1.12fr .88fr;
@@ -1213,7 +1210,7 @@ a:hover { color: var(--green-100); }
   color: var(--text);
 }
 
-/* ── 14. HOJA DE RUTA (banda clara) ─────────────────────────────────────── */
+/* ── 13. HOJA DE RUTA (banda clara) ─────────────────────────────────────── */
 .roadmap {
   position: relative;
   display: grid;
@@ -1282,12 +1279,14 @@ a:hover { color: var(--green-100); }
   font-weight: 700;
   letter-spacing: .18em;
   text-transform: uppercase;
-  color: var(--green-600);
+  /* green-700, no green-600: donde el trazado pasa por detrás, este texto de
+     11 px se quedaba en 4,37:1. Medido sobre el fondo real, así sube a 5,55. */
+  color: var(--green-700);
   margin-bottom: 8px;
 }
-/* --sage sobre la banda clara se queda en 3,49:1 y este texto es de 11 px:
-   green-500 da 5,06 y sigue leyéndose más apagado que los hitos activos. */
-.step[data-state="next"] .step__when { color: var(--green-500); }
+/* Los hitos futuros se distinguen por el marcador (hueco, sin relleno), no por
+   un color más flojo: con el trazado de fondo, green-500 se quedaba sin margen
+   de contraste. Hereda green-600 de .step__when. */
 .step__title {
   font-size: 1.3rem;
   color: var(--green-900);
@@ -1313,7 +1312,7 @@ a:hover { color: var(--green-100); }
 .note p { color: var(--ink-700); font-size: .97rem; }
 .note b { color: var(--green-900); font-family: var(--font-display); text-transform: uppercase; letter-spacing: .01em; }
 
-/* ── 15. CTA ────────────────────────────────────────────────────────────── */
+/* ── 14. CTA ────────────────────────────────────────────────────────────── */
 .cta {
   position: relative;
   padding: clamp(74px, 10vw, 120px) 0;
@@ -1420,7 +1419,7 @@ a:hover { color: var(--green-100); }
 
 .follow__mail { margin-top: 6px; justify-content: center; }
 
-/* ── 16. FOOTER ─────────────────────────────────────────────────────────── */
+/* ── 15. FOOTER ─────────────────────────────────────────────────────────── */
 .footer { background: var(--background-secondary); }
 .footer__grid {
   display: grid;
@@ -1499,7 +1498,7 @@ a:hover { color: var(--green-100); }
   font-size: .78rem;
 }
 
-/* ── 17. REVELADO AL SCROLL ─────────────────────────────────────────────── */
+/* ── 16. REVELADO AL SCROLL ─────────────────────────────────────────────── */
 /* Sólo se oculta si hay JS para volver a mostrarlo: sin JS todo es visible. */
 .js .reveal {
   opacity: 0;
@@ -1509,7 +1508,7 @@ a:hover { color: var(--green-100); }
 }
 .js .reveal.is-in { opacity: 1; transform: none; }
 
-/* ── 18. RESPONSIVE ─────────────────────────────────────────────────────── */
+/* ── 17. RESPONSIVE ─────────────────────────────────────────────────────── */
 @media (max-width: 1080px) {
   .footer__grid { grid-template-columns: 1fr 1fr; gap: 38px; }
   .footer__brand { grid-column: 1 / -1; }
@@ -1534,7 +1533,6 @@ a:hover { color: var(--green-100); }
   .hero { min-height: auto; padding-top: 122px; }
   .section__head--row { flex-direction: column; align-items: flex-start; gap: 20px; }
   .endurance { grid-template-columns: 1fr; }
-  .circuit__inner { grid-template-columns: 1fr; gap: 34px; }
   .why { grid-template-columns: 1fr; gap: 30px; padding: 36px 30px; }
   .why__x { right: -28%; opacity: .05; }
   .cta__inner { flex-direction: column; align-items: flex-start; }
@@ -1595,7 +1593,7 @@ a:hover { color: var(--green-100); }
   .brand__type { display: none; }
 }
 
-/* ── 19. MOVIMIENTO REDUCIDO ────────────────────────────────────────────── */
+/* ── 18. MOVIMIENTO REDUCIDO ────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {
@@ -1610,7 +1608,7 @@ a:hover { color: var(--green-100); }
   .driver { transform: none; }
 }
 
-/* ── 20. IMPRESIÓN ──────────────────────────────────────────────────────── */
+/* ── 19. IMPRESIÓN ──────────────────────────────────────────────────────── */
 @media print {
   .nav, .hero__scroll, .cta, .band { display: none; }
   body { background: #fff; color: #000; }

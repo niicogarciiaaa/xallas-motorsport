@@ -180,7 +180,7 @@
   }
 
   /* ── El trazado se dibuja según se baja ─────────────────────────────── */
-  var trazado = document.querySelector(".circuit__linea");
+  var trazado = document.querySelector(".track__linea");
 
   if (trazado) {
     var largo = trazado.getTotalLength();
@@ -190,7 +190,7 @@
       trazado.style.strokeDashoffset = 0;           // sin animación: se ve entero
     } else {
       trazado.style.strokeDashoffset = largo;
-      var bloque = trazado.closest(".circuit");
+      var bloque = trazado.closest(".section--paper");
       var esperando = false;
 
       var dibujar = function () {

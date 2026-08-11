@@ -178,15 +178,24 @@ fondo:
 - No se menciona ninguna otra plataforma ni ninguna categoría de sprint.
 
 Secciones: Hero → Cifras de arranque → Equipo → Pilotos → Banda de marca →
-Resistencia → El trazado → Hoja de ruta → Contacto.
+Resistencia → Hoja de ruta → Contacto.
 
 Tres piezas son puramente visuales y no llevan datos:
 
 - **Banda de marca** (`.band`): emblema gigante al fondo y una cinta de texto en
   bucle entre cuadros. Va con `aria-hidden` porque no aporta información.
-- **El trazado** (`.circuit`): el circuito **no representa ninguno real**, es
-  genérico. La línea verde se dibuja según se baja, con `stroke-dashoffset`
-  calculado desde la posición del bloque en pantalla.
+- **El trazado** (`.track`): va de **fondo de la hoja de ruta**, no como sección
+  aparte. El circuito **no representa ninguno real**, es genérico. La línea se
+  dibuja según se baja, con `stroke-dashoffset` calculado desde la posición de
+  la sección en pantalla.
+
+  Los verdes son claros por obligación, no por gusto: la línea pasa por detrás
+  de texto de 11 px. Se comprobó capturando el fondo **con el contenido oculto**
+  y midiendo el píxel más oscuro bajo la caja de cada texto — que es la única
+  forma de verlo, porque una auditoría normal sube por el DOM y solo encuentra
+  el blanco de la sección. Ahí apareció que «Por definir» se quedaba en 4,37:1,
+  y por eso `.step__when` va en green-700. El margen más ajustado queda en
+  +1,05 sobre el mínimo.
 - **Inclinación de las tarjetas de piloto**: siguen al ratón con un giro máximo
   de 7°, un brillo que va tras el cursor y el dorsal y el casco desplazándose en
   sentido contrario, que es lo que da la sensación de profundidad. Solo con
