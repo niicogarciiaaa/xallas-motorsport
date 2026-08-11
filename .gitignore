@@ -1,0 +1,13 @@
+# Configuración local de herramientas
+.claude/
+
+# Sistema operativo
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*~

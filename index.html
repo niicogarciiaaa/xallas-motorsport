@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Xallas MotorSport — Escudería de Simracing</title>
+<meta name="description" content="Xallas MotorSport. Escudería de simracing fundada en 2026. Carreras de resistencia en iRacing. Pilotos fundadores, el coche y la hoja de ruta del equipo.">
+<meta name="theme-color" content="#0B100D">
+
+<link rel="icon" href="assets/img/favicon.ico" sizes="any">
+<link rel="icon" href="assets/img/favicon-512.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+
+<link rel="manifest" href="site.webmanifest">
+
+<!-- Tarjeta al compartir el enlace (Discord, WhatsApp, X…).
+     Rutas RELATIVAS a propósito: todavía no hay dominio, y un dominio
+     inventado haría que la miniatura no cargase en ningún sitio. Casi todos
+     los rastreadores actuales las resuelven contra la URL de la página.
+     CUANDO HAYA DOMINIO: pon las dos rutas de imagen en absoluto
+     (https://TU-DOMINIO/assets/img/og-card.png) y añade og:url y
+     <link rel="canonical">. Ver BRANDING.md §10. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Xallas MotorSport">
+<meta property="og:locale" content="es_ES">
+<meta property="og:title" content="Xallas MotorSport — Escudería de resistencia en iRacing">
+<meta property="og:description" content="Escudería de simracing nacida en 2026 en la comarca del Xallas. Solo resistencia, solo iRacing.">
+<meta property="og:image" content="assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Emblema de Xallas MotorSport sobre fondo verde oscuro">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Xallas MotorSport — Escudería de resistencia en iRacing">
+<meta name="twitter:description" content="Escudería de simracing nacida en 2026 en la comarca del Xallas. Solo resistencia, solo iRacing.">
+<meta name="twitter:image" content="assets/img/og-card.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SportsTeam",
+  "name": "Xallas MotorSport",
+  "sport": "Sim racing",
+  "foundingDate": "2026",
+  "logo": "assets/img/favicon-512.png",
+  "image": "assets/img/og-card.png",
+  "description": "Escudería de simracing especializada en carreras de resistencia en iRacing, fundada en 2026 en la comarca del Xallas (Galicia).",
+  "areaServed": "Galicia, España",
+  "numberOfEmployees": { "@type": "QuantitativeValue", "value": 8 }
+}
+</script>
+
+<!-- Marca que hay JS: sin él, nada queda oculto por las animaciones de entrada -->
+<script>document.documentElement.className += " js";</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Saltar al contenido</a>
+
+<!-- Casco reutilizable: reproduce el casco del logo (visera con tres barras).
+     El contenido de <use> vive en un shadow tree que el CSS del documento no
+     puede seleccionar; las custom properties sí lo atraviesan, así que el
+     color se controla con variables (ver .driver__silhouette en styles.css) -->
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+  <symbol id="i-helmet" viewBox="0 0 120 120">
+    <path d="M60 14c-21 0-38 17-38 38v12c0 6 2 12 6 16l-3 14c-1 4 2 8 6 8h58c4 0 7-4 6-8l-3-14c4-4 6-10 6-16V52c0-21-17-38-38-38Z"
+          style="fill:var(--h-shell,#0B100D);stroke:var(--h-stroke,#1E5A37);stroke-width:2.4"/>
+    <path d="M30 54c7-11 17-17 30-17s23 6 30 17v10c0 3-2 5-5 5H35c-3 0-5-2-5-5Z"
+          style="fill:var(--h-visor,#174C2F);stroke:var(--h-visor-line,#276B44);stroke-width:2"/>
+    <g style="fill:var(--h-bars,#3F8F62)">
+      <rect x="63" y="47" width="4.5" height="17" rx="1.5"/>
+      <rect x="71.5" y="47" width="4.5" height="17" rx="1.5"/>
+      <rect x="80" y="47" width="4.5" height="17" rx="1.5"/>
+    </g>
+  </symbol>
+</svg>
+
+<!-- ══════════════════════════════ NAVBAR ══════════════════════════════ -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="brand" href="#hero" aria-label="Xallas MotorSport — inicio">
+      <img class="brand__mark" src="assets/img/logo-mark.png" alt="" width="568" height="399" decoding="async">
+      <span class="brand__type">
+        <span class="brand__word">
+          <b>X</b>allas <b>M</b>otor<i><b>S</b>port</i>
+        </span>
+        <span class="brand__since">Since 2026</span>
+      </span>
+    </a>
+
+    <nav class="nav__links" id="navLinks" aria-label="Navegación principal">
+      <a href="#equipo">Equipo</a>
+      <a href="#pilotos">Pilotos</a>
+      <a href="#resistencia">Resistencia</a>
+      <a href="#temporada">Temporada</a>
+      <a class="btn btn--sm btn--accent nav__cta" href="#contacto">Contacto</a>
+    </nav>
+
+    <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav__checker" aria-hidden="true"></div>
+</header>
+
+<main id="main">
+
+<!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+<section class="hero" id="hero">
+  <div class="hero__grid-bg" aria-hidden="true"></div>
+  <div class="hero__x" aria-hidden="true"></div>
+  <div class="hero__streaks" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <div class="wrap hero__inner">
+    <div class="hero__content">
+      <p class="eyebrow reveal">
+        <span class="eyebrow__bars" aria-hidden="true"><i></i><i></i><i></i></span>
+        Simracing · Galicia · Temporada inaugural
+      </p>
+
+      <h1 class="hero__title reveal" style="--d:60ms">
+        Empezamos<br>
+        de <span class="grad">cero</span>.<br>
+        Y en serio.
+      </h1>
+
+      <p class="hero__lead reveal" style="--d:120ms">
+        Xallas MotorSport nace en 2026. Sin palmarés que enseñar todavía: ocho
+        pilotos fundadores, una sola disciplina —la resistencia— y la primera
+        vuelta aún por dar.
+      </p>
+
+      <div class="hero__actions reveal" style="--d:180ms">
+        <a class="btn btn--primary" href="#pilotos">
+          Conoce al equipo
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M12 5l7 7-7 7"/></svg>
+        </a>
+        <a class="btn btn--ghost" href="#temporada">Ver la hoja de ruta</a>
+      </div>
+    </div>
+
+    <div class="hero__emblem reveal" style="--d:100ms">
+      <div class="hero__emblem-glow" aria-hidden="true"></div>
+      <img src="assets/img/logo-mark.png" alt="Emblema de Xallas MotorSport" width="568" height="399" fetchpriority="high">
+    </div>
+  </div>
+
+  <a class="hero__scroll" href="#equipo" aria-label="Bajar">
+    <span></span>
+  </a>
+</section>
+
+<!-- ══════════════════════════════ CIFRAS ══════════════════════════════ -->
+<!-- Datos de arranque, no palmarés: el equipo aún no ha competido -->
+<section class="stats" aria-label="El equipo en cifras">
+  <div class="checker-band" aria-hidden="true"></div>
+  <div class="wrap stats__grid">
+    <div class="stat reveal"><b data-count="2026">0</b><span>Año de fundación</span></div>
+    <div class="stat reveal" style="--d:80ms"><b data-count="8">0</b><span>Pilotos fundadores</span></div>
+    <div class="stat stat--text reveal" style="--d:160ms"><b>iRacing</b><span>Plataforma · solo PC</span></div>
+  </div>
+  <div class="checker-band" aria-hidden="true"></div>
+</section>
+
+<!-- ══════════════════════════════ EQUIPO ══════════════════════════════ -->
+<section class="section" id="equipo">
+  <div class="wrap">
+    <div class="section__head">
+      <p class="eyebrow reveal">
+        <span class="eyebrow__bars" aria-hidden="true"><i></i><i></i><i></i></span>
+        El equipo
+      </p>
+      <h2 class="section__title reveal" style="--d:60ms">
+        Una escudería que se construye <span class="grad">desde la primera vuelta</span>
+      </h2>
+      <p class="section__lead reveal" style="--d:120ms">
+        Xallas MotorSport nace en la comarca del Xallas. Todavía no tenemos
+        resultados que contar, así que de momento contamos cómo pensamos
+        trabajar.
+      </p>
+    </div>
+
+    <div class="pillars">
+      <article class="pillar reveal">
+        <div class="pillar__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 2 3 7v6c0 5 3.8 8.4 9 9 5.2-.6 9-4 9-9V7l-9-5Z"/><path d="m8.5 12 2.4 2.5L15.8 9"/></svg>
+        </div>
+        <h3>Rigor desde el día uno</h3>
+        <p>Telemetría, reglajes y análisis de stint desde la primera sesión de entrenos. Empezar de cero no es empezar a lo loco.</p>
+      </article>
+
+      <article class="pillar reveal" style="--d:80ms">
+        <div class="pillar__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><path d="M17 5.5a3 3 0 0 1 0 5.6M18.5 14.4c2 .9 3.2 2.6 3.2 5.1"/></svg>
+        </div>
+        <h3>Espíritu de equipo</h3>
+        <p>Ningún piloto corre solo. Entrenos conjuntos, setups compartidos y una base de datos que crece con cada sesión.</p>
+      </article>
+
+      <article class="pillar reveal" style="--d:160ms">
+        <div class="pillar__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M5 21V4.5C8 2.8 11 6.2 14 4.5s5-1.4 5-1.4v9.4s-2 1.7-5 0-6-1.7-9 0"/></svg>
+        </div>
+        <h3>Bandera propia</h3>
+        <p>Verde Xallas de principio a fin. Una identidad reconocible antes incluso de la primera salida.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════ PILOTOS ══════════════════════════════ -->
+<!-- DATOS DE EJEMPLO: sustituir los 8 nombres, dorsales y etiquetas por los
+     reales. Para añadir foto, sustituir el bloque .driver__photo por una
+     <img> manteniendo la misma proporción. -->
+<section class="section section--alt" id="pilotos">
+  <div class="wrap">
+    <div class="section__head section__head--row">
+      <div>
+        <p class="eyebrow reveal">
+          <span class="eyebrow__bars" aria-hidden="true"><i></i><i></i><i></i></span>
+          Pilotos fundadores
+        </p>
+        <h2 class="section__title reveal" style="--d:60ms">La primera alineación</h2>
+      </div>
+      <p class="section__lead reveal" style="--d:120ms">
+        Ocho pilotos que se suben al proyecto antes de que exista un solo
+        resultado.
+      </p>
+    </div>
+
+    <div class="drivers">
+      <article class="driver reveal">
+        <div class="driver__photo">
+          <span class="driver__num" aria-hidden="true">07</span>
+          <div class="driver__checker" aria-hidden="true"></div>
+          <svg class="driver__silhouette" viewBox="0 0 120 120" aria-hidden="true"><use href="#i-helmet"/></svg>
+        </div>
+        <div class="driver__body">
+          <p class="driver__role">Fundador</p>
+          <h3 class="driver__name">Brais Lourido</h3>
+          <ul class="driver__tags"><li>Resistencia</li><li>iRacing</li></ul>
+        </div>
+      </article>
+
+      <article class="driver reveal" style="--d:60ms">
+        <div class="driver__photo">
+          <span class="driver__num" aria-hidden="true">14</span>
+          <div class="driver__checker" aria-hidden="true"></div>
+          <svg class="driver__silhouette" viewBox="0 0 120 120" aria-hidden="true"><use href="#i-helmet"/></svg>
+        </div>
+        <div class="driver__body">
+          <p class="driver__role">Fundadora</p>
+          <h3 class="driver__name">Uxía Ferreiro</h3>
+          <ul class="driver__tags"><li>Resistencia</li><li>iRacing</li></ul>
+        </div>
+      </article>
+
+      <article class="driver reveal" style="--d:120ms">
+        <div class="driver__photo">
+          <span class="driver__num" aria-hidden="true">23</span>
+          <div class="driver__checker" aria-hidden="true"></div>
+          <svg class="driver__silhouette" viewBox="0 0 120 120" aria-hidden="true"><use href="#i-helmet"/></svg>
+        </div>
+        <div class="driver__body">
+          <p class="driver__role">Fundador</p>
+          <h3 class="driver__name">Xoán Rilo</h3>
+          <ul class="driver__tags"><li>Resistencia</li><li>iRacing</li></ul>
+        </div>
+      </article>
+
+      <article class="driver reveal" style="--d:180ms">
+        <div class="driver__photo">
+          <span class="driver__num" aria-hidden="true">31</span>
+          <div class="driver__checker" aria-hidden="true"></div>
+          <svg class="driver__silhouette" viewBox="0 0 120 120" aria-hidden="true"><use href="#i-helmet"/></svg>
+        </div>
+        <div class="driver__body">
+          <p class="driver__role">Fundadora</p>
+          <h3 class="driver__name">Antía Cambeiro</h3>
+          <ul class="driver__tags"><li>Resistencia</li><li>iRacing</li></ul>
+        </div>
+      </article>
+
+      <article class="driver reveal">
+        <div class="driver__photo">
+          <span class="driver__num" aria-hidden="true">45</span>
+          <div class="driver__checker" aria-hidden="true"></div>
+          <svg class="driver__silhouette" viewBox="0 0 120 120" aria-hidden="true"><use href="#i-helmet"/></svg>
+        </div>
+        <div class="driver__body">
+          <p class="driver__role">Fundador</p>
+          <h3 class="driver__name">Iago Muíños</h3>
+          <ul class="driver__tags"><li>Resistencia</li><li>iRacing</li></ul>
+        </div>
+      </article>
+
+      <article class="driver reveal" style="--d:60ms">
+        <div class="driver__photo">
+          <span class="driver__num" aria-hidden="true">66</span>
+          <div class="driver__checker" aria-hidden="true"></div>
+          <svg class="driver__silhouette" viewBox="0 0 120 120" aria-hidden="true"><use href="#i-helmet"/></svg>
+        </div>
+        <div class="driver__body">
+          <p class="driver__role">Fundadora</p>
+          <h3 class="driver__name">Noa Vilar</h3>
+          <ul class="driver__tags"><li>Resistencia</li><li>iRacing</li></ul>
+        </div>
+      </article>
+
+      <article class="driver reveal" style="--d:120ms">
+        <div class="driver__photo">
+          <span class="driver__num" aria-hidden="true">05</span>
+          <div class="driver__checker" aria-hidden="true"></div>
+          <svg class="driver__silhouette" viewBox="0 0 120 120" aria-hidden="true"><use href="#i-helmet"/></svg>
+        </div>
+        <div class="driver__body">
+          <p class="driver__role">Fundador</p>
+          <h3 class="driver__name">Martiño Deive</h3>
+          <ul class="driver__tags"><li>Resistencia</li><li>iRacing</li></ul>
+        </div>
+      </article>
+
+      <article class="driver reveal" style="--d:180ms">
+        <div class="driver__photo">
+          <span class="driver__num" aria-hidden="true">88</span>
+          <div class="driver__checker" aria-hidden="true"></div>
+          <svg class="driver__silhouette" viewBox="0 0 120 120" aria-hidden="true"><use href="#i-helmet"/></svg>
+        </div>
+        <div class="driver__body">
+          <p class="driver__role">Fundadora</p>
+          <h3 class="driver__name">Sabela Ordes</h3>
+          <ul class="driver__tags"><li>Resistencia</li><li>iRacing</li></ul>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════ RESISTENCIA ══════════════════════════ -->
+<!-- DATOS DE EJEMPLO: ajustar coche, ficha técnica y duraciones a lo real -->
+<section class="section" id="resistencia">
+  <div class="wrap">
+    <div class="section__head">
+      <p class="eyebrow reveal">
+        <span class="eyebrow__bars" aria-hidden="true"><i></i><i></i><i></i></span>
+        Garaje
+      </p>
+      <h2 class="section__title reveal" style="--d:60ms">Sólo <span class="grad">resistencia</span></h2>
+      <p class="section__lead reveal" style="--d:120ms">
+        No corremos sprint. Todo el trabajo del equipo va a carreras largas:
+        relevos, estrategia y ritmo sostenido durante horas.
+      </p>
+    </div>
+
+    <div class="endurance">
+      <div class="endurance__visual reveal">
+        <div class="car__stripe" aria-hidden="true"></div>
+        <span class="car__badge">Resistencia</span>
+        <svg class="car__art" viewBox="0 0 400 150" aria-hidden="true">
+          <path class="body" d="M26 110c-7 0-12-4-12-11 0-8 6-13 14-16l44-13c16-16 40-26 70-26 32 0 60 8 78 20l48 10c24 5 40 13 46 23 3 5 3 10 2 14H26Z"/>
+          <path class="glass" d="M128 62c11-12 27-19 46-20 20-1 37 5 48 13l-8 11-79 3-7-7Z"/>
+          <circle class="wheel" cx="100" cy="108" r="21"/><circle class="hub" cx="100" cy="108" r="8"/>
+          <circle class="wheel" cx="300" cy="108" r="21"/><circle class="hub" cx="300" cy="108" r="8"/>
+          <path class="wing" d="M322 46h68v10h-68z"/>
+        </svg>
+      </div>
+
+      <div class="endurance__body reveal" style="--d:100ms">
+        <h3>El coche del equipo</h3>
+        <p class="endurance__desc">
+          Una sola unidad, preparada para aguantar. Cada reglaje se decide
+          pensando en la vuelta 200, no en la vuelta 2.
+        </p>
+        <dl class="spec">
+          <div><dt>Potencia</dt><dd>640 CV</dd></div>
+          <div><dt>Peso</dt><dd>950 kg</dd></div>
+          <div><dt>Cambio</dt><dd>Secuencial 7v</dd></div>
+          <div><dt>Plataforma</dt><dd>iRacing · PC</dd></div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="facts">
+      <div class="fact reveal"><b>3&ndash;12 h</b><span>Duración de carrera</span></div>
+      <div class="fact reveal" style="--d:80ms"><b>~65 min</b><span>Stint por piloto</span></div>
+      <div class="fact reveal" style="--d:160ms"><b>2&ndash;3</b><span>Pilotos por coche</span></div>
+      <div class="fact reveal" style="--d:240ms"><b>24 h</b><span>Objetivo a medio plazo</span></div>
+    </div>
+
+    <!-- Anatomía de una carrera. AJUSTAR a la duración real de vuestras
+         pruebas: --w es la proporción de cada stint dentro de la barra. -->
+    <div class="anatomy">
+      <h3 class="anatomy__title reveal">Cómo va una carrera nuestra</h3>
+      <p class="anatomy__lead reveal" style="--d:60ms">
+        Una prueba de seis horas, por ejemplo: cuatro relevos, tres paradas y un
+        tramo de noche. La distancia no la gana el más rápido, sino el que menos
+        se equivoca.
+      </p>
+
+      <figure class="race reveal" style="--d:120ms" role="group" aria-label="Reparto de una carrera de seis horas en cuatro stints con tres paradas">
+        <div class="race__hours" aria-hidden="true">
+          <span>0 h</span><span>1:30</span><span>3 h</span><span>4:30</span><span>6 h</span>
+        </div>
+
+        <div class="race__bar" aria-hidden="true">
+          <div class="race__stint" style="--w:25" data-n="1"><span>Stint 1</span></div>
+          <div class="race__pit"></div>
+          <div class="race__stint" style="--w:24" data-n="2"><span>Stint 2</span></div>
+          <div class="race__pit"></div>
+          <div class="race__stint race__stint--night" style="--w:26" data-n="3"><span>Stint 3</span></div>
+          <div class="race__pit"></div>
+          <div class="race__stint" style="--w:25" data-n="4"><span>Stint 4</span></div>
+        </div>
+
+        <figcaption class="race__legend">
+          <span class="race__key race__key--stint">Stint de ~65 min</span>
+          <span class="race__key race__key--pit">Parada: gasolina, gomas y cambio de piloto</span>
+          <span class="race__key race__key--night">Tramo nocturno</span>
+        </figcaption>
+      </figure>
+
+      <ol class="phases">
+        <li class="phase reveal">
+          <h4>Clasificación</h4>
+          <p>Una vuelta limpia decide desde dónde salimos. Sin arriesgar: aquí pesa menos que en un sprint.</p>
+        </li>
+        <li class="phase reveal" style="--d:60ms">
+          <h4>Stint</h4>
+          <p>Unos 65 minutos seguidos al volante. Ritmo constante y cuidar gomas y gasolina desde la primera vuelta.</p>
+        </li>
+        <li class="phase reveal" style="--d:120ms">
+          <h4>Relevo</h4>
+          <p>Repostaje, neumáticos y cambio de piloto. Una parada se ensaya tanto como una vuelta rápida.</p>
+        </li>
+        <li class="phase reveal" style="--d:180ms">
+          <h4>Noche</h4>
+          <p>Menos referencias en pista y tráfico lento por delante. Se conduce con margen y se habla más por radio.</p>
+        </li>
+        <li class="phase reveal" style="--d:240ms">
+          <h4>Meta</h4>
+          <p>Terminar es el primer resultado. En resistencia, el coche que llega ya ha ganado algo.</p>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ TEMPORADA / HOJA DE RUTA ══════════════════ -->
+<!-- Banda clara: recrea el lienzo blanco del propio logo (plan impreso).
+     AJUSTAR: fechas y estado de cada hito (data-state: done | now | next) -->
+<section class="section section--paper" id="temporada">
+  <div class="wrap">
+    <div class="section__head">
+      <p class="eyebrow eyebrow--dark reveal">
+        <span class="eyebrow__bars" aria-hidden="true"><i></i><i></i><i></i></span>
+        Temporada 1
+      </p>
+      <h2 class="section__title reveal" style="--d:60ms">Hoja de ruta</h2>
+      <p class="section__lead reveal" style="--d:120ms">
+        Dónde estamos y qué viene. Esta página se actualizará a medida que
+        vayamos tachando hitos.
+      </p>
+    </div>
+
+    <ol class="roadmap">
+      <li class="step reveal" data-state="done">
+        <div class="step__marker" aria-hidden="true"></div>
+        <p class="step__when">2026 · Hecho</p>
+        <h3 class="step__title">Fundación</h3>
+        <p class="step__text">Nace Xallas MotorSport: nombre, identidad y los primeros ocho pilotos.</p>
+      </li>
+
+      <li class="step reveal" style="--d:80ms" data-state="now">
+        <div class="step__marker" aria-hidden="true"></div>
+        <p class="step__when">Ahora mismo</p>
+        <h3 class="step__title">Pretemporada</h3>
+        <p class="step__text">Entrenos conjuntos, setups base por circuito y primeros simulacros de relevos.</p>
+      </li>
+
+      <li class="step reveal" style="--d:160ms" data-state="next">
+        <div class="step__marker" aria-hidden="true"></div>
+        <p class="step__when">Próximo</p>
+        <h3 class="step__title">Debut</h3>
+        <p class="step__text">Primera carrera oficial del equipo. El objetivo: terminarla, todos los coches en meta.</p>
+      </li>
+
+      <li class="step reveal" style="--d:240ms" data-state="next">
+        <div class="step__marker" aria-hidden="true"></div>
+        <p class="step__when">Por definir</p>
+        <h3 class="step__title">Primera temporada</h3>
+        <p class="step__text">Completar el calendario y dejar una base de reglajes que sirva para la siguiente.</p>
+      </li>
+    </ol>
+
+    <aside class="note reveal" style="--d:100ms">
+      <span class="note__bars" aria-hidden="true"><i></i><i></i><i></i></span>
+      <p>
+        <b>Aquí irán los resultados.</b>
+        En cuanto se dispute la primera carrera, esta sección pasa a ser la hoja
+        de tiempos del equipo: ronda, circuito, salida, posición final y mejor vuelta.
+      </p>
+    </aside>
+  </div>
+</section>
+
+<!-- ═════════════════════════════ CONTACTO ═════════════════════════════ -->
+<section class="cta" id="contacto">
+  <div class="cta__x" aria-hidden="true"></div>
+  <div class="wrap cta__inner">
+    <div class="reveal">
+      <p class="eyebrow">
+        <span class="eyebrow__bars" aria-hidden="true"><i></i><i></i><i></i></span>
+        Temporada 2026
+      </p>
+      <h2 class="cta__title">Nos vemos en <span class="grad">pista</span></h2>
+      <p class="cta__lead">
+        Vamos contando el proyecto por el camino: entrenos, datos y carreras.
+        Retransmitimos lo que se pueda y el resto se comenta en el Discord.
+      </p>
+    </div>
+
+    <!-- PENDIENTE: sustituir los href="#" por las URLs reales del equipo -->
+    <div class="follow reveal" style="--d:100ms">
+      <a class="follow__item" href="#">
+        <span class="follow__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-8 8H7l-4 3v-4.6A8 8 0 0 1 13 4a8 8 0 0 1 8 8Z"/><circle cx="9.5" cy="12" r="1.1" class="dot"/><circle cx="14.5" cy="12" r="1.1" class="dot"/></svg>
+        </span>
+        <span class="follow__text"><b>Discord</b><small>El cuartel del equipo</small></span>
+        <svg class="follow__go" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M12 5l7 7-7 7"/></svg>
+      </a>
+
+      <a class="follow__item" href="#">
+        <span class="follow__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M4 3h16v11l-4 4h-4l-3 3H7v-3H4z"/><path d="M11 8v4M15.5 8v4"/></svg>
+        </span>
+        <span class="follow__text"><b>Twitch</b><small>Carreras y entrenos en directo</small></span>
+        <svg class="follow__go" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M12 5l7 7-7 7"/></svg>
+      </a>
+
+      <a class="follow__item" href="#">
+        <span class="follow__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10.5 9.8v4.4l4-2.2z" class="fill"/></svg>
+        </span>
+        <span class="follow__text"><b>YouTube</b><small>Resúmenes y onboards</small></span>
+        <svg class="follow__go" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M12 5l7 7-7 7"/></svg>
+      </a>
+
+      <!-- OJO: info@xallasmotorsport.com no existe todavía (no hay dominio).
+           Poner un correo real o cambiar este botón por el enlace de Discord. -->
+      <a class="btn btn--accent follow__mail" href="mailto:info@xallasmotorsport.com">
+        Escríbenos
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══════════════════════════════ FOOTER ══════════════════════════════ -->
+<footer class="footer">
+  <div class="checker-band checker-band--top" aria-hidden="true"></div>
+  <div class="wrap footer__grid">
+    <div class="footer__brand">
+      <img src="assets/img/logo-mark.png" alt="Xallas MotorSport" width="568" height="399" loading="lazy">
+      <p>Escudería de simracing nacida en 2026 en la comarca del Xallas. Temporada inaugural en marcha.</p>
+    </div>
+
+    <nav class="footer__col" aria-label="Equipo">
+      <h4>Equipo</h4>
+      <a href="#equipo">Quiénes somos</a>
+      <a href="#pilotos">Pilotos</a>
+      <a href="#resistencia">Resistencia</a>
+    </nav>
+
+    <nav class="footer__col" aria-label="Temporada">
+      <h4>Temporada</h4>
+      <a href="#temporada">Hoja de ruta</a>
+      <a href="#resistencia">El coche</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+
+    <div class="footer__col">
+      <h4>Contacto</h4>
+      <!-- OJO: correo pendiente, igual que en el botón de arriba -->
+      <a href="mailto:info@xallasmotorsport.com">info@xallasmotorsport.com</a>
+      <div class="social">
+        <a href="#" aria-label="Discord"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-8 8H7l-4 3v-4.6A8 8 0 0 1 13 4a8 8 0 0 1 8 8Z"/><circle cx="9.5" cy="12" r="1.1" class="dot"/><circle cx="14.5" cy="12" r="1.1" class="dot"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" class="dot"/></svg></a>
+        <a href="#" aria-label="X"><svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4L4 20"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10.5 9.8v4.4l4-2.2z" class="fill"/></svg></a>
+        <a href="#" aria-label="Twitch"><svg viewBox="0 0 24 24"><path d="M4 3h16v11l-4 4h-4l-3 3H7v-3H4z"/><path d="M11 8v4M15.5 8v4"/></svg></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap footer__bottom">
+    <span>© 2026 Xallas MotorSport. Todos los derechos reservados.</span>
+    <span class="footer__since">— Since 2026 —</span>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
