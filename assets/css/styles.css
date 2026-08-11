@@ -827,6 +827,17 @@ a:hover { color: var(--green-100); }
 }
 .driver__name { font-size: 1.42rem; margin-bottom: 20px; }
 
+/* Plazas aún sin nombre: se ven a la legua como pendientes, para que nadie
+   las confunda con pilotos del equipo */
+.driver--tbd { border-style: dashed; }
+.driver--tbd:hover { border-style: solid; }
+.driver--tbd .driver__photo { filter: saturate(.4); opacity: .8; }
+.driver--tbd .driver__num { -webkit-text-stroke-color: var(--ink-600); }
+.driver--tbd:hover .driver__num { -webkit-text-stroke-color: var(--green-700); }
+.driver--tbd .driver__role { color: var(--text-muted); }
+.driver--tbd .driver__name { color: var(--text-muted); }
+.driver--tbd .driver__tags li { color: var(--text-muted); border-color: var(--ink-600); background: transparent; }
+
 /* Sin palmarés todavía: etiquetas en lugar de cifras inventadas.
    margin-top:auto las ancla abajo, así quedan alineadas entre tarjetas
    aunque un nombre ocupe dos líneas y otro solo una. */
