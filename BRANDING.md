@@ -198,27 +198,41 @@ navbar fija, contadores, scrollspy, menú móvil, 45/45 animaciones de entrada,
 0 anclas rotas y 0 errores de consola. Sin JavaScript la web se ve entera: la
 clase `js` del `<html>` es la que activa el ocultado inicial.
 
-## 10. Cuando haya dominio
+## 10. Publicación y URLs
 
-Ahora mismo la web no depende de ningún dominio: todas las rutas son relativas
-y funciona igual abierta en local, en GitHub Pages, en Netlify o donde sea. No
-hay que tocar nada para publicarla.
+La web vive en **GitHub Pages**, servida desde `main`:
 
-Cuando compréis el dominio, tres cambios en `index.html`:
+    https://niicogarciiaaa.github.io/xallas-motorsport/
 
-1. Pasar las dos rutas de imagen a absolutas:
-   `og:image` y `twitter:image` → `https://TU-DOMINIO/assets/img/og-card.png`.
-   Relativo funciona en la mayoría de rastreadores, pero absoluto lo garantiza.
-2. Añadir en el `<head>`:
-   ```html
-   <meta property="og:url" content="https://TU-DOMINIO/">
-   <link rel="canonical" href="https://TU-DOMINIO/">
-   ```
-3. En el JSON-LD, añadir `"url": "https://TU-DOMINIO/"` y poner `logo` e
-   `image` en absoluto.
+Pages sólo sirve archivos estáticos —no ejecuta Python ni ningún lenguaje de
+servidor— y a esta web le sobra con eso: no tiene backend. El
+`python -m http.server` del README es únicamente para verla en local.
 
-Para comprobar que la miniatura sale bien, basta con pegar el enlace en un
-canal de Discord: es el rastreador más rápido de los tres.
+Todas las rutas internas son **relativas**, así que el sitio funciona igual
+colgando de la raíz de un dominio que del subdirectorio `/xallas-motorsport/`.
+Comprobado sirviéndolo bajo ese subdirectorio: los seis recursos responden 200
+y no hay ningún enlace roto.
+
+Las URLs **absolutas** aparecen sólo donde los rastreadores las necesitan, y son
+cinco:
+
+| Dónde | Etiqueta |
+|---|---|
+| `<head>` | `<link rel="canonical">` |
+| `<head>` | `og:url` |
+| `<head>` | `og:image` |
+| `<head>` | `twitter:image` |
+| JSON-LD | `url`, `logo` e `image` |
+
+### Si algún día hay dominio propio
+
+Cambiar esas cinco por el dominio nuevo y, en GitHub, **Settings → Pages →
+Custom domain**. Nada más: el resto del sitio no sabe dónde está alojado.
+
+Para comprobar que la miniatura sale bien, pega el enlace en un canal de
+Discord: es el rastreador más rápido de los tres. Si ya lo habías compartido
+antes de un cambio, usa el depurador de Facebook o `?v=2` al final de la URL
+para saltarte su caché.
 
 ### Correo pendiente
 
