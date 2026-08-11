@@ -177,8 +177,22 @@ fondo:
   «plaza abierta» ni proceso de selección.
 - No se menciona ninguna otra plataforma ni ninguna categoría de sprint.
 
-Secciones: Hero → Cifras de arranque → Equipo → Pilotos → Resistencia →
-Hoja de ruta → Contacto.
+Secciones: Hero → Cifras de arranque → Equipo → Pilotos → Banda de marca →
+Resistencia → El trazado → Hoja de ruta → Contacto.
+
+Tres piezas son puramente visuales y no llevan datos:
+
+- **Banda de marca** (`.band`): emblema gigante al fondo y una cinta de texto en
+  bucle entre cuadros. Va con `aria-hidden` porque no aporta información.
+- **El trazado** (`.circuit`): el circuito **no representa ninguno real**, es
+  genérico. La línea verde se dibuja según se baja, con `stroke-dashoffset`
+  calculado desde la posición del bloque en pantalla.
+- **Inclinación de las tarjetas de piloto**: siguen al ratón con un giro máximo
+  de 7°, un brillo que va tras el cursor y el dorsal y el casco desplazándose en
+  sentido contrario, que es lo que da la sensación de profundidad. Solo con
+  puntero fino: en táctil el giro se quedaría pegado tras el toque. Con
+  `prefers-reduced-motion` no se activa, la cinta se para y el trazado sale
+  entero de una vez.
 
 Contenido **de ejemplo**, marcado con comentarios en `index.html`:
 

@@ -718,13 +718,39 @@ a:hover { color: var(--green-100); }
   border: 1px solid var(--border);
   border-radius: var(--r-md);
   overflow: hidden;
+  /* El giro lo fija el JS en --rx/--ry; el hover solo levanta la tarjeta */
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--ty, 0));
   transition: transform .4s var(--ease), border-color .4s var(--ease),
               box-shadow .4s var(--ease);
 }
 .driver:hover {
-  transform: translateY(-8px);
+  --ty: -8px;
   border-color: var(--green-600);
   box-shadow: var(--shadow-lg);
+}
+
+/* Inclinación 3D: solo con ratón. En táctil no hay puntero que seguir y el
+   giro se quedaría pegado tras el toque. */
+@media (hover: hover) and (pointer: fine) {
+  .drivers { perspective: 1100px; }
+  .driver.is-tilting {
+    /* Mientras se sigue el ratón conviene que no haya transición, o el giro
+       va siempre por detrás del cursor */
+    transition: border-color .4s var(--ease), box-shadow .4s var(--ease);
+  }
+  /* Brillo que sigue al cursor */
+  .driver::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0;
+    background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%),
+                rgba(163, 223, 189, .16) 0%, transparent 45%);
+    transition: opacity .35s var(--ease);
+  }
+  .driver:hover::after { opacity: 1; }
 }
 
 /* Marcador de foto: sustituir por <img> del piloto */
@@ -776,12 +802,10 @@ a:hover { color: var(--green-100); }
   letter-spacing: -.06em;
   color: transparent;
   -webkit-text-stroke: 2px var(--green-700);
+  transform: translate3d(var(--pnx, 0px), var(--pny, 0px), 0);
   transition: -webkit-text-stroke-color .4s var(--ease), transform .4s var(--ease);
 }
-.driver:hover .driver__num {
-  -webkit-text-stroke-color: var(--green-400);
-  transform: translateX(-4px);
-}
+.driver:hover .driver__num { -webkit-text-stroke-color: var(--green-400); }
 
 /* Registrar las variables permite que el color del casco transicione;
    si el navegador no soporta @property, el cambio es instantáneo. */
@@ -795,7 +819,8 @@ a:hover { color: var(--green-100); }
   position: absolute;
   left: 50%; bottom: -9%;
   width: 62%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translate3d(var(--phx, 0px), var(--phy, 0px), 0)
+             translateY(var(--hy, 0px)) scale(var(--hs, 1));
   filter: drop-shadow(0 10px 20px rgba(10, 22, 15, .8));
   --h-shell: var(--ink-950);
   --h-stroke: var(--green-700);
@@ -808,7 +833,8 @@ a:hover { color: var(--green-100); }
               --h-bars .4s var(--ease);
 }
 .driver:hover .driver__silhouette {
-  transform: translateX(-50%) translateY(-4px) scale(1.04);
+  --hy: -4px;
+  --hs: 1.04;
   --h-shell: var(--ink-900);
   --h-stroke: var(--green-500);
   --h-visor: var(--green-600);
@@ -870,7 +896,109 @@ a:hover { color: var(--green-100); }
 }
 .driver:hover .driver__tags li { background: rgba(30, 90, 55, .38); border-color: var(--green-600); }
 
-/* ── 11. RESISTENCIA ────────────────────────────────────────────── */
+/* ── 11. BANDA DE MARCA ─────────────────────────────────────────────────── */
+.band {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(75% 140% at 50% 50%, rgba(30, 90, 55, .34) 0%, transparent 62%),
+    var(--ink-950);
+}
+.band__inner {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 54px 0;
+}
+/* El emblema, enorme y al fondo */
+.band__mark {
+  position: absolute;
+  height: 210px;
+  width: auto;
+  opacity: .22;
+  filter: grayscale(.2);
+  pointer-events: none;
+}
+
+/* Cinta de texto en bucle */
+.marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  /* Se difumina en los bordes en vez de cortarse en seco */
+  mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+}
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: desfile 34s linear infinite;
+}
+.marquee__track span {
+  display: inline-flex;
+  align-items: center;
+  gap: 22px;
+  padding-right: 22px;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5.4vw, 3.6rem);
+  font-weight: 900;
+  letter-spacing: -.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1.6px var(--green-500);
+}
+/* Una de las dos copias va rellena, para que la cinta no sea plana */
+.marquee__track span:nth-child(2) {
+  color: var(--green-700);
+  -webkit-text-stroke-width: 0;
+}
+.marquee__track i {
+  font-style: normal;
+  color: var(--green-500);
+  -webkit-text-stroke-width: 0;
+  font-size: .6em;
+}
+@keyframes desfile {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── 12. EL TRAZADO ─────────────────────────────────────────────────────── */
+.circuit {
+  padding: clamp(70px, 9vw, 110px) 0;
+  background: var(--background-secondary);
+  overflow: hidden;
+}
+.circuit__inner {
+  display: grid;
+  grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr);
+  gap: 54px;
+  align-items: center;
+}
+.circuit__figura { margin: 0; }
+.circuit__figura svg { width: 100%; height: auto; overflow: visible; }
+
+/* Trazado apagado de fondo: se ve el recorrido completo antes de dibujarse */
+.circuit__sombra {
+  fill: none;
+  stroke: var(--ink-700);
+  stroke-width: 13;
+  stroke-linejoin: round;
+}
+/* La línea que se dibuja al bajar; el reparto lo calcula el JS */
+.circuit__linea {
+  fill: none;
+  stroke: var(--green-400);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 10px rgba(63, 143, 98, .55));
+}
+.circuit__meta rect { fill: var(--paper); }
+.circuit__meta rect.alt { fill: var(--ink-950); }
+
+/* ── 13. RESISTENCIA ────────────────────────────────────────────────────── */
 .endurance {
   display: grid;
   grid-template-columns: 1.12fr .88fr;
@@ -1085,7 +1213,7 @@ a:hover { color: var(--green-100); }
   color: var(--text);
 }
 
-/* ── 12. HOJA DE RUTA (banda clara) ─────────────────────────────────────── */
+/* ── 14. HOJA DE RUTA (banda clara) ─────────────────────────────────────── */
 .roadmap {
   position: relative;
   display: grid;
@@ -1185,7 +1313,7 @@ a:hover { color: var(--green-100); }
 .note p { color: var(--ink-700); font-size: .97rem; }
 .note b { color: var(--green-900); font-family: var(--font-display); text-transform: uppercase; letter-spacing: .01em; }
 
-/* ── 13. CTA ────────────────────────────────────────────────────────────── */
+/* ── 15. CTA ────────────────────────────────────────────────────────────── */
 .cta {
   position: relative;
   padding: clamp(74px, 10vw, 120px) 0;
@@ -1292,7 +1420,7 @@ a:hover { color: var(--green-100); }
 
 .follow__mail { margin-top: 6px; justify-content: center; }
 
-/* ── 14. FOOTER ─────────────────────────────────────────────────────────── */
+/* ── 16. FOOTER ─────────────────────────────────────────────────────────── */
 .footer { background: var(--background-secondary); }
 .footer__grid {
   display: grid;
@@ -1371,7 +1499,7 @@ a:hover { color: var(--green-100); }
   font-size: .78rem;
 }
 
-/* ── 15. REVELADO AL SCROLL ─────────────────────────────────────────────── */
+/* ── 17. REVELADO AL SCROLL ─────────────────────────────────────────────── */
 /* Sólo se oculta si hay JS para volver a mostrarlo: sin JS todo es visible. */
 .js .reveal {
   opacity: 0;
@@ -1381,7 +1509,7 @@ a:hover { color: var(--green-100); }
 }
 .js .reveal.is-in { opacity: 1; transform: none; }
 
-/* ── 16. RESPONSIVE ─────────────────────────────────────────────────────── */
+/* ── 18. RESPONSIVE ─────────────────────────────────────────────────────── */
 @media (max-width: 1080px) {
   .footer__grid { grid-template-columns: 1fr 1fr; gap: 38px; }
   .footer__brand { grid-column: 1 / -1; }
@@ -1406,6 +1534,7 @@ a:hover { color: var(--green-100); }
   .hero { min-height: auto; padding-top: 122px; }
   .section__head--row { flex-direction: column; align-items: flex-start; gap: 20px; }
   .endurance { grid-template-columns: 1fr; }
+  .circuit__inner { grid-template-columns: 1fr; gap: 34px; }
   .why { grid-template-columns: 1fr; gap: 30px; padding: 36px 30px; }
   .why__x { right: -28%; opacity: .05; }
   .cta__inner { flex-direction: column; align-items: flex-start; }
@@ -1443,6 +1572,8 @@ a:hover { color: var(--green-100); }
   body { font-size: 16px; }
   .stats__grid { grid-template-columns: 1fr; }
   .spec { grid-template-columns: 1fr; }
+  .band__inner { padding: 40px 0; }
+  .band__mark { height: 140px; }
 
   .footer__grid { grid-template-columns: 1fr; }
   .footer__bottom { justify-content: center; text-align: center; }
@@ -1464,7 +1595,7 @@ a:hover { color: var(--green-100); }
   .brand__type { display: none; }
 }
 
-/* ── 17. MOVIMIENTO REDUCIDO ────────────────────────────────────────────── */
+/* ── 19. MOVIMIENTO REDUCIDO ────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {
@@ -1474,11 +1605,14 @@ a:hover { color: var(--green-100); }
   }
   .js .reveal { opacity: 1; transform: none; }
   .hero__emblem img, .hero__emblem-glow, .hero__streaks span { animation: none; }
+  /* La cinta se detiene y las tarjetas no se inclinan (el JS ya no lo aplica) */
+  .marquee__track { animation: none; }
+  .driver { transform: none; }
 }
 
-/* ── 18. IMPRESIÓN ──────────────────────────────────────────────────────── */
+/* ── 20. IMPRESIÓN ──────────────────────────────────────────────────────── */
 @media print {
-  .nav, .hero__scroll, .cta { display: none; }
+  .nav, .hero__scroll, .cta, .band { display: none; }
   body { background: #fff; color: #000; }
   .section, .section--alt { background: #fff; padding-block: 24px; }
 }
