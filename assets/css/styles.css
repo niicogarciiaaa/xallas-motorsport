@@ -465,7 +465,12 @@ a:hover { color: var(--green-100); }
   min-height: 100svh;
   display: flex;
   align-items: center;
-  padding: 140px 0 132px;
+  /* 104/88, no 140/132: con el padding anterior los dos botones caían por
+     debajo del pliegue en cualquier portátil de 720 u 768 px de alto —el
+     tamaño más común—, y lo único accionable que se veía al cargar era la
+     flecha de bajar. El de arriba no puede bajar mucho más: tiene que dejar
+     libre la barra fija, que mide 74 px en reposo. */
+  padding: 104px 0 88px;
   overflow: hidden;
   background:
     radial-gradient(120% 90% at 78% 18%, rgba(30, 90, 55, .38) 0%, transparent 58%),
@@ -561,8 +566,15 @@ a:hover { color: var(--green-100); }
 .hero__title {
   /* El mínimo era 3,1rem: a 320 px "EMPEZAMOS" medía 340 px con 272 disponibles
      y lo recortaba el overflow del body. Con 2,4rem entra con margen y a partir
-     de 468 px manda el vw, así que en tablet y escritorio no cambia nada. */
-  font-size: clamp(2.4rem, 8.2vw, 6.2rem);
+     de 533 px manda el tramo variable, así que en tablet y escritorio no
+     cambia nada.
+
+     El tramo variable mira el alto además del ancho. Antes iba solo a 8,2vw:
+     en una pantalla ancha pero baja (1280×720, 1366×768) el titular salía a
+     99 px, ocupaba 413 px él solo y empujaba los botones fuera de la vista.
+     Con el min() la pantalla baja manda y el titular se ajusta; en un monitor
+     alto sigue ganando el vw hasta el tope de 5,8rem, así que ahí no encoge. */
+  font-size: clamp(2.4rem, min(7.2vw, 11vh), 5.8rem);
   font-weight: 900;
   letter-spacing: -.035em;
   margin-bottom: 26px;
@@ -1693,7 +1705,10 @@ a:hover { color: var(--green-100); }
   .hero__inner { grid-template-columns: 1fr; gap: 44px; }
   .hero__emblem { order: -1; }
   .hero__emblem img { width: min(74%, 340px); }
-  .hero { min-height: auto; padding-top: 122px; }
+  /* Aquí el hero ya no ocupa la pantalla entera —el emblema pasa arriba y el
+     bloque crece con su contenido—, así que el padding base de 104 px vale y
+     no hace falta el de 122 que llevaba antes. */
+  .hero { min-height: auto; }
   .section__head--row { flex-direction: column; align-items: flex-start; gap: 20px; }
   .endurance { grid-template-columns: 1fr; }
   .why { grid-template-columns: 1fr; gap: 30px; padding: 36px 30px; }
