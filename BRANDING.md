@@ -204,6 +204,12 @@ Tres piezas son puramente visuales y no llevan datos:
   se mueven más despacio que la página. El desplazamiento va siempre por la
   variable `--pary`, nunca asignando `transform` desde JS: varias de esas capas
   ya usan `transform` para colocarse y se descolocarían.
+- **Bandera de cuadros en movimiento**: las bandas separadoras y la franja del
+  navbar avanzan despacio. El recorrido de la animación es exactamente un
+  mosaico (22 px y 12 px), así que el bucle no da tirón.
+- **Barras del antetítulo**: las tres suben escalonadas al entrar la sección.
+  La regla se limita a las que están dentro de un `.reveal`, para que ninguna
+  se quede encogida si algún día se usa el antetítulo fuera de ese sistema.
 - **Barra de progreso** (`.progreso`): en el borde superior del navbar, con la
   anchura ligada al scroll.
 - **Emblema del hero**: gira siguiendo al ratón dentro del hero.

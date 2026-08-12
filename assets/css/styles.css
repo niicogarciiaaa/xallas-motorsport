@@ -173,8 +173,14 @@ a:hover { color: var(--green-100); }
   background-position: 0 0;
   opacity: .6;
   border-block: 1px solid var(--border);
+  /* La bandera avanza despacio. El recorrido es justo un mosaico (22px), así
+     que el bucle no da tirón. */
+  animation: ondear 5s linear infinite;
 }
 .checker-band--top { border-bottom: 0; }
+
+@keyframes ondear { to { background-position: -22px 0; } }
+@keyframes ondear-nav { to { background-position: -12px 0; } }
 
 /* Las tres barras del visor del casco */
 .eyebrow__bars {
@@ -190,6 +196,18 @@ a:hover { color: var(--green-100); }
 }
 .eyebrow__bars i:nth-child(2) { background: var(--green-400); }
 .eyebrow__bars i:nth-child(3) { background: var(--green-300); }
+
+/* Las tres barras suben una tras otra cuando la sección entra en pantalla.
+   Se limita a las que están dentro de un .reveal: así ninguna se queda
+   encogida si algún día se usa el antetítulo fuera del sistema de revelado. */
+.js .reveal .eyebrow__bars i {
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform .5s var(--ease);
+}
+.js .reveal.is-in .eyebrow__bars i { transform: scaleY(1); }
+.js .reveal .eyebrow__bars i:nth-child(2) { transition-delay: 100ms; }
+.js .reveal .eyebrow__bars i:nth-child(3) { transition-delay: 200ms; }
 
 .eyebrow {
   display: inline-flex;
@@ -330,6 +348,7 @@ a:hover { color: var(--green-100); }
     conic-gradient(var(--green-500) 25%, transparent 0 50%, var(--green-500) 0 75%, transparent 0);
   background-size: 12px 12px;
   opacity: 0;
+  animation: ondear-nav 3s linear infinite;
   transition: opacity .35s var(--ease);
 }
 .nav.is-stuck {
@@ -1746,6 +1765,8 @@ a:hover { color: var(--green-100); }
   .hero__emblem img, .hero__emblem-glow, .hero__streaks span { animation: none; }
   /* La cinta se detiene y las tarjetas no se inclinan (el JS ya no lo aplica) */
   .marquee__track { animation: none; }
+  .checker-band, .nav__checker { animation: none; }
+  .js .reveal .eyebrow__bars i { transform: scaleY(1); }
   .driver { transform: none; }
   .hero__emblem { transform: none; }
   .js .hero__title.is-in .linea > span { transition: none; }
