@@ -905,17 +905,74 @@ a:hover { color: var(--green-100); }
   --h-visor: var(--green-800);
   --h-visor-line: var(--green-600);
   --h-bars: var(--green-400);
-  transition: transform .45s var(--ease),
-              --h-shell .4s var(--ease), --h-stroke .4s var(--ease),
-              --h-visor .4s var(--ease), --h-visor-line .4s var(--ease),
-              --h-bars .4s var(--ease);
+  transition: transform .45s var(--ease), filter .4s var(--ease);
 }
+/* Al pasar por encima se realza, no se recolorea: antes el hover reasignaba
+   los cinco colores y aplanaba los ocho cascos a un mismo esquema. */
 .driver:hover .driver__silhouette {
   --hy: -4px;
   --hs: 1.04;
-  --h-shell: var(--ink-900);
+  filter: drop-shadow(0 12px 22px rgba(10, 22, 15, .85)) brightness(1.22);
+}
+
+/* Un esquema de casco por piloto. Todos salen de la paleta del logo: cambian
+   el contorno, la visera y las barras, nunca el tono. Van por nth-child, así
+   que una plaza pendiente hereda el suyo en cuanto se rellene. */
+/* La primera llevaba el esquema por defecto y quedaba la más apagada de la
+   fila, justo la que más se mira. */
+.drivers .driver:nth-child(1) .driver__silhouette {
+  --h-shell: var(--ink-950);
+  --h-stroke: var(--green-500);
+  --h-visor: var(--green-800);
+  --h-visor-line: var(--green-600);
+  --h-bars: var(--green-200);
+}
+.drivers .driver:nth-child(2) .driver__silhouette {
+  --h-shell: var(--green-900);
+  --h-stroke: var(--green-300);
+  --h-visor: var(--green-700);
+  --h-visor-line: var(--green-400);
+  --h-bars: var(--green-100);
+}
+.drivers .driver:nth-child(3) .driver__silhouette {
+  --h-shell: var(--ink-950);
   --h-stroke: var(--green-500);
   --h-visor: var(--green-600);
+  --h-visor-line: var(--green-200);
+  --h-bars: var(--mist);
+}
+.drivers .driver:nth-child(4) .driver__silhouette {
+  --h-shell: var(--green-850);
+  --h-stroke: var(--green-400);
+  --h-visor: var(--green-900);
+  --h-visor-line: var(--green-500);
+  --h-bars: var(--green-200);
+}
+.drivers .driver:nth-child(5) .driver__silhouette {
+  --h-shell: var(--ink-900);
+  --h-stroke: var(--green-200);
+  --h-visor: var(--green-800);
+  --h-visor-line: var(--green-300);
+  --h-bars: var(--paper);
+}
+.drivers .driver:nth-child(6) .driver__silhouette {
+  --h-shell: var(--green-950);
+  --h-stroke: var(--green-600);
+  --h-visor: var(--green-800);
+  --h-visor-line: var(--green-500);
+  --h-bars: var(--green-300);
+}
+.drivers .driver:nth-child(7) .driver__silhouette {
+  --h-shell: var(--ink-850);
+  --h-stroke: var(--sage);
+  --h-visor: var(--green-700);
+  --h-visor-line: var(--green-300);
+  --h-bars: var(--green-100);
+}
+.drivers .driver:nth-child(8) .driver__silhouette {
+  --h-shell: var(--green-900);
+  --h-stroke: var(--green-500);
+  --h-visor: var(--ink-850);
   --h-visor-line: var(--green-400);
   --h-bars: var(--green-200);
 }

@@ -207,6 +207,12 @@ Tres piezas son puramente visuales y no llevan datos:
 - **Barra de progreso** (`.progreso`): en el borde superior del navbar, con la
   anchura ligada al scroll.
 - **Emblema del hero**: gira siguiendo al ratón dentro del hero.
+- **Un casco por piloto**: cada tarjeta lleva su propio esquema de casco
+  (carcasa, contorno, visera y barras), todos sacados de la paleta del logo —
+  cambia la combinación, nunca el tono. Van por `nth-child` sobre las variables
+  `--h-*`, así que una plaza pendiente hereda el suyo en cuanto se rellene. Al
+  pasar por encima el casco se **realza con brillo**, no se recolorea: antes el
+  `:hover` reasignaba los cinco colores y aplanaba los ocho a un mismo esquema.
 - **Inclinación de las tarjetas de piloto**: siguen al ratón con un giro máximo
   de 7°, un brillo que va tras el cursor y el dorsal y el casco desplazándose en
   sentido contrario, que es lo que da la sensación de profundidad. Solo con
