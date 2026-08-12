@@ -358,3 +358,59 @@ seguimiento, más los cinco iconos del pie). Un enlace sin destino se anuncia
 como enlace, recibe el foco y al activarlo salta al principio de la página. En
 cuanto haya URLs reales se resuelve solo; si no va a haberlas, lo correcto es
 quitarlos.
+
+## 12. Posicionamiento
+
+### Lo que se corrigió
+
+El `<title>` decía «Escudería de Simracing»: ni «resistencia» ni «iRacing», que
+son las palabras por las que se busca a un equipo así. Curiosamente el `og:title`
+sí las llevaba, con lo que la etiqueta que ven los buscadores era peor que la que
+ven las redes. Ahora:
+
+    Xallas MotorSport | Escudería de resistencia en iRacing   (55 car.)
+
+La `description` se quedó en 149 caracteres, dentro de lo que Google muestra sin
+cortar, e incluye Galicia, que antes no aparecía.
+
+### Velocidad, que también puntúa
+
+Medido con red 4G simulada y caché vacía:
+
+| | antes | después |
+|---|---|---|
+| Peso total | 620 KB | **297 KB** |
+| Imágenes | 376 KB | 52 KB |
+| Recursos | 13 | 12 |
+
+Dos causas, las dos medidas antes de tocar nada:
+
+- **El favicon de 512 px (167 KB) estaba declarado como icono de pestaña**, así
+  que el navegador se lo bajaba para pintar 16×16. Ahora hay un `favicon-32.png`
+  de 1,6 KB y otro de 96; el de 512 queda solo en el manifest, que es donde de
+  verdad hace falta.
+- **El emblema pasa a WebP**: 176 → 44,5 KB. Se probaron cinco formatos midiendo
+  la degradación real, no solo el peso: la paleta PNG de 256 colores ahorraba más
+  (33 KB) pero **produce bandas en el degradado del aspa** y se descartó. WebP q95
+  deja una diferencia media de 0,597 sobre 255, invisible. Va con `<picture>` y
+  reserva PNG, así que un navegador antiguo sigue viendo el logo.
+
+El emblema lleva además `preload`: es lo más grande del primer pantallazo y
+adelantarlo mejora el LCP.
+
+### Datos estructurados
+
+El JSON-LD de `SportsTeam` incluye ahora los ocho pilotos y el mecánico como
+`member`, la ubicación en Galicia y `knowsAbout` con la disciplina. Ayuda a que
+los buscadores entiendan qué es el equipo y con quién se relaciona.
+
+### Lo que sigue lastrando
+
+- El `<h1>` es «Empezamos de cero. Y en serio.»: buen texto, pero sin ninguna
+  palabra clave. No se ha tocado porque cambiarlo estropearía el hero; el peso
+  lo llevan el `title`, la `description` y el JSON-LD.
+- **Los enlaces sociales apuntan a `#`.** En cuanto haya URLs reales conviene
+  añadirlas también como `sameAs` en el JSON-LD: es de las señales que más
+  ayudan a confirmar la identidad de una organización.
+- La web tiene unas 600 palabras. Para una sola página está bien, pero cuando
+  haya resultados y calendario el contenido crecerá solo, y eso posiciona.

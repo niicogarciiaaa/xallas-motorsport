@@ -3,13 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Xallas MotorSport — Escudería de Simracing</title>
-<meta name="description" content="Xallas MotorSport. Escudería de simracing fundada en 2026. Carreras de resistencia en iRacing. Pilotos fundadores, el coche y la hoja de ruta del equipo.">
+<title>Xallas MotorSport | Escudería de resistencia en iRacing</title>
+<meta name="description" content="Escudería gallega de simracing especializada en carreras de resistencia en iRacing. Fundada en 2026: ocho pilotos y la primera temporada por delante.">
 <meta name="theme-color" content="#0B100D">
 
 <link rel="icon" href="assets/img/favicon.ico" sizes="any">
-<link rel="icon" href="assets/img/favicon-512.png" type="image/png">
+<link rel="icon" href="assets/img/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="assets/img/favicon-96.png" type="image/png" sizes="96x96">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+
+<!-- El emblema es lo más grande del primer pantallazo: precargarlo adelanta
+     el LCP, que cuenta para el posicionamiento. -->
+<link rel="preload" as="image" href="assets/img/logo-mark.webp" type="image/webp" fetchpriority="high">
 
 <link rel="manifest" href="site.webmanifest">
 
@@ -25,14 +30,14 @@
 <meta property="og:locale" content="es_ES">
 <meta property="og:url" content="https://niicogarciiaaa.github.io/xallas-motorsport/">
 <meta property="og:title" content="Xallas MotorSport — Escudería de resistencia en iRacing">
-<meta property="og:description" content="Escudería de simracing nacida en 2026 en la comarca del Xallas. Solo resistencia, solo iRacing.">
+<meta property="og:description" content="Escudería gallega de simracing especializada en carreras de resistencia en iRacing. Fundada en 2026: ocho pilotos y la primera temporada por delante.">
 <meta property="og:image" content="https://niicogarciiaaa.github.io/xallas-motorsport/assets/img/og-card.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Emblema de Xallas MotorSport sobre fondo verde oscuro">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Xallas MotorSport — Escudería de resistencia en iRacing">
-<meta name="twitter:description" content="Escudería de simracing nacida en 2026 en la comarca del Xallas. Solo resistencia, solo iRacing.">
+<meta name="twitter:description" content="Escudería gallega de simracing especializada en carreras de resistencia en iRacing. Fundada en 2026: ocho pilotos y la primera temporada por delante.">
 <meta name="twitter:image" content="https://niicogarciiaaa.github.io/xallas-motorsport/assets/img/og-card.png">
 
 <script type="application/ld+json">
@@ -40,14 +45,82 @@
   "@context": "https://schema.org",
   "@type": "SportsTeam",
   "name": "Xallas MotorSport",
+  "alternateName": "Xallas MS",
   "sport": "Sim racing",
   "foundingDate": "2026",
   "url": "https://niicogarciiaaa.github.io/xallas-motorsport/",
   "logo": "https://niicogarciiaaa.github.io/xallas-motorsport/assets/img/favicon-512.png",
   "image": "https://niicogarciiaaa.github.io/xallas-motorsport/assets/img/og-card.png",
-  "description": "Escudería de simracing especializada en carreras de resistencia en iRacing, fundada en 2026 en la comarca del Xallas (Galicia).",
-  "areaServed": "Galicia, España",
-  "numberOfEmployees": { "@type": "QuantitativeValue", "value": 8 }
+  "description": "Escudería gallega de simracing especializada en carreras de resistencia en iRacing. Fundada en 2026: ocho pilotos y la primera temporada por delante.",
+  "areaServed": {
+    "@type": "Place",
+    "name": "Galicia, España"
+  },
+  "location": {
+    "@type": "Place",
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "Galicia",
+      "addressCountry": "ES"
+    }
+  },
+  "knowsAbout": [
+    "Carreras de resistencia",
+    "iRacing",
+    "Simracing",
+    "Endurance racing"
+  ],
+  "numberOfEmployees": {
+    "@type": "QuantitativeValue",
+    "value": 8
+  },
+  "member": [
+    {
+      "@type": "Person",
+      "name": "Manuel Alvarez",
+      "jobTitle": "Piloto"
+    },
+    {
+      "@type": "Person",
+      "name": "Jose Calvin",
+      "jobTitle": "Piloto"
+    },
+    {
+      "@type": "Person",
+      "name": "Maria Montenegro",
+      "jobTitle": "Piloto"
+    },
+    {
+      "@type": "Person",
+      "name": "Nicolás García",
+      "jobTitle": "Piloto"
+    },
+    {
+      "@type": "Person",
+      "name": "Francisco Javier Otero",
+      "jobTitle": "Piloto"
+    },
+    {
+      "@type": "Person",
+      "name": "Jorge Ibarra",
+      "jobTitle": "Piloto"
+    },
+    {
+      "@type": "Person",
+      "name": "Juanma Sierra",
+      "jobTitle": "Piloto"
+    },
+    {
+      "@type": "Person",
+      "name": "Borex Cholakov",
+      "jobTitle": "Piloto"
+    },
+    {
+      "@type": "Person",
+      "name": "Jasaca",
+      "jobTitle": "Mecánico"
+    }
+  ]
 }
 </script>
 
@@ -84,7 +157,10 @@
   <div class="progreso" id="progreso" aria-hidden="true"></div>
   <div class="nav__inner">
     <a class="brand" href="#hero" aria-label="Xallas MotorSport — inicio">
-      <img class="brand__mark" src="assets/img/logo-mark.png" alt="" width="568" height="399" decoding="async">
+      <picture>
+        <source srcset="assets/img/logo-mark.webp" type="image/webp">
+        <img class="brand__mark" src="assets/img/logo-mark.png" alt="" width="568" height="399" decoding="async">
+      </picture>
       <span class="brand__type">
         <span class="brand__word">
           <b>X</b>allas <b>M</b>otor<i><b>S</b>port</i>
@@ -148,7 +224,10 @@
 
     <div class="hero__emblem reveal" style="--d:100ms" data-parallax="0.11" id="heroEmblema">
       <div class="hero__emblem-glow" aria-hidden="true"></div>
-      <img src="assets/img/logo-mark.png" alt="Emblema de Xallas MotorSport" width="568" height="399" fetchpriority="high">
+      <picture>
+        <source srcset="assets/img/logo-mark.webp" type="image/webp">
+        <img src="assets/img/logo-mark.png" alt="Emblema de Xallas MotorSport, escudería de resistencia en iRacing" width="568" height="399" fetchpriority="high">
+      </picture>
     </div>
   </div>
 
@@ -363,7 +442,10 @@
 <section class="band" aria-hidden="true">
   <div class="checker-band"></div>
   <div class="band__inner">
-    <img class="band__mark" src="assets/img/logo-mark.png" alt="" width="568" height="399" loading="lazy" data-parallax="-0.09">
+    <picture>
+      <source srcset="assets/img/logo-mark.webp" type="image/webp">
+      <img class="band__mark" src="assets/img/logo-mark.png" alt="" width="568" height="399" loading="lazy" data-parallax="-0.09">
+    </picture>
     <div class="marquee">
       <div class="marquee__track">
         <span>Xallas MotorSport <i>✕</i> Resistencia <i>✕</i> iRacing <i>✕</i> Since 2026 <i>✕</i></span>
@@ -578,7 +660,10 @@
   <div class="checker-band checker-band--top" aria-hidden="true"></div>
   <div class="wrap footer__grid">
     <div class="footer__brand">
-      <img src="assets/img/logo-mark.png" alt="Xallas MotorSport" width="568" height="399" loading="lazy">
+      <picture>
+        <source srcset="assets/img/logo-mark.webp" type="image/webp">
+        <img src="assets/img/logo-mark.png" alt="Xallas MotorSport" width="568" height="399" loading="lazy">
+      </picture>
       <p>Escudería de simracing nacida en 2026 en la comarca del Xallas. Temporada inaugural en marcha.</p>
     </div>
 
