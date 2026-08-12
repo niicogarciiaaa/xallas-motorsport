@@ -16,6 +16,17 @@
      el LCP, que cuenta para el posicionamiento. -->
 <link rel="preload" as="image" href="assets/img/logo-mark.webp" type="image/webp" fetchpriority="high">
 
+<!-- Las dos fuentes que se usan de verdad, precargadas. Sin esto el navegador
+     no se entera de que existen hasta haber descargado y leído fonts.css: un
+     salto de más en el que la página se ve con la tipografía del sistema.
+     El 'crossorigin' NO sobra aunque el archivo sea nuestro: las fuentes se
+     piden siempre en modo CORS, y sin él la precarga no se aprovecha y el
+     archivo acaba descargándose dos veces.
+     Solo el rango 'latin': todas las tildes y la eñe del español caben en él
+     (U+00E1, U+00F1…), así que 'latin-ext' casi nunca llega a pedirse. -->
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/archivo-600-900-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/barlow-400-latin.woff2" crossorigin>
+
 <link rel="manifest" href="site.webmanifest">
 
 <link rel="canonical" href="https://niicogarciiaaa.github.io/xallas-motorsport/">

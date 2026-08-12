@@ -121,11 +121,21 @@ declaraciones están en `assets/css/fonts.css`.
 Ventajas frente a cargarlas de Google en cada visita: la web va más rápida,
 funciona sin conexión y deja de enviar datos de quien la visita a un tercero.
 
-Dos detalles del empaquetado:
+Tres detalles del empaquetado:
 
 - **Archivo se sirve como fuente variable.** Un solo archivo cubre de 600 a 900
   y ocupa 34 KB, frente a los 136 KB que sumaban los cuatro pesos por separado.
-  Barlow no tiene versión variable, así que van sus cuatro pesos sueltos.
+  Barlow no tiene versión variable, así que van sus pesos sueltos: **400, 500 y
+  600**. El 700 se retiró porque lo usaba un único elemento de toda la página
+  —el enlace de salto al contenido, invisible salvo al tabular— y costaba
+  22 KB él solo; ese enlace va ahora en 600, que ya se descargaba.
+- **Las dos fuentes que se usan de verdad van precargadas** desde el `<head>`
+  de `index.html`: Archivo `latin` y Barlow 400 `latin`. Sin el `preload`, el
+  navegador no se entera de que existen hasta haber descargado y leído
+  `fonts.css`, y ese salto de más se ve como un parpadeo con la tipografía del
+  sistema. El atributo `crossorigin` es obligatorio aunque el archivo sea
+  propio: las fuentes se piden siempre en modo CORS y sin él la precarga se
+  desaprovecha y el archivo se descarga dos veces.
 - Se incluyen los subconjuntos `latin` y `latin-ext`, pero gracias a
   `unicode-range` el navegador **sólo descarga el que necesita**: en una web en
   español, `latin-ext` no llega a pedirse. Comprobado en el navegador.
