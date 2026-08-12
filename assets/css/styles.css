@@ -304,6 +304,16 @@ a:hover { color: var(--green-100); }
   transition: background-color .35s var(--ease), box-shadow .35s var(--ease),
               backdrop-filter .35s var(--ease);
 }
+/* Barra de progreso del scroll: la fija el JS con --avance */
+.progreso {
+  height: 3px;
+  width: 100%;
+  transform: scaleX(var(--avance, 0));
+  transform-origin: left;
+  background: linear-gradient(90deg, var(--green-700), var(--green-300) 60%, var(--green-100));
+  will-change: transform;
+}
+
 .nav__inner {
   max-width: var(--wrap);
   margin-inline: auto;
@@ -457,9 +467,10 @@ a:hover { color: var(--green-100); }
 .hero__x {
   position: absolute;
   top: 50%; left: 50%;
+  will-change: transform;
   width: min(78vw, 900px);
   aspect-ratio: 1;
-  transform: translate(-50%, -46%);
+  transform: translate(-50%, -46%) translate3d(0, var(--pary, 0px), 0);
   opacity: .055;
   pointer-events: none;
   background:
@@ -499,6 +510,32 @@ a:hover { color: var(--green-100); }
   align-items: center;
 }
 
+/* El titular entra línea a línea, subiendo desde detrás de su propia caja.
+   El .reveal genérico se anula aquí: el efecto lo llevan las líneas. */
+.js .hero__title.reveal { opacity: 1; transform: none; }
+
+.hero__title .linea {
+  display: block;
+  /* Recorta SOLO por abajo. Con overflow:hidden se cortaba la "S" de
+     "EMPEZAMOS": el titular es más ancho que su columna y el recorte actuaba
+     también en horizontal. Los -100% dejan libres los lados. */
+  clip-path: inset(-0.4em -100% 0 -100%);
+  /* Hueco para que el recorte no coma los descendentes ni las tildes */
+  padding-bottom: .08em;
+  margin-bottom: -.08em;
+}
+.hero__title .linea > span {
+  display: block;
+  transform: translateY(105%);
+  opacity: 0;
+  transition: transform .9s var(--ease), opacity .7s var(--ease);
+}
+.js .hero__title.is-in .linea > span { transform: none; opacity: 1; }
+.hero__title .linea:nth-child(1) > span { transition-delay: 90ms; }
+.hero__title .linea:nth-child(2) > span { transition-delay: 220ms; }
+.hero__title .linea:nth-child(3) > span { transition-delay: 350ms; }
+.hero__title em { font-style: normal; }
+
 .hero__title {
   /* El mínimo era 3,1rem: a 320 px "EMPEZAMOS" medía 340 px con 272 disponibles
      y lo recortaba el overflow del body. Con 2,4rem entra con margen y a partir
@@ -518,7 +555,17 @@ a:hover { color: var(--green-100); }
 
 .hero__actions { display: flex; flex-wrap: wrap; gap: 14px; }
 
-.hero__emblem { position: relative; display: grid; place-items: center; }
+.hero__inner { perspective: 1300px; }
+.hero__emblem {
+  position: relative;
+  display: grid;
+  place-items: center;
+  transform: translate3d(0, var(--pary, 0px), 0)
+             rotateX(var(--erx, 0deg)) rotateY(var(--ery, 0deg));
+  transition: transform .5s var(--ease);
+}
+/* Mientras se sigue al ratón no hay transición, o el giro va por detrás */
+.hero__emblem.is-tilting { transition: none; }
 .hero__emblem img {
   position: relative;
   width: min(100%, 500px);
@@ -944,6 +991,8 @@ a:hover { color: var(--green-100); }
 /* El emblema, enorme y al fondo */
 .band__mark {
   position: absolute;
+  transform: translate3d(0, var(--pary, 0px), 0);
+  will-change: transform;
   height: 210px;
   width: auto;
   opacity: .22;
@@ -1588,6 +1637,8 @@ a:hover { color: var(--green-100); }
   /* La cinta se detiene y las tarjetas no se inclinan (el JS ya no lo aplica) */
   .marquee__track { animation: none; }
   .driver { transform: none; }
+  .hero__emblem { transform: none; }
+  .js .hero__title.is-in .linea > span { transition: none; }
 }
 
 /* ── 19. IMPRESIÓN ──────────────────────────────────────────────────────── */

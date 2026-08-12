@@ -81,6 +81,7 @@
 
 <!-- ══════════════════════════════ NAVBAR ══════════════════════════════ -->
 <header class="nav" id="nav">
+  <div class="progreso" id="progreso" aria-hidden="true"></div>
   <div class="nav__inner">
     <a class="brand" href="#hero" aria-label="Xallas MotorSport — inicio">
       <img class="brand__mark" src="assets/img/logo-mark.png" alt="" width="568" height="399" decoding="async">
@@ -112,7 +113,7 @@
 <!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
 <section class="hero" id="hero">
   <div class="hero__grid-bg" aria-hidden="true"></div>
-  <div class="hero__x" aria-hidden="true"></div>
+  <div class="hero__x" data-parallax="-0.16" aria-hidden="true"></div>
   <div class="hero__streaks" aria-hidden="true">
     <span></span><span></span><span></span><span></span><span></span>
   </div>
@@ -124,10 +125,10 @@
         Simracing · Galicia · Temporada inaugural
       </p>
 
-      <h1 class="hero__title reveal" style="--d:60ms">
-        Empezamos<br>
-        de <span class="grad">cero</span>.<br>
-        Y en serio.
+      <h1 class="hero__title reveal">
+        <span class="linea"><span>Empezamos</span></span>
+        <span class="linea"><span>de <em class="grad">cero</em>.</span></span>
+        <span class="linea"><span>Y en serio.</span></span>
       </h1>
 
       <p class="hero__lead reveal" style="--d:120ms">
@@ -145,7 +146,7 @@
       </div>
     </div>
 
-    <div class="hero__emblem reveal" style="--d:100ms">
+    <div class="hero__emblem reveal" style="--d:100ms" data-parallax="0.11" id="heroEmblema">
       <div class="hero__emblem-glow" aria-hidden="true"></div>
       <img src="assets/img/logo-mark.png" alt="Emblema de Xallas MotorSport" width="568" height="399" fetchpriority="high">
     </div>
@@ -350,7 +351,7 @@
 <section class="band" aria-hidden="true">
   <div class="checker-band"></div>
   <div class="band__inner">
-    <img class="band__mark" src="assets/img/logo-mark.png" alt="" width="568" height="399" loading="lazy">
+    <img class="band__mark" src="assets/img/logo-mark.png" alt="" width="568" height="399" loading="lazy" data-parallax="-0.09">
     <div class="marquee">
       <div class="marquee__track">
         <span>Xallas MotorSport <i>✕</i> Resistencia <i>✕</i> iRacing <i>✕</i> Since 2026 <i>✕</i></span>

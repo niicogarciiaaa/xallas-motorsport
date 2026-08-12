@@ -179,40 +179,91 @@
     });
   }
 
-  /* ── El trazado se dibuja según se baja ─────────────────────────────── */
+  /* ── Emblema del hero: sigue al ratón ───────────────────────────────── */
+  var emblema = document.getElementById("heroEmblema");
+  var hero = document.getElementById("hero");
+
+  if (emblema && hero && punteroFino && !reduced) {
+    var pendienteHero = null;
+
+    hero.addEventListener("pointermove", function (e) {
+      if (pendienteHero) return;
+      pendienteHero = requestAnimationFrame(function () {
+        pendienteHero = null;
+        var r = hero.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width - 0.5;
+        var y = (e.clientY - r.top) / r.height - 0.5;
+        emblema.classList.add("is-tilting");
+        emblema.style.setProperty("--ery", (x * 13).toFixed(2) + "deg");
+        emblema.style.setProperty("--erx", (-y * 9).toFixed(2) + "deg");
+      });
+    });
+
+    hero.addEventListener("pointerleave", function () {
+      if (pendienteHero) { cancelAnimationFrame(pendienteHero); pendienteHero = null; }
+      emblema.classList.remove("is-tilting");   // así vuelve con transición
+      emblema.style.removeProperty("--ery");
+      emblema.style.removeProperty("--erx");
+    });
+  }
+
+  /* ── Un único bucle para todo lo que depende del scroll ─────────────── */
+  /* Barra de progreso, parallax y dibujado del trazado se calculan juntos:
+     con manejadores separados cada uno pediría su propio fotograma. */
+  var barra = document.getElementById("progreso");
+  var capas = Array.prototype.slice.call(document.querySelectorAll("[data-parallax]"));
   var trazado = document.querySelector(".track__linea");
+  var bloqueTrazado = trazado && trazado.closest(".section--paper");
+  var largo = 0;
 
   if (trazado) {
-    var largo = trazado.getTotalLength();
+    largo = trazado.getTotalLength();
     trazado.style.strokeDasharray = largo;
-
-    if (reduced) {
-      trazado.style.strokeDashoffset = 0;           // sin animación: se ve entero
-    } else {
-      trazado.style.strokeDashoffset = largo;
-      var bloque = trazado.closest(".section--paper");
-      var esperando = false;
-
-      var dibujar = function () {
-        esperando = false;
-        var r = bloque.getBoundingClientRect();
-        var vh = window.innerHeight || document.documentElement.clientHeight;
-        // 0 cuando el bloque asoma por abajo, 1 cuando ya ha subido lo suficiente
-        var p = (vh - r.top) / (vh * 0.72 + r.height * 0.45);
-        p = Math.max(0, Math.min(1, p));
-        trazado.style.strokeDashoffset = largo * (1 - p);
-      };
-
-      window.addEventListener("scroll", function () {
-        if (esperando) return;
-        esperando = true;
-        requestAnimationFrame(dibujar);
-      }, { passive: true });
-
-      window.addEventListener("resize", dibujar);
-      dibujar();
-    }
+    trazado.style.strokeDashoffset = reduced ? 0 : largo;
   }
+
+  var enCola = false;
+
+  var alScroll = function () {
+    enCola = false;
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    var y = window.scrollY || document.documentElement.scrollTop;
+
+    if (barra) {
+      var alto = document.documentElement.scrollHeight - vh;
+      barra.style.setProperty("--avance", alto > 0 ? Math.min(1, y / alto).toFixed(4) : 0);
+    }
+
+    if (!reduced) {
+      capas.forEach(function (capa) {
+        var r = capa.getBoundingClientRect();
+        // Solo se mueve lo que está en pantalla
+        if (r.bottom < -200 || r.top > vh + 200) return;
+        var centro = r.top + r.height / 2 - vh / 2;
+        // Siempre por variable: varias de estas capas ya usan transform para
+        // colocarse, y asignarlo desde aquí las descolocaría.
+        var d = (centro * parseFloat(capa.dataset.parallax)).toFixed(1);
+        capa.style.setProperty("--pary", d + "px");
+      });
+
+      if (trazado && bloqueTrazado) {
+        var rb = bloqueTrazado.getBoundingClientRect();
+        // 0 cuando el bloque asoma por abajo, 1 cuando ya ha subido lo suficiente
+        var p = Math.max(0, Math.min(1, (vh - rb.top) / (vh * 0.72 + rb.height * 0.45)));
+        trazado.style.strokeDashoffset = largo * (1 - p);
+      }
+    }
+  };
+
+  var pedirScroll = function () {
+    if (enCola) return;
+    enCola = true;
+    requestAnimationFrame(alScroll);
+  };
+
+  window.addEventListener("scroll", pedirScroll, { passive: true });
+  window.addEventListener("resize", pedirScroll);
+  alScroll();
 
   /* ── Escape cierra el menú móvil ────────────────────────────────────── */
   document.addEventListener("keydown", function (e) {

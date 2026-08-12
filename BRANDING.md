@@ -196,6 +196,17 @@ Tres piezas son puramente visuales y no llevan datos:
   el blanco de la sección. Ahí apareció que «Por definir» se quedaba en 4,37:1,
   y por eso `.step__when` va en green-700. El margen más ajustado queda en
   +1,05 sobre el mínimo.
+- **Entrada del titular** (`.hero__title .linea`): las tres líneas suben desde
+  detrás de su propia caja, escalonadas. El recorte es `clip-path` y no
+  `overflow: hidden` — este último cortaba la «S» de «EMPEZAMOS», porque el
+  titular es más ancho que su columna y recortaba también en horizontal.
+- **Parallax** (`data-parallax`): aspa del hero, emblema y emblema de la banda
+  se mueven más despacio que la página. El desplazamiento va siempre por la
+  variable `--pary`, nunca asignando `transform` desde JS: varias de esas capas
+  ya usan `transform` para colocarse y se descolocarían.
+- **Barra de progreso** (`.progreso`): en el borde superior del navbar, con la
+  anchura ligada al scroll.
+- **Emblema del hero**: gira siguiendo al ratón dentro del hero.
 - **Inclinación de las tarjetas de piloto**: siguen al ratón con un giro máximo
   de 7°, un brillo que va tras el cursor y el dorsal y el casco desplazándose en
   sentido contrario, que es lo que da la sensación de profundidad. Solo con
@@ -322,6 +333,11 @@ orden lógico; y `prefers-reduced-motion` respetado.
 
 Comprobado a 320, 360, 390, 430 y 1280 px: sin desbordes horizontales salvo las
 marcas de agua decorativas, que van recortadas por su contenedor a propósito.
+
+Todo lo que depende del scroll —barra de progreso, parallax y dibujado del
+trazado— se calcula en **un solo bucle** con `requestAnimationFrame`: con
+manejadores separados cada efecto pediría su propio fotograma. Medido al
+desplazarse: **60 fps y ningún fotograma largo**.
 
 ### Pendiente, porque depende de contenido
 
