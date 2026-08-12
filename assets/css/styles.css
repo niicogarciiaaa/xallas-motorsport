@@ -993,6 +993,59 @@ a:hover { color: var(--green-100); }
 }
 .driver__name { font-size: 1.42rem; margin-bottom: 20px; }
 
+/* El box. No son pilotos, así que va aparte de la rejilla y con otra forma:
+   horizontal en vez de tarjeta vertical, y sin dorsal. */
+.crew {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+  padding: 26px 30px;
+  background:
+    radial-gradient(80% 160% at 0% 50%, rgba(30, 90, 55, .2) 0%, transparent 62%),
+    var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--green-700);
+  border-radius: var(--r-md);
+  transition: border-color .35s var(--ease), transform .35s var(--ease);
+}
+.crew:hover { transform: translateX(4px); border-left-color: var(--green-300); }
+
+.crew__icono {
+  display: grid;
+  place-items: center;
+  width: 54px; height: 54px;
+  flex-shrink: 0;
+  background: rgba(30, 90, 55, .22);
+  border: 1px solid var(--green-800);
+  border-radius: var(--r-md);
+}
+.crew__icono svg {
+  width: 26px; height: 26px;
+  fill: none; stroke: var(--green-200); stroke-width: 1.7;
+  stroke-linecap: round; stroke-linejoin: round;
+  transition: transform .45s var(--ease);
+}
+.crew:hover .crew__icono svg { transform: rotate(-18deg); }
+
+.crew__texto { display: flex; flex-direction: column; }
+.crew__rol {
+  font-size: .74rem;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--green-300);
+  margin-bottom: 4px;
+}
+.crew__nombre { font-size: 1.42rem; }
+.crew__desc {
+  flex: 1;
+  min-width: 260px;
+  color: var(--text-secondary);
+  font-size: .97rem;
+}
+
 /* Plazas aún sin nombre: se ven a la legua como pendientes, para que nadie
    las confunda con pilotos del equipo */
 .driver--tbd { border-style: dashed; }

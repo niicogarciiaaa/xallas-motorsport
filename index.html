@@ -216,9 +216,9 @@
 </section>
 
 <!-- ═════════════════════════════ PILOTOS ══════════════════════════════ -->
-<!-- Los cinco primeros pilotos son reales. Los tres restantes son marcadores
-     (.driver--tbd) a la espera de nombre: se ven claramente sin rellenar para
-     que nadie los tome por personas del equipo. Los dorsales son provisionales. Para añadir foto, sustituir el bloque .driver__photo por una
+<!-- Los ocho pilotos son reales; los dorsales siguen siendo provisionales.
+     Si se abre una plaza nueva, basta con añadir la clase .driver--tbd a la
+     tarjeta para que se vea claramente como pendiente. Para añadir foto, sustituir el bloque .driver__photo por una
      <img> manteniendo la misma proporción. -->
 <section class="section section--alt" id="pilotos">
   <div class="wrap">
@@ -302,45 +302,57 @@
         </div>
       </article>
 
-      <article class="driver driver--tbd reveal" style="--d:60ms">
+      <article class="driver reveal" style="--d:60ms">
         <div class="driver__photo">
-          <span class="driver__num" aria-hidden="true">??</span>
+          <span class="driver__num" aria-hidden="true">66</span>
           <div class="driver__checker" aria-hidden="true"></div>
           <svg class="driver__silhouette" viewBox="0 0 120 120" aria-hidden="true"><use href="#i-helmet"/></svg>
         </div>
         <div class="driver__body">
-          <p class="driver__role">Por confirmar</p>
-          <h3 class="driver__name">Nombre Apellidos</h3>
+          <p class="driver__role">Piloto</p>
+          <h3 class="driver__name">Jorge Ibarra</h3>
           <ul class="driver__tags"><li>Resistencia</li><li>iRacing</li></ul>
         </div>
       </article>
 
-      <article class="driver driver--tbd reveal" style="--d:120ms">
+      <article class="driver reveal" style="--d:120ms">
         <div class="driver__photo">
-          <span class="driver__num" aria-hidden="true">??</span>
+          <span class="driver__num" aria-hidden="true">05</span>
           <div class="driver__checker" aria-hidden="true"></div>
           <svg class="driver__silhouette" viewBox="0 0 120 120" aria-hidden="true"><use href="#i-helmet"/></svg>
         </div>
         <div class="driver__body">
-          <p class="driver__role">Por confirmar</p>
-          <h3 class="driver__name">Nombre Apellidos</h3>
+          <p class="driver__role">Piloto</p>
+          <h3 class="driver__name">Juanma Sierra</h3>
           <ul class="driver__tags"><li>Resistencia</li><li>iRacing</li></ul>
         </div>
       </article>
 
-      <article class="driver driver--tbd reveal" style="--d:180ms">
+      <article class="driver reveal" style="--d:180ms">
         <div class="driver__photo">
-          <span class="driver__num" aria-hidden="true">??</span>
+          <span class="driver__num" aria-hidden="true">88</span>
           <div class="driver__checker" aria-hidden="true"></div>
           <svg class="driver__silhouette" viewBox="0 0 120 120" aria-hidden="true"><use href="#i-helmet"/></svg>
         </div>
         <div class="driver__body">
-          <p class="driver__role">Por confirmar</p>
-          <h3 class="driver__name">Nombre Apellidos</h3>
+          <p class="driver__role">Piloto</p>
+          <h3 class="driver__name">Borex Cholakov</h3>
           <ul class="driver__tags"><li>Resistencia</li><li>iRacing</li></ul>
         </div>
       </article>
 
+    </div>
+
+    <!-- El box: no son pilotos, así que no van en la rejilla de arriba -->
+    <div class="crew reveal">
+      <div class="crew__icono" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M15.5 3.5a5 5 0 0 0-4.6 6.9L3.8 17.5a2 2 0 0 0 2.8 2.8l7.1-7.1a5 5 0 0 0 6.2-6.4l-2.9 2.9-2.6-.7-.7-2.6 2.8-2.9Z"/></svg>
+      </div>
+      <div class="crew__texto">
+        <p class="crew__rol">En el box</p>
+        <h3 class="crew__nombre">Jasaca</h3>
+      </div>
+      <p class="crew__desc">Mecánico del equipo. El que hace que el coche vuelva a salir a pista.</p>
     </div>
   </div>
 </section>

@@ -222,7 +222,13 @@ Tres piezas son puramente visuales y no llevan datos:
 
 Contenido **de ejemplo**, marcado con comentarios en `index.html`:
 
-- **Pilotos**: los 8 nombres, dorsales y etiquetas. La rejilla está calculada
+- **Pilotos**: los 8 nombres son reales; **los dorsales siguen siendo
+  provisionales**. Si se abre una plaza, basta con añadir `.driver--tbd` a la
+  tarjeta para que se vea claramente como pendiente.
+- **El box** (`.crew`): Jasaca, mecánico. Va fuera de la rejilla y con otra
+  forma —horizontal y sin dorsal— porque no es piloto y no debe leerse como
+  uno. Ahí se añade el resto del equipo de boxes cuando lo haya.
+- Etiquetas de piloto: La rejilla está calculada
   (`minmax(262px, 1fr)`) para que los 8 caigan en dos filas exactas a ancho
   completo; si cambia el número de pilotos, revisa ese valor. Para poner foto,
   sustituye el bloque `.driver__photo` por una `<img>` con la misma proporción.
