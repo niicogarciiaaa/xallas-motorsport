@@ -178,8 +178,8 @@ siendo opacos, y los bordes conservan el antialiasing.
 ## 8. Estructura y contenido pendiente
 
 La web está planteada para una escudería que **arranca sin palmarés**, que
-**sólo corre resistencia** y **sólo en iRacing (PC)**. Tres consecuencias de
-fondo:
+**corre resistencia y sprint a partes iguales** y **sólo en iRacing (PC)**.
+Tres consecuencias de fondo:
 
 - No hay cifras de carreras, podios ni victorias en ninguna parte, porque
   todavía no existen.
@@ -188,7 +188,7 @@ fondo:
 - No se menciona ninguna otra plataforma ni ninguna categoría de sprint.
 
 Secciones: Hero → Cifras de arranque → Equipo → Pilotos → Banda de marca →
-Resistencia → Hoja de ruta → Contacto.
+Competición → Hoja de ruta → Contacto.
 
 Tres piezas son puramente visuales y no llevan datos:
 
@@ -251,17 +251,19 @@ Contenido **de ejemplo**, marcado con comentarios en `index.html`:
 - **Cifras**: `data-count` en las dos primeras `.stat` (año y pilotos). La
   tercera es `.stat--text`: muestra «iRacing» en vez de un número, con cuerpo
   reducido para que quepa en la columna, y por eso no lleva contador.
-- **Resistencia**: el coche, su ficha técnica y los cuatro datos de
-  `.facts` (duración, stint, pilotos por coche, objetivo).
-- **Por qué resistencia** (`.why`): texto de opinión del equipo, no datos.
-  Explica la elección de la disciplina, que es lo único que la web no contaba.
+- **Competición** (`#competicion`): el coche, su ficha técnica y los cuatro
+  datos de `.facts`. Ojo: esas cuatro cifras son de resistencia y van
+  etiquetadas como tales; faltan las equivalentes de sprint.
+- **Por qué las dos** (`.why`): texto de opinión del equipo, no datos.
+  Explica por qué se corren los dos formatos y qué aporta cada uno.
   Cambiadlo con libertad, pero sin prometer resultados que aún no existen.
-- **Síguenos**: los tres `.follow__item` y los iconos del pie llevan `href="#"`.
-  **Hay que poner las URLs reales de Discord, Twitch y YouTube** o quitar los
-  que no se usen.
+- **Síguenos**: ya lleva URLs reales. Las cuentas de equipo (Instagram, X,
+  YouTube) van arriba y también como iconos del pie; los tres canales de Twitch
+  son **personales de pilotos**, así que van con el nombre del canal y solo en
+  el bloque de contacto. No hay Discord.
 - **Hoja de ruta**: fechas y, sobre todo, el `data-state` de cada hito —
   `done` (tachado), `now` (el actual, con pulso) o `next`.
-- **Contacto**: `info@xallasmotorsport.com` y los enlaces sociales (`href="#"`).
+- **Contacto**: `xallasmotorsport@gmail.com`, ya operativo.
 
 ### Cuando lleguen los primeros resultados
 
@@ -321,13 +323,13 @@ Discord: es el rastreador más rápido de los tres. Si ya lo habías compartido
 antes de un cambio, usa el depurador de Facebook o `?v=2` al final de la URL
 para saltarte su caché.
 
-### Correo pendiente
+### Correo
 
-`info@xallasmotorsport.com` aparece en el botón «Escríbenos» y en el pie, pero
-**ese buzón no existe** mientras no haya dominio. Hasta entonces conviene poner
-un correo real o sustituir el botón por el enlace de Discord. Está marcado con
-comentarios `OJO:` en el HTML. Por eso también se ha quitado el campo `email`
-del JSON-LD: mejor no declarar un contacto que rebota.
+`xallasmotorsport@gmail.com`, en el botón «Escríbenos» y en el pie. Es un buzón
+real, así que el JSON-LD vuelve a declarar el campo `email` y añade `sameAs` con
+los tres perfiles de equipo, que es lo que usa Google para atar la marca a sus
+cuentas. Si algún día hay dominio propio, el correo se puede mover sin tocar
+nada más que estas dos apariciones.
 
 ## 11. Accesibilidad
 
@@ -369,22 +371,22 @@ desplazarse: **60 fps y ningún fotograma largo**.
 
 ### Pendiente, porque depende de contenido
 
-Quedan **ocho enlaces con `href="#"`** (Discord, Twitch y YouTube del bloque de
-seguimiento, más los cinco iconos del pie). Un enlace sin destino se anuncia
-como enlace, recibe el foco y al activarlo salta al principio de la página. En
-cuanto haya URLs reales se resuelve solo; si no va a haberlas, lo correcto es
-quitarlos.
+Resuelto: **ya no queda ningún `href="#"`**. Los enlaces sin destino se
+anunciaban como enlace, recibían el foco y al activarlos saltaban al principio
+de la página. Ahora los nueve apuntan a cuentas reales, con `target="_blank"` y
+`rel="noopener"`, y los que no tenían cuenta detrás (Discord) se han quitado en
+vez de dejarlos muertos.
 
 ## 12. Posicionamiento
 
 ### Lo que se corrigió
 
-El `<title>` decía «Escudería de Simracing»: ni «resistencia» ni «iRacing», que
+El `<title>` decía «Escudería de Simracing»: ni la disciplina ni «iRacing», que
 son las palabras por las que se busca a un equipo así. Curiosamente el `og:title`
 sí las llevaba, con lo que la etiqueta que ven los buscadores era peor que la que
-ven las redes. Ahora:
+ven las redes. Ahora, con los dos formatos dentro:
 
-    Xallas MotorSport | Escudería de resistencia en iRacing   (55 car.)
+    Xallas MotorSport | Resistencia y sprint en iRacing   (51 car.)
 
 La `description` se quedó en 149 caracteres, dentro de lo que Google muestra sin
 cortar, e incluye Galicia, que antes no aparecía.

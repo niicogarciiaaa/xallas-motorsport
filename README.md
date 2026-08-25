@@ -1,6 +1,6 @@
 # Xallas MotorSport
 
-Web de la escudería **Xallas MotorSport** — simracing de resistencia en iRacing,
+Web de la escudería **Xallas MotorSport** — simracing de resistencia y sprint en iRacing,
 fundada en 2026 en la comarca del Xallas (Galicia).
 
 HTML, CSS y JavaScript sin dependencias ni compilación: no hay `npm install` ni
@@ -63,8 +63,10 @@ traduce cada elemento del logo a la interfaz están en
 
 - [ ] Nombres, dorsales y fotos reales de los 8 pilotos (ahora son de ejemplo)
 - [ ] Ficha técnica real del coche
-- [ ] URLs de Discord, Twitch y YouTube (ahora `href="#"`)
-- [ ] Correo de contacto que exista — `info@xallasmotorsport.com` aún no
+- [ ] Duración y formato de las carreras sprint (las cuatro cifras de `.facts`
+      son de resistencia y van etiquetadas como tales)
+- [ ] Saber qué canal de Twitch es de cada piloto, para enlazarlos desde su
+      ficha en vez de sueltos en el bloque de contacto
 - [ ] Si se compra dominio: cambiar las cuatro URLs del `<head>` y la del
       JSON-LD (ver BRANDING.md §10)
 
