@@ -1237,19 +1237,23 @@ a:hover { color: var(--green-100); }
   border-radius: 2px;
 }
 
-.car__art { width: 100%; height: auto; position: relative; }
-.car__art .body {
-  fill: var(--green-700);
-  stroke: var(--ink-950);
-  stroke-width: 3;
-  transition: fill .4s var(--ease);
+/* Render de la decoración. Sustituye al coche que iba dibujado en SVG; con él
+   se fueron sus ocho reglas (.car__art y sus .body/.glass/.wheel/.hub/.wing),
+   que se habrían quedado apuntando a un elemento inexistente.
+   El webp no tiene canal alfa, así que su fondo llega en rectángulo: el borde
+   y el redondeo son los que hacen que se lea como una ficha enmarcada y no
+   como una imagen mal recortada sobre la tarjeta.
+   position:relative lo mantiene por encima del barrido diagonal, igual que
+   estaba el SVG. */
+.car__foto {
+  width: 100%;
+  height: auto;
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  transition: border-color .4s var(--ease);
 }
-.endurance__visual:hover .car__art .body { fill: var(--green-600); }
-.car__art .glass { fill: var(--ink-850); stroke: var(--ink-950); stroke-width: 2.5; }
-.car__art .wheel { fill: var(--ink-900); stroke: var(--ink-950); stroke-width: 3; }
-.car__art .hub { fill: var(--green-500); transition: fill .4s var(--ease); }
-.endurance__visual:hover .car__art .hub { fill: var(--green-300); }
-.car__art .wing { fill: var(--ink-800); stroke: var(--ink-950); stroke-width: 2.5; }
+.endurance__visual:hover .car__foto { border-color: var(--green-700); }
 
 .endurance__body {
   display: flex;

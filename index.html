@@ -498,13 +498,13 @@
       <div class="endurance__visual reveal">
         <div class="car__stripe" aria-hidden="true"></div>
         <span class="car__badge">Resistencia · Sprint</span>
-        <svg class="car__art" viewBox="0 0 400 150" aria-hidden="true">
-          <path class="body" d="M26 110c-7 0-12-4-12-11 0-8 6-13 14-16l44-13c16-16 40-26 70-26 32 0 60 8 78 20l48 10c24 5 40 13 46 23 3 5 3 10 2 14H26Z"/>
-          <path class="glass" d="M128 62c11-12 27-19 46-20 20-1 37 5 48 13l-8 11-79 3-7-7Z"/>
-          <circle class="wheel" cx="100" cy="108" r="21"/><circle class="hub" cx="100" cy="108" r="8"/>
-          <circle class="wheel" cx="300" cy="108" r="21"/><circle class="hub" cx="300" cy="108" r="8"/>
-          <path class="wing" d="M322 46h68v10h-68z"/>
-        </svg>
+        <!-- Render de la decoración, en sustitución del coche que iba dibujado
+             a mano en SVG. width/height son los del archivo: reservan el hueco
+             antes de que la imagen llegue y evitan el salto de maquetación.
+             Va en lazy porque queda muy por debajo del pliegue. -->
+        <img class="car__foto" src="assets/img/cochelmp2.webp"
+             alt="Dallara P217 de LMP2 con la decoración de Xallas MotorSport, dorsal 26, en verde y blanco. Render de concepto."
+             width="771" height="278" loading="lazy" decoding="async">
       </div>
 
       <div class="endurance__body reveal" style="--d:100ms">
