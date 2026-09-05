@@ -1188,7 +1188,239 @@ a:hover { color: var(--green-100); }
   to   { transform: translateX(-50%); }
 }
 
-/* ── 12. RESISTENCIA ────────────────────────────────────────────────────── */
+/* ── 12. DIRECTOS ───────────────────────────────────────────────────────── */
+/* El sistema no admite el rojo de "grabando": todo color sale del verde del
+   logo (H≈146°). Así que el directo se marca con LUZ y MOVIMIENTO —brillo,
+   halo y un pulso— mientras el resto se apaga. Además de respetar la paleta,
+   deja de depender del color: se distingue en escala de grises, con daltonismo
+   y, como el estado va también en texto, con lector de pantalla. */
+
+.directos__resumen {
+  margin: 0 0 22px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.06rem;
+  letter-spacing: .01em;
+  color: var(--text-secondary);
+}
+
+/* Con reproductor y sitio de sobra, los canales se van al lado en vez de
+   quedar debajo del pliegue. La clase la pone el JS solo cuando hay directo:
+   sin ella no habría nada que poner en la primera columna. */
+@media (min-width: 1000px) {
+  .directos__cuerpo.tiene-player {
+    display: grid;
+    grid-template-columns: minmax(0, 1.55fr) minmax(272px, 1fr);
+    gap: 24px;
+    align-items: start;
+  }
+  .directos__cuerpo.tiene-player .directos__player { margin: 0; max-width: none; }
+  .directos__cuerpo.tiene-player .directos { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Un único reproductor para toda la sección; las tarjetas de al lado lo cambian */
+.directos__player { margin: 0 0 26px; max-width: 760px; }
+.directos__marco {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 1px solid var(--green-500);
+  border-radius: var(--r-md);
+  background: var(--ink-950);
+  box-shadow: var(--shadow-md), var(--glow);
+}
+.directos__marco iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.directos__barra {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 10px 0 0;
+  font-size: .88rem;
+  color: var(--text-muted);
+}
+.directos__barra a {
+  flex: none;
+  color: var(--green-200);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color .25s var(--ease);
+}
+.directos__barra a:hover { border-bottom-color: var(--green-200); }
+
+.directos {
+  display: grid;
+  /* auto-fit y no auto-fill: los canales son pocos y variables, y con auto-fill
+     las tarjetas se apelotonaban a la izquierda dejando columnas vacías. */
+  grid-template-columns: repeat(auto-fit, minmax(248px, 1fr));
+  gap: 16px;
+}
+.directos[data-estado="sin-canales"] { display: none; }
+
+.canal {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 152px;
+  padding: 18px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  /* Quien emite se pinta como <button> (manda sobre el reproductor) y quien no,
+     como <a>. Estas cuatro líneas son para que el botón no traiga su propia
+     tipografía, su centrado ni su ancho automático. */
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform .35s var(--ease), border-color .35s var(--ease),
+              box-shadow .35s var(--ease), background-color .35s var(--ease);
+}
+.canal:hover {
+  transform: translateY(-6px);
+  border-color: var(--green-600);
+  box-shadow: var(--shadow-md);
+}
+
+/* Mismo recurso que en las tarjetas de piloto: el dorsal de fondo cose las
+   dos secciones y permite reconocer a quién pertenece el canal de un vistazo */
+.canal__dorsal {
+  position: absolute;
+  top: 8px; right: 14px;
+  font-family: var(--font-display);
+  font-size: 3.3rem;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -.06em;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--ink-600);
+  transition: -webkit-text-stroke-color .35s var(--ease);
+}
+.canal:hover .canal__dorsal { -webkit-text-stroke-color: var(--green-700); }
+
+.canal__estado {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: .73rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.canal__nombre {
+  display: block;
+  padding-right: 52px;      /* deja sitio al dorsal */
+  /* Lo que heredaba de <h3> antes de pasar a <span> por validez */
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.15rem;
+  line-height: 1.02;
+  letter-spacing: -.02em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.canal__titulo {
+  margin: 0;
+  font-size: .92rem;
+  line-height: 1.45;
+  color: var(--text-secondary);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.canal__pie {
+  display: block;
+  margin: auto 0 0;
+  font-size: .85rem;
+  color: var(--text-muted);
+}
+
+/* ── Emitiendo: la tarjeta se enciende ── */
+.canal--vivo {
+  border-color: var(--green-500);
+  background: linear-gradient(158deg, var(--green-900) 0%, var(--surface) 64%);
+  box-shadow: var(--glow);
+}
+.canal--vivo:hover {
+  border-color: var(--green-300);
+  box-shadow: var(--shadow-md), var(--glow);
+}
+/* La que suena ahora se distingue de las demás que también emiten */
+.canal.is-sonando {
+  border-color: var(--green-300);
+  box-shadow: var(--shadow-md), var(--glow), inset 0 0 0 1px var(--green-600);
+}
+.canal--vivo .canal__estado { color: var(--green-100); }
+.canal--vivo .canal__pie    { color: var(--green-200); }
+.canal--vivo .canal__dorsal { -webkit-text-stroke-color: var(--green-600); }
+
+/* Punto encendido con dos ondas desfasadas: el latido se lee incluso de reojo */
+.canal__pulso {
+  position: relative;
+  flex: none;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--green-100);
+  box-shadow: 0 0 10px var(--green-200);
+}
+.canal__pulso::before,
+.canal__pulso::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid var(--green-200);
+  animation: canal-onda 2.4s var(--ease) infinite;
+}
+.canal__pulso::after { animation-delay: 1.2s; }
+@keyframes canal-onda {
+  from { transform: scale(1);   opacity: .8; }
+  to   { transform: scale(3.6); opacity: 0; }
+}
+
+/* ── Apagado y no comprobado ── */
+.canal--apagado { background: var(--background-secondary); }
+.canal--apagado .canal__nombre { color: var(--text-secondary); }
+/* El discontinuo ya se usa en la web para "esto no está confirmado" */
+.canal--duda { border-style: dashed; }
+.canal--duda .canal__nombre { color: var(--text-secondary); }
+
+/* ── Esqueleto mientras se consulta ── */
+.canal--esqueleto {
+  border-style: dashed;
+  background: var(--background-secondary);
+}
+.canal--esqueleto::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 20%,
+              rgba(163, 223, 189, .07) 50%, transparent 80%);
+  animation: canal-brillo 1.5s linear infinite;
+}
+@keyframes canal-brillo {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(100%); }
+}
+
+/* ── 13. RESISTENCIA ────────────────────────────────────────────────────── */
 .endurance {
   display: grid;
   grid-template-columns: 1.12fr .88fr;
@@ -1407,7 +1639,7 @@ a:hover { color: var(--green-100); }
   color: var(--text);
 }
 
-/* ── 13. HOJA DE RUTA (banda clara) ─────────────────────────────────────── */
+/* ── 14. HOJA DE RUTA (banda clara) ─────────────────────────────────────── */
 .roadmap {
   position: relative;
   display: grid;
@@ -1491,7 +1723,7 @@ a:hover { color: var(--green-100); }
 }
 .step__text { color: var(--ink-700); font-size: .96rem; }
 
-/* ── 14. CTA ────────────────────────────────────────────────────────────── */
+/* ── 15. CTA ────────────────────────────────────────────────────────────── */
 .cta {
   position: relative;
   padding: clamp(74px, 10vw, 120px) 0;
@@ -1598,7 +1830,7 @@ a:hover { color: var(--green-100); }
 
 .follow__mail { margin-top: 6px; justify-content: center; }
 
-/* ── 15. FOOTER ─────────────────────────────────────────────────────────── */
+/* ── 16. FOOTER ─────────────────────────────────────────────────────────── */
 .footer { background: var(--background-secondary); }
 .footer__grid {
   display: grid;
@@ -1677,7 +1909,7 @@ a:hover { color: var(--green-100); }
   font-size: .78rem;
 }
 
-/* ── 16. REVELADO AL SCROLL ─────────────────────────────────────────────── */
+/* ── 17. REVELADO AL SCROLL ─────────────────────────────────────────────── */
 /* Sólo se oculta si hay JS para volver a mostrarlo: sin JS todo es visible. */
 .js .reveal {
   opacity: 0;
@@ -1687,7 +1919,7 @@ a:hover { color: var(--green-100); }
 }
 .js .reveal.is-in { opacity: 1; transform: none; }
 
-/* ── 17. RESPONSIVE ─────────────────────────────────────────────────────── */
+/* ── 18. RESPONSIVE ─────────────────────────────────────────────────────── */
 @media (max-width: 1080px) {
   .footer__grid { grid-template-columns: 1fr 1fr; gap: 38px; }
   .footer__brand { grid-column: 1 / -1; }
@@ -1775,7 +2007,7 @@ a:hover { color: var(--green-100); }
   .brand__type { display: none; }
 }
 
-/* ── 18. MOVIMIENTO REDUCIDO ────────────────────────────────────────────── */
+/* ── 19. MOVIMIENTO REDUCIDO ────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {
@@ -1792,9 +2024,13 @@ a:hover { color: var(--green-100); }
   .driver { transform: none; }
   .hero__emblem { transform: none; }
   .js .hero__title.is-in .linea > span { transition: none; }
+  /* Sin las ondas el punto sigue encendido: el estado no dependía del latido */
+  .canal__pulso::before, .canal__pulso::after { display: none; }
+  .canal--esqueleto::after { display: none; }
+  .canal:hover { transform: none; }
 }
 
-/* ── 19. IMPRESIÓN ──────────────────────────────────────────────────────── */
+/* ── 20. IMPRESIÓN ──────────────────────────────────────────────────────── */
 @media print {
   .nav, .hero__scroll, .cta, .band { display: none; }
   body { background: #fff; color: #000; }
