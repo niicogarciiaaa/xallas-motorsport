@@ -1188,7 +1188,38 @@ a:hover { color: var(--green-100); }
   to   { transform: translateX(-50%); }
 }
 
-/* ── 12. DIRECTOS ───────────────────────────────────────────────────────── */
+/* ── 12. RESULTADO ──────────────────────────────────────────────────────── */
+.podio { margin: 0; }
+.podio__img {
+  width: 100%;
+  /* El original mide 1024; sin este tope la rejilla lo estiraba a ~1130 y el
+     texto del cartel perdía nitidez por ampliarlo. */
+  max-width: 1024px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-lg);
+}
+.podio__pie {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 12px;
+  margin-top: 16px;
+  font-size: .95rem;
+  color: var(--text-secondary);
+}
+/* El dorsal del coche, con el mismo tratamiento que los de las tarjetas */
+.podio__coche {
+  flex: none;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: .78rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--green-200);
+}
+
+/* ── 13. DIRECTOS ───────────────────────────────────────────────────────── */
 /* El sistema no admite el rojo de "grabando": todo color sale del verde del
    logo (H≈146°). Así que el directo se marca con LUZ y MOVIMIENTO —brillo,
    halo y un pulso— mientras el resto se apaga. Además de respetar la paleta,
@@ -1420,7 +1451,7 @@ a:hover { color: var(--green-100); }
   to   { transform: translateX(100%); }
 }
 
-/* ── 13. RESISTENCIA ────────────────────────────────────────────────────── */
+/* ── 14. RESISTENCIA ────────────────────────────────────────────────────── */
 .endurance {
   display: grid;
   grid-template-columns: 1.12fr .88fr;
@@ -1639,7 +1670,7 @@ a:hover { color: var(--green-100); }
   color: var(--text);
 }
 
-/* ── 14. HOJA DE RUTA (banda clara) ─────────────────────────────────────── */
+/* ── 15. HOJA DE RUTA (banda clara) ─────────────────────────────────────── */
 .roadmap {
   position: relative;
   display: grid;
@@ -1723,7 +1754,7 @@ a:hover { color: var(--green-100); }
 }
 .step__text { color: var(--ink-700); font-size: .96rem; }
 
-/* ── 15. CTA ────────────────────────────────────────────────────────────── */
+/* ── 16. CTA ────────────────────────────────────────────────────────────── */
 .cta {
   position: relative;
   padding: clamp(74px, 10vw, 120px) 0;
@@ -1830,7 +1861,7 @@ a:hover { color: var(--green-100); }
 
 .follow__mail { margin-top: 6px; justify-content: center; }
 
-/* ── 16. FOOTER ─────────────────────────────────────────────────────────── */
+/* ── 17. FOOTER ─────────────────────────────────────────────────────────── */
 .footer { background: var(--background-secondary); }
 .footer__grid {
   display: grid;
@@ -1909,7 +1940,7 @@ a:hover { color: var(--green-100); }
   font-size: .78rem;
 }
 
-/* ── 17. REVELADO AL SCROLL ─────────────────────────────────────────────── */
+/* ── 18. REVELADO AL SCROLL ─────────────────────────────────────────────── */
 /* Sólo se oculta si hay JS para volver a mostrarlo: sin JS todo es visible. */
 .js .reveal {
   opacity: 0;
@@ -1919,7 +1950,7 @@ a:hover { color: var(--green-100); }
 }
 .js .reveal.is-in { opacity: 1; transform: none; }
 
-/* ── 18. RESPONSIVE ─────────────────────────────────────────────────────── */
+/* ── 19. RESPONSIVE ─────────────────────────────────────────────────────── */
 @media (max-width: 1080px) {
   .footer__grid { grid-template-columns: 1fr 1fr; gap: 38px; }
   .footer__brand { grid-column: 1 / -1; }
@@ -1952,7 +1983,16 @@ a:hover { color: var(--green-100); }
   .cta__inner { flex-direction: column; align-items: flex-start; }
 }
 
-@media (max-width: 860px) {
+/* Seis enlaces ya no caben en la barra: entre 1100 y 1400 px se aprieta el
+   relleno para que el botón de contacto no se salga. Va antes del bloque del
+   menú móvil a propósito, para que aquel lo pise cuando toca. */
+@media (max-width: 1400px) {
+  .nav__links > a:not(.btn) { padding-left: 8px; padding-right: 8px; letter-spacing: .06em; }
+}
+
+/* El menú pasa a hamburguesa antes que antes (era 860): con Resultado y
+   Directos, la barra completa deja de caber alrededor de los 1100. */
+@media (max-width: 1100px) {
   .nav__toggle { display: flex; }
   .nav__links {
     position: fixed;
@@ -2007,7 +2047,7 @@ a:hover { color: var(--green-100); }
   .brand__type { display: none; }
 }
 
-/* ── 19. MOVIMIENTO REDUCIDO ────────────────────────────────────────────── */
+/* ── 20. MOVIMIENTO REDUCIDO ────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {
@@ -2030,7 +2070,7 @@ a:hover { color: var(--green-100); }
   .canal:hover { transform: none; }
 }
 
-/* ── 20. IMPRESIÓN ──────────────────────────────────────────────────────── */
+/* ── 21. IMPRESIÓN ──────────────────────────────────────────────────────── */
 @media print {
   .nav, .hero__scroll, .cta, .band { display: none; }
   body { background: #fff; color: #000; }
