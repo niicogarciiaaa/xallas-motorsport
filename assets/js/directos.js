@@ -33,7 +33,7 @@
     { nombre: "Jorge Ibarra",           dorsal: "11", twitch: "" },
     { nombre: "Manuel Muñiz",           dorsal: "13", twitch: "manuel_sdc" },
     { nombre: "Francisco Javier Otero", dorsal: "14", twitch: "ottedy" },
-    { nombre: "Maria Montenegro",       dorsal: "21", twitch: "" },
+    { nombre: "María Montenegro",       dorsal: "21", twitch: "" },
     { nombre: "Nicolás García",         dorsal: "22", twitch: "" },
     { nombre: "Borex Cholakov",         dorsal: "25", twitch: "" },
     { nombre: "Juanma Sierra",          dorsal: "28", twitch: "" }
