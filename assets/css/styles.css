@@ -1219,6 +1219,70 @@ a:hover { color: var(--green-100); }
   color: var(--green-200);
 }
 
+/* Tira de fotos. Es un carrusel en comportamiento pero no en estructura: el
+   anclaje lo hace el navegador con scroll-snap, así que no hay JavaScript, no
+   hay estado que se desincronice y no hay nada escondido detrás de una flecha.
+   El ancho de cada foto deja asomar la siguiente, que es lo que hace evidente
+   que la tira sigue. */
+.tira {
+  display: flex;
+  gap: 14px;
+  margin-top: 26px;
+  padding-bottom: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--green-700) transparent;
+}
+/* tabindex="0" en el HTML lo hace recorrible con las flechas; sin este foco
+   visible, quien navegue con teclado no sabría dónde está. */
+.tira:focus-visible { outline: 2px solid var(--green-400); outline-offset: 4px; }
+.tira::-webkit-scrollbar { height: 8px; }
+.tira::-webkit-scrollbar-track { background: var(--ink-900); border-radius: 4px; }
+.tira::-webkit-scrollbar-thumb { background: var(--green-800); border-radius: 4px; }
+.tira::-webkit-scrollbar-thumb:hover { background: var(--green-600); }
+
+.tira__foto {
+  flex: 0 0 min(78%, 620px);
+  margin: 0;
+  scroll-snap-align: start;
+}
+.tira__foto img {
+  width: 100%;
+  /* Las capturas vienen con recortes distintos (de 1,77:1 a 2,29:1) y la tira
+     quedaba con las fotos a distinta altura y los pies desalineados. 2:1 es el
+     punto medio, así que el recorte se reparte y ninguna pierde el coche. */
+  aspect-ratio: 2 / 1;
+  object-fit: cover;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-md);
+  transition: border-color .35s var(--ease);
+}
+.tira__foto:hover img { border-color: var(--green-600); }
+.tira__foto figcaption {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-top: 10px;
+  font-size: .9rem;
+  color: var(--text-muted);
+}
+/* El mismo tratamiento que los dorsales del resto de la web */
+.tira__coche {
+  flex: none;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: .78rem;
+  letter-spacing: .16em;
+  color: var(--green-200);
+}
+.tira__pista {
+  margin: 14px 0 0;
+  font-size: .88rem;
+  color: var(--text-muted);
+}
+
 /* ── 13. DIRECTOS ───────────────────────────────────────────────────────── */
 /* El sistema no admite el rojo de "grabando": todo color sale del verde del
    logo (H≈146°). Así que el directo se marca con LUZ y MOVIMIENTO —brillo,

@@ -298,6 +298,62 @@
         Nico García y Borex Cholakov.
       </figcaption>
     </figure>
+
+    <!-- Tira de fotos con anclaje de scroll, sin una línea de JavaScript. Un
+         carrusel al uso escondería siete de las ocho detrás de una flecha que
+         casi nadie pulsa; aquí la siguiente asoma y se ve que hay más. Se
+         maneja con el dedo, el trackpad, la rueda y las flechas del teclado. -->
+    <div class="tira" id="tiraLemans" role="group" tabindex="0"
+         aria-label="Galería de las 24 Horas de Le Mans 2026, ocho fotos de los dos coches">
+      <figure class="tira__foto">
+        <img src="assets/img/lemans-34-atardecer.jpg" width="1400" height="790" loading="lazy" decoding="async"
+             alt="El LMP2 número 34 de Xallas MotorSport rodando al atardecer, con el sol reflejado en el asfalto.">
+        <figcaption><span class="tira__coche">34</span> Al atardecer</figcaption>
+      </figure>
+
+      <figure class="tira__foto">
+        <img src="assets/img/lemans-21-frontal.jpg" width="1400" height="714" loading="lazy" decoding="async"
+             alt="El LMP2 número 21 de frente, recortado contra un cielo naranja de atardecer.">
+        <figcaption><span class="tira__coche">21</span> A contraluz</figcaption>
+      </figure>
+
+      <figure class="tira__foto">
+        <img src="assets/img/lemans-34-pianos.jpg" width="1400" height="712" loading="lazy" decoding="async"
+             alt="El 34, sucio de carrera, pisando los pianos junto a otro LMP2 al amanecer.">
+        <figcaption><span class="tira__coche">34</span> Sobre los pianos</figcaption>
+      </figure>
+
+      <figure class="tira__foto">
+        <img src="assets/img/lemans-21-contraluz.jpg" width="1400" height="634" loading="lazy" decoding="async"
+             alt="El 21 en pista bajo una luz dorada rasante.">
+        <figcaption><span class="tira__coche">21</span> Luz dorada</figcaption>
+      </figure>
+
+      <figure class="tira__foto">
+        <img src="assets/img/lemans-34-puesta.jpg" width="1400" height="765" loading="lazy" decoding="async"
+             alt="Vista trasera del 34 con el sol poniéndose sobre el circuito.">
+        <figcaption><span class="tira__coche">34</span> Puesta de sol</figcaption>
+      </figure>
+
+      <figure class="tira__foto">
+        <img src="assets/img/lemans-21-noche.jpg" width="1400" height="611" loading="lazy" decoding="async"
+             alt="El 21 con los faros encendidos durante el tramo nocturno de la carrera.">
+        <figcaption><span class="tira__coche">21</span> De noche</figcaption>
+      </figure>
+
+      <figure class="tira__foto">
+        <img src="assets/img/lemans-34-recta.jpg" width="1400" height="694" loading="lazy" decoding="async"
+             alt="El 34 de frente en una recta del circuito, con las luces del trazado al fondo.">
+        <figcaption><span class="tira__coche">34</span> En la recta</figcaption>
+      </figure>
+
+      <figure class="tira__foto">
+        <img src="assets/img/lemans-34-arboles.jpg" width="1400" height="708" loading="lazy" decoding="async"
+             alt="El 34 rodando en un tramo arbolado del circuito con luz suave.">
+        <figcaption><span class="tira__coche">34</span> Entre los árboles</figcaption>
+      </figure>
+    </div>
+    <p class="tira__pista">Dos coches en carrera: el 21 y el 34. Desliza para verlas todas.</p>
   </div>
 </section>
 
@@ -582,19 +638,20 @@
       <div class="endurance__visual reveal">
         <div class="car__stripe" aria-hidden="true"></div>
         <span class="car__badge">Resistencia · Sprint</span>
-        <!-- Render de la decoración, en sustitución del coche que iba dibujado
-             a mano en SVG. width/height son los del archivo: reservan el hueco
-             antes de que la imagen llegue y evitan el salto de maquetación.
-             Va en lazy porque queda muy por debajo del pliegue. -->
-        <img class="car__foto" src="assets/img/cochelmp2.webp"
-             alt="Dallara P217 de LMP2 con la decoración de Xallas MotorSport, dorsal 26, en verde y blanco. Render de concepto."
-             width="771" height="278" loading="lazy" decoding="async">
+        <!-- Foto real de Le Mans 2026, en lugar del render de concepto que
+             había antes: aquel llevaba el dorsal 26, que no ha corrido nunca.
+             width/height son los del archivo: reservan el hueco antes de que la
+             imagen llegue y evitan el salto de maquetación. Va en lazy porque
+             queda muy por debajo del pliegue. -->
+        <img class="car__foto" src="assets/img/coche-21-lateral.jpg"
+             alt="El LMP2 número 21 de Xallas MotorSport de perfil, en verde y blanco, rodando en Le Mans con luz dorada."
+             width="1400" height="510" loading="lazy" decoding="async">
       </div>
 
       <div class="endurance__body reveal" style="--d:100ms">
         <h3>El coche del equipo</h3>
         <p class="endurance__desc">
-          Una sola unidad para los dos formatos. El reglaje cambia con la
+          El mismo coche para los dos formatos. El reglaje cambia con la
           carrera: no se prepara igual un coche para atacar desde la primera
           vuelta que para llegar entero a la última.
         </p>
