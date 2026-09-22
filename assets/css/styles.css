@@ -1188,36 +1188,117 @@ a:hover { color: var(--green-100); }
   to   { transform: translateX(-50%); }
 }
 
-/* ── 12. RESULTADO ──────────────────────────────────────────────────────── */
-.podio { margin: 0; }
-.podio__img {
-  width: 100%;
-  /* El original mide 1024; sin este tope la rejilla lo estiraba a ~1130 y el
-     texto del cartel perdía nitidez por ampliarlo. */
-  max-width: 1024px;
-  border: 1px solid var(--border-strong);
-  border-radius: var(--r-md);
-  box-shadow: var(--shadow-lg);
+/* ── 12. RESULTADOS ─────────────────────────────────────────────────────── */
+/* Una ficha por carrera. Cada una abre con una raya a todo el ancho y un
+   trazo verde donde empieza, que es lo que separa una carrera de la otra. */
+.carrera + .carrera { margin-top: clamp(72px, 9vw, 112px); }
+
+.carrera__cabecera {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  align-items: end;
+  gap: 24px 56px;
+  padding-top: 28px;
+  margin-bottom: 30px;
+  border-top: 1px solid var(--border-strong);
 }
-.podio__pie {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 6px 12px;
-  margin-top: 16px;
-  font-size: .95rem;
-  color: var(--text-secondary);
+.carrera__cabecera::before {
+  content: "";
+  position: absolute;
+  top: -2px; left: 0;
+  width: 56px; height: 3px;
+  background: var(--green-500);
 }
-/* El dorsal del coche, con el mismo tratamiento que los de las tarjetas */
-.podio__coche {
-  flex: none;
+.carrera__cuando {
+  margin-bottom: 12px;
   font-family: var(--font-display);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.carrera__nombre { font-size: clamp(1.7rem, 3.4vw, 2.4rem); }
+
+/* Una fila por coche. La posición va en grande porque es lo primero que se
+   busca; la retirada, más pequeña y apagada, para que no compita con ella. */
+.marcas { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.marca {
+  display: grid;
+  grid-template-columns: 3.2rem minmax(0, 1fr);
+  align-items: center;
+  gap: 18px;
+  padding: 14px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+}
+.marca__pos {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--green-200);
+}
+.marca--ret .marca__pos {
+  font-size: 1.1rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.marca__texto { font-size: .95rem; line-height: 1.45; color: var(--text-secondary); }
+/* La inscripción, con el mismo tratamiento que los dorsales del resto de la web */
+.marca__equipo {
+  display: block;
+  margin-bottom: 2px;
+  font-family: var(--font-display);
+  font-size: .76rem;
   font-weight: 800;
-  font-size: .78rem;
   letter-spacing: .16em;
   text-transform: uppercase;
   color: var(--green-200);
 }
+
+.podio,
+.mosaico__cartel {
+  width: 100%;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-lg);
+}
+/* El original mide 1024; sin este tope la rejilla lo estiraba a ~1130 y el
+   texto del cartel perdía nitidez por ampliarlo. */
+.podio { max-width: 1024px; }
+
+/* Mosaico: cartel cuadrado a la izquierda y dos fotos apiladas a la derecha.
+   Manda el cartel: con contain: size las fotos no aportan su alto natural,
+   se reparten el que deja él y object-fit las recorta. Sin eso, la rejilla
+   crecía hasta el alto de las fotos y el cartel no llegaba abajo. */
+.mosaico {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 14px;
+}
+.mosaico__cartel { grid-row: span 2; }
+.mosaico__foto {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  margin: 0;
+}
+.mosaico__foto img {
+  flex: 1 1 0;
+  min-height: 0;
+  width: 100%;
+  contain: size;
+  object-fit: cover;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-md);
+  transition: border-color .35s var(--ease);
+}
+.mosaico__foto:hover img { border-color: var(--green-600); }
 
 /* Tira de fotos. Es un carrusel en comportamiento pero no en estructura: el
    anclaje lo hace el navegador con scroll-snap, así que no hay JavaScript, no
@@ -1260,7 +1341,8 @@ a:hover { color: var(--green-100); }
   transition: border-color .35s var(--ease);
 }
 .tira__foto:hover img { border-color: var(--green-600); }
-.tira__foto figcaption {
+.tira__foto figcaption,
+.mosaico__foto figcaption {
   display: flex;
   align-items: baseline;
   gap: 10px;
@@ -2041,6 +2123,12 @@ a:hover { color: var(--green-100); }
      no hace falta el de 122 que llevaba antes. */
   .hero { min-height: auto; }
   .section__head--row { flex-direction: column; align-items: flex-start; gap: 20px; }
+  /* Resultados: nombre de la carrera encima de los resultados, y el cartel
+     encima de las fotos. El cartel no pasa de su tamaño real, 640. */
+  .carrera__cabecera { grid-template-columns: 1fr; align-items: start; }
+  .mosaico { grid-template-rows: none; }
+  .mosaico__cartel { grid-column: 1 / -1; grid-row: auto; max-width: 640px; }
+  .mosaico__foto img { flex: none; contain: none; aspect-ratio: 2 / 1; }
   .endurance { grid-template-columns: 1fr; }
   .why { grid-template-columns: 1fr; gap: 30px; padding: 36px 30px; }
   .why__x { right: -28%; opacity: .05; }
@@ -2088,6 +2176,7 @@ a:hover { color: var(--green-100); }
   body { font-size: 16px; }
   .stats__grid { grid-template-columns: 1fr; }
   .spec { grid-template-columns: 1fr; }
+  .mosaico { grid-template-columns: 1fr; }
   .band__inner { padding: 40px 0; }
   .band__mark { height: 140px; }
 

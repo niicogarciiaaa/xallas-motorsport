@@ -189,7 +189,7 @@
     </a>
 
     <nav class="nav__links" id="navLinks" aria-label="Navegación principal">
-      <a href="#resultado">Resultado</a>
+      <a href="#resultado">Resultados</a>
       <a href="#equipo">Equipo</a>
       <a href="#pilotos">Pilotos</a>
       <a href="#directos">Directos</a>
@@ -268,92 +268,160 @@
   <div class="checker-band" aria-hidden="true"></div>
 </section>
 
-<!-- ═══════════════════════════════ RESULTADO ═════════════════════════ -->
-<!-- El cartel ya lleva dentro el P3, la fecha y los seis pilotos, pero en el
-     móvil ese texto queda a unos pocos píxeles y no hay quien lo lea. De ahí
-     que el titular vaya en la cabecera y los pilotos en el pie: la imagen
-     ilustra, no es el único sitio donde está el dato. -->
+<!-- ═══════════════════════════════ RESULTADOS ════════════════════════ -->
+<!-- Una ficha por carrera, la más reciente arriba. Para añadir la siguiente,
+     se copia una .carrera entera y se pone la primera.
+     Los carteles llevan dentro el resultado y los pilotos, pero en el móvil
+     ese texto queda a unos pocos píxeles y no hay quien lo lea. De ahí que
+     cada ficha lo repita en texto en su cabecera: la imagen ilustra, no es el
+     único sitio donde está el dato.
+     El id sigue en singular (#resultado) para no romper enlaces ya
+     compartidos. -->
 <section class="section section--alt" id="resultado">
   <div class="wrap">
     <div class="section__head">
       <p class="eyebrow reveal">
         <span class="eyebrow__bars" aria-hidden="true"><i></i><i></i><i></i></span>
-        Primer resultado
+        Resultados
       </p>
-      <h2 class="section__title reveal" style="--d:60ms">Podio en <span class="grad">Le Mans</span></h2>
+      <h2 class="section__title reveal" style="--d:60ms">Carrera a <span class="grad">carrera</span></h2>
       <p class="section__lead reveal" style="--d:120ms">
-        24 Horas de Le Mans en iRacing, 5 y 6 de septiembre de 2026. La primera
-        carrera oficial del equipo, y el 34 la termina tercero.
+        Un podio en el debut en Le Mans y un sexto puesto en los 1000 km de
+        Suzuka. La más reciente, arriba.
       </p>
     </div>
 
-    <figure class="podio reveal" style="--d:180ms">
-      <img class="podio__img"
+    <!-- ── 1000 km de Suzuka ──
+         En el cartel los dos coches llevan el 25, así que aquí se distinguen
+         por el nombre de la inscripción y no por el dorsal. -->
+    <article class="carrera">
+      <div class="carrera__cabecera reveal">
+        <div>
+          <p class="carrera__cuando">13 y 14 de septiembre de 2026 · GT3</p>
+          <h3 class="carrera__nombre">1000 km de Suzuka</h3>
+        </div>
+        <ul class="marcas">
+          <li class="marca">
+            <b class="marca__pos">P6</b>
+            <span class="marca__texto">
+              <span class="marca__equipo">Xallas MotorSport</span>
+              Francisco Javier Otero y Jose Calvin
+            </span>
+          </li>
+          <li class="marca marca--ret">
+            <!-- "Ret." a secas, un lector de pantalla lo deletrea -->
+            <b class="marca__pos"><span aria-hidden="true">Ret.</span><span class="sr-only">Retirada</span></b>
+            <span class="marca__texto">
+              <span class="marca__equipo">Xallas MotorSport Green</span>
+              Manuel Muñiz, Borex Cholakov y Jorge Ibarra
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Cartel a la izquierda y las dos fotos apiladas a la derecha: dos
+           fotos 2:1 una encima de otra ocupan casi lo mismo que un cuadrado,
+           así que el bloque cierra a escuadra. En el móvil se apila todo. -->
+      <div class="mosaico reveal" style="--d:120ms">
+        <img class="mosaico__cartel"
+             src="assets/img/resultados-suzuka-2026.jpg"
+             width="640" height="640" loading="lazy" decoding="async"
+             alt="P6 y retirada, resultados de los 1000 km de Suzuka en iRacing, 13 y 14 de septiembre. El Ferrari número 25 de Xallas MotorSport en pista, con la noria y el arco de meta de Suzuka al fondo.">
+
+        <figure class="mosaico__foto">
+          <img src="assets/img/suzuka-25-mustang.jpg" width="1024" height="471" loading="lazy" decoding="async"
+               alt="El Ferrari número 25 de Xallas MotorSport en Suzuka, junto al piano y con un Mustang detrás, bajo luz de tarde.">
+          <figcaption><span class="tira__coche">25</span> Con un Mustang a la zaga</figcaption>
+        </figure>
+
+        <figure class="mosaico__foto">
+          <img src="assets/img/suzuka-25-meta.jpg" width="1024" height="512" loading="lazy" decoding="async"
+               alt="El Ferrari número 25 de Xallas MotorSport sobre la línea de meta de Suzuka, con otro GT3 detrás.">
+          <figcaption><span class="tira__coche">25</span> Sobre la línea de meta</figcaption>
+        </figure>
+      </div>
+    </article>
+
+    <!-- ── 24 Horas de Le Mans ── -->
+    <article class="carrera">
+      <div class="carrera__cabecera reveal">
+        <div>
+          <p class="carrera__cuando">5 y 6 de septiembre de 2026 · LMP2 · Debut</p>
+          <h3 class="carrera__nombre">24 Horas de Le Mans</h3>
+        </div>
+        <ul class="marcas">
+          <li class="marca">
+            <b class="marca__pos">P3</b>
+            <span class="marca__texto">
+              <span class="marca__equipo">Coche 34</span>
+              Francisco Javier Otero, Jorge Ibarra, María Montenegro, Jose Calvin,
+              Nico García y Borex Cholakov
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <img class="podio reveal" style="--d:120ms"
            src="assets/img/podio-lemans-2026.jpg"
            width="1024" height="577" loading="lazy" decoding="async"
            alt="P3, resultado final de las 24 Horas de Le Mans 2026 en iRacing, 5 y 6 de septiembre. El LMP2 número 34 de Xallas MotorSport, con los faros encendidos, en el pit lane del circuito.">
-      <figcaption class="podio__pie">
-        <span class="podio__coche">Coche 34</span>
-        Francisco Javier Otero, Jorge Ibarra, María Montenegro, Jose Calvin,
-        Nico García y Borex Cholakov.
-      </figcaption>
-    </figure>
 
-    <!-- Tira de fotos con anclaje de scroll, sin una línea de JavaScript. Un
-         carrusel al uso escondería siete de las ocho detrás de una flecha que
-         casi nadie pulsa; aquí la siguiente asoma y se ve que hay más. Se
-         maneja con el dedo, el trackpad, la rueda y las flechas del teclado. -->
-    <div class="tira" id="tiraLemans" role="group" tabindex="0"
-         aria-label="Galería de las 24 Horas de Le Mans 2026, ocho fotos de los dos coches">
-      <figure class="tira__foto">
-        <img src="assets/img/lemans-34-atardecer.jpg" width="1400" height="790" loading="lazy" decoding="async"
-             alt="El LMP2 número 34 de Xallas MotorSport rodando al atardecer, con el sol reflejado en el asfalto.">
-        <figcaption><span class="tira__coche">34</span> Al atardecer</figcaption>
-      </figure>
+      <!-- Tira de fotos con anclaje de scroll, sin una línea de JavaScript. Un
+           carrusel al uso escondería siete de las ocho detrás de una flecha que
+           casi nadie pulsa; aquí la siguiente asoma y se ve que hay más. Se
+           maneja con el dedo, el trackpad, la rueda y las flechas del teclado. -->
+      <div class="tira" id="tiraLemans" role="group" tabindex="0"
+           aria-label="Galería de las 24 Horas de Le Mans 2026, ocho fotos de los dos coches">
+        <figure class="tira__foto">
+          <img src="assets/img/lemans-34-atardecer.jpg" width="1400" height="790" loading="lazy" decoding="async"
+               alt="El LMP2 número 34 de Xallas MotorSport rodando al atardecer, con el sol reflejado en el asfalto.">
+          <figcaption><span class="tira__coche">34</span> Al atardecer</figcaption>
+        </figure>
 
-      <figure class="tira__foto">
-        <img src="assets/img/lemans-21-frontal.jpg" width="1400" height="714" loading="lazy" decoding="async"
-             alt="El LMP2 número 21 de frente, recortado contra un cielo naranja de atardecer.">
-        <figcaption><span class="tira__coche">21</span> A contraluz</figcaption>
-      </figure>
+        <figure class="tira__foto">
+          <img src="assets/img/lemans-21-frontal.jpg" width="1400" height="714" loading="lazy" decoding="async"
+               alt="El LMP2 número 21 de frente, recortado contra un cielo naranja de atardecer.">
+          <figcaption><span class="tira__coche">21</span> A contraluz</figcaption>
+        </figure>
 
-      <figure class="tira__foto">
-        <img src="assets/img/lemans-34-pianos.jpg" width="1400" height="712" loading="lazy" decoding="async"
-             alt="El 34, sucio de carrera, pisando los pianos junto a otro LMP2 al amanecer.">
-        <figcaption><span class="tira__coche">34</span> Sobre los pianos</figcaption>
-      </figure>
+        <figure class="tira__foto">
+          <img src="assets/img/lemans-34-pianos.jpg" width="1400" height="712" loading="lazy" decoding="async"
+               alt="El 34, sucio de carrera, pisando los pianos junto a otro LMP2 al amanecer.">
+          <figcaption><span class="tira__coche">34</span> Sobre los pianos</figcaption>
+        </figure>
 
-      <figure class="tira__foto">
-        <img src="assets/img/lemans-21-contraluz.jpg" width="1400" height="634" loading="lazy" decoding="async"
-             alt="El 21 en pista bajo una luz dorada rasante.">
-        <figcaption><span class="tira__coche">21</span> Luz dorada</figcaption>
-      </figure>
+        <figure class="tira__foto">
+          <img src="assets/img/lemans-21-contraluz.jpg" width="1400" height="634" loading="lazy" decoding="async"
+               alt="El 21 en pista bajo una luz dorada rasante.">
+          <figcaption><span class="tira__coche">21</span> Luz dorada</figcaption>
+        </figure>
 
-      <figure class="tira__foto">
-        <img src="assets/img/lemans-34-puesta.jpg" width="1400" height="765" loading="lazy" decoding="async"
-             alt="Vista trasera del 34 con el sol poniéndose sobre el circuito.">
-        <figcaption><span class="tira__coche">34</span> Puesta de sol</figcaption>
-      </figure>
+        <figure class="tira__foto">
+          <img src="assets/img/lemans-34-puesta.jpg" width="1400" height="765" loading="lazy" decoding="async"
+               alt="Vista trasera del 34 con el sol poniéndose sobre el circuito.">
+          <figcaption><span class="tira__coche">34</span> Puesta de sol</figcaption>
+        </figure>
 
-      <figure class="tira__foto">
-        <img src="assets/img/lemans-21-noche.jpg" width="1400" height="611" loading="lazy" decoding="async"
-             alt="El 21 con los faros encendidos durante el tramo nocturno de la carrera.">
-        <figcaption><span class="tira__coche">21</span> De noche</figcaption>
-      </figure>
+        <figure class="tira__foto">
+          <img src="assets/img/lemans-21-noche.jpg" width="1400" height="611" loading="lazy" decoding="async"
+               alt="El 21 con los faros encendidos durante el tramo nocturno de la carrera.">
+          <figcaption><span class="tira__coche">21</span> De noche</figcaption>
+        </figure>
 
-      <figure class="tira__foto">
-        <img src="assets/img/lemans-34-recta.jpg" width="1400" height="694" loading="lazy" decoding="async"
-             alt="El 34 de frente en una recta del circuito, con las luces del trazado al fondo.">
-        <figcaption><span class="tira__coche">34</span> En la recta</figcaption>
-      </figure>
+        <figure class="tira__foto">
+          <img src="assets/img/lemans-34-recta.jpg" width="1400" height="694" loading="lazy" decoding="async"
+               alt="El 34 de frente en una recta del circuito, con las luces del trazado al fondo.">
+          <figcaption><span class="tira__coche">34</span> En la recta</figcaption>
+        </figure>
 
-      <figure class="tira__foto">
-        <img src="assets/img/lemans-34-arboles.jpg" width="1400" height="708" loading="lazy" decoding="async"
-             alt="El 34 rodando en un tramo arbolado del circuito con luz suave.">
-        <figcaption><span class="tira__coche">34</span> Entre los árboles</figcaption>
-      </figure>
-    </div>
-    <p class="tira__pista">Dos coches en carrera: el 21 y el 34. Desliza para verlas todas.</p>
+        <figure class="tira__foto">
+          <img src="assets/img/lemans-34-arboles.jpg" width="1400" height="708" loading="lazy" decoding="async"
+               alt="El 34 rodando en un tramo arbolado del circuito con luz suave.">
+          <figcaption><span class="tira__coche">34</span> Entre los árboles</figcaption>
+        </figure>
+      </div>
+      <p class="tira__pista">Dos coches en carrera: el 21 y el 34. Desliza para verlas todas.</p>
+    </article>
   </div>
 </section>
 
