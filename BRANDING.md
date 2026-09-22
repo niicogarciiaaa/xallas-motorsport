@@ -146,14 +146,16 @@ de sus enlaces.
 
 ## 7. Archivos del logo
 
-**El archivo original no se ha modificado** (sigue en la raíz, intacto). En
-`assets/img/` hay derivados generados a partir de él:
+**El emblema, el lockup y el logotipo salen del último archivo del logo**
+(`Logo_Xallas_MotorSport-_letras__1.webp`, 1227×795, en la raíz), que ya viene
+sin fondo. El original de WhatsApp sigue en la raíz, intacto: de él se muestreó
+la paleta, y de él salen todavía los iconos y la tarjeta social.
 
 | Archivo | Uso |
 |---|---|
-| `logo-mark.png` | Emblema (aspa + casco) con fondo transparente. Navbar, hero, pie |
-| `logo-full.png` | Lockup completo transparente |
-| `logo-wordmark.png` | Sólo el logotipo |
+| `logo-mark.png` | Emblema (aspa + casco) sin el texto de abajo, 566×398. Se sirve el PNG, sin versión WebP. Navbar, hero, banda y pie |
+| `logo-full.png` | Lockup completo transparente, 635×529 |
+| `logo-wordmark.png` | Sólo el logotipo, 635×87 |
 | `favicon.ico`, `favicon-512.png`, `apple-touch-icon.png` | Iconos |
 | `og-card.png` | Tarjeta 1200×630 al compartir el enlace |
 | `logo-original.jpg` | Copia del original |
@@ -167,9 +169,17 @@ cuerpo del logotipo se calcula solo para que nunca toque el borde derecho.
 > eso la miniatura no aparece. El resto del sitio sigue con rutas relativas.
 > Ver §10.
 
-El fondo se recortó con relleno por inundación desde los bordes, de modo que
-los blancos **interiores** (brillos del casco, cuadros de la bandera) siguen
-siendo opacos, y los bordes conservan el antialiasing.
+En los iconos y la tarjeta social, que salen del original de WhatsApp, el fondo
+se recortó con relleno por inundación desde los bordes, de modo que los blancos
+**interiores** (brillos del casco, cuadros de la bandera) siguen siendo opacos,
+y los bordes conservan el antialiasing.
+
+El archivo del logo actual ya viene sin fondo, así que ahí no hay nada que
+recortar. Lo único que se toca es **el blanco de la bandera**, que es fondo y
+no dibujo: los siete cuadros verdes se quedan con su propio borde y desaparece
+el blanco que había entre ellos, tanto el translúcido como el opaco. El resto
+—casco, visera, líneas de velocidad y aspa— queda exactamente como viene, con
+sus bordes tal cual.
 
 > Nota: en `logo-full.png` la palabra «Sport» y «Since 2026» son negras, así que
 > ese archivo sólo funciona sobre fondo claro. Por eso el navbar usa el emblema
