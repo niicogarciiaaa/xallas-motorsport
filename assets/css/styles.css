@@ -1282,6 +1282,11 @@ a:hover { color: var(--green-100); }
   gap: 14px;
 }
 .mosaico__cartel { grid-row: span 2; }
+/* Con un cartel vertical (1100 × 1430) caben tres fotos a la derecha: cada
+   fila sale a unos 2,7:1, cerca del 2,4:1 de las capturas, así que el recorte
+   apenas se nota. Con dos, las fotos se quedaban en 1,7:1 y perdían el coche. */
+.mosaico--tres { grid-template-rows: repeat(3, 1fr); }
+.mosaico__cartel--alto { grid-row: span 3; }
 .mosaico__foto {
   display: flex;
   flex-direction: column;
@@ -2129,6 +2134,8 @@ a:hover { color: var(--green-100); }
   .mosaico { grid-template-rows: none; }
   .mosaico__cartel { grid-column: 1 / -1; grid-row: auto; max-width: 640px; }
   .mosaico__foto img { flex: none; contain: none; aspect-ratio: 2 / 1; }
+  /* Tres fotos en dos columnas dejaban la tercera sola en su fila */
+  .mosaico--tres { grid-template-columns: repeat(3, 1fr); }
   .endurance { grid-template-columns: 1fr; }
   .why { grid-template-columns: 1fr; gap: 30px; padding: 36px 30px; }
   .why__x { right: -28%; opacity: .05; }
