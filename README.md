@@ -35,6 +35,17 @@ branch → Branch: `main` / `(root)` → Save**.
 Todas las rutas del proyecto son relativas, así que funciona igual en la raíz
 de un dominio que en el subdirectorio `/xallas-motorsport/` de Pages.
 
+## Visitas
+
+Las cuenta [GoatCounter](https://www.goatcounter.com), gratis para webs sin
+ánimo de lucro. El panel es privado:
+**<https://xallasmotorsport.goatcounter.com>**. Ahí salen las visitas por día,
+el país, desde qué enlace llegan (Instagram, X…) y el dispositivo. En la web no
+se muestra ningún contador.
+
+No usa cookies ni guarda datos personales, así que no hace falta banner de
+consentimiento. Las visitas desde `localhost` o abriendo el archivo no cuentan.
+
 ## Estructura
 
 ```
