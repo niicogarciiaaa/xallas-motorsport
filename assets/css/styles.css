@@ -1252,6 +1252,28 @@ a:hover { color: var(--green-100); }
   color: var(--text-muted);
 }
 .carrera__nombre { font-size: clamp(1.7rem, 3.4vw, 2.4rem); }
+/* Enlace a la crónica de la carrera en prensa (web externa) */
+.carrera__noticia {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  font-size: .92rem;
+  font-weight: 600;
+  color: var(--green-300);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(116, 196, 150, .35);
+  padding-bottom: 2px;
+  transition: color .25s var(--ease), border-color .25s var(--ease);
+}
+.carrera__noticia:hover { color: var(--green-100); border-bottom-color: var(--green-200); }
+.carrera__noticia svg {
+  width: 15px; height: 15px;
+  fill: none; stroke: currentColor; stroke-width: 2;
+  stroke-linecap: round; stroke-linejoin: round;
+  transition: transform .25s var(--ease);
+}
+.carrera__noticia:hover svg { transform: translate(2px, -2px); }
 
 /* Una fila por coche. La posición va en grande porque es lo primero que se
    busca; la retirada, más pequeña y apagada, para que no compita con ella. */
