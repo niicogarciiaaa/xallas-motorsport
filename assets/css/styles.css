@@ -828,11 +828,16 @@ a:hover { color: var(--green-100); }
    cambio, no se estiran (a todo el ancho salían enormes): tienen un tope y
    el sitio que sobra se reparte entre columnas, con la primera a ras del
    título y la última a ras del borde derecho. */
+/* La separación entre filas es la misma que entre columnas. La de columnas
+   sale de lo que sobra del ancho, así que se calcula con el ancho del
+   contenedor (cqw) y se aplica igual en las dos direcciones. */
+#pilotos .wrap { container-type: inline-size; }
 .drivers {
+  --card: 310px;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 310px));
+  grid-template-columns: repeat(3, minmax(0, var(--card)));
   justify-content: space-between;
-  gap: 28px 24px;
+  gap: max(24px, (100cqw - 3 * var(--card)) / 2);
 }
 @media (max-width: 900px) {
   .drivers { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
