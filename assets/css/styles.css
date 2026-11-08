@@ -2054,20 +2054,33 @@ a:hover { color: var(--green-100); }
 }
 
 /* Bloque de seguimiento */
-/* Ocupa todo el ancho bajo el texto, en filas de 4 (8 enlaces = 2 filas).
-   En medianas pasa a 2 por fila y en móvil a 1. */
+/* Ocupa todo el ancho bajo el texto. Los nombres de canal no se parten
+   nunca (nowrap en .follow__text b), así que las columnas dependen de que
+   quepa el más largo, «MARIA_MONTENEGRO_»: 1 por fila en móvil, 2 en
+   medianas y 4 (dos filas de 4) en ancho, donde se quita la flecha y se
+   aprieta el interior para ganar el sitio que falta. */
 .follow {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr);
   gap: 12px;
   width: 100%;
 }
-/* En filas de 4 cada tarjeta es más estrecha: se aprieta un poco el interior
-   para que quepan nombres de canal largos sin partirse. */
-.follow .follow__item { gap: 12px; padding: 12px 14px; }
-.follow .follow__text b { letter-spacing: .05em; }
-@media (max-width: 1000px) { .follow { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 560px)  { .follow { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 400px) {
+  .follow .follow__item { gap: 12px; padding: 12px 14px; }
+  .follow .follow__icon { width: 36px; height: 36px; }
+  .follow .follow__go { display: none; }
+  .follow .follow__text b { letter-spacing: .04em; }
+}
+@media (min-width: 700px) {
+  .follow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 1180px) {
+  .follow { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .follow .follow__item { gap: 12px; padding: 12px 14px; }
+  .follow .follow__icon { width: 36px; height: 36px; }
+  .follow .follow__go { display: none; }
+  .follow .follow__text b { letter-spacing: .04em; }
+}
 .follow__item {
   display: flex;
   align-items: center;
@@ -2117,6 +2130,7 @@ a:hover { color: var(--green-100); }
   letter-spacing: .09em;
   text-transform: uppercase;
   line-height: 1.25;
+  white-space: nowrap;
 }
 .follow__text small { font-size: .8rem; color: var(--text-muted); }
 
