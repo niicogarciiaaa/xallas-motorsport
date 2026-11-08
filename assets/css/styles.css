@@ -588,6 +588,12 @@ a:hover { color: var(--green-100); }
 }
 
 .hero__actions { display: flex; flex-wrap: wrap; gap: 14px; }
+.hero__nota {
+  margin-top: 16px;
+  max-width: 46ch;
+  font-size: .95rem;
+  color: var(--text-muted);
+}
 
 .hero__inner { perspective: 1300px; }
 .hero__emblem {
@@ -1964,34 +1970,6 @@ a:hover { color: var(--green-100); }
   max-width: 16ch;
 }
 .cta__lead { color: var(--text-secondary); max-width: 46ch; font-size: 1.06rem; }
-
-/* Enlace al calendario, al pie de la hoja de ruta (banda clara) */
-.calendario {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px 32px;
-  flex-wrap: wrap;
-  padding: 26px 30px;
-  background: rgba(253, 254, 253, .88);
-  border: 1px solid var(--green-200);
-  border-left: 4px solid var(--green-600);
-  border-radius: var(--r-md);
-}
-.calendario__texto {
-  flex: 1 1 320px;
-  font-size: 1.05rem;
-  color: var(--ink-700);
-}
-.calendario__texto b {
-  display: block;
-  margin-bottom: 4px;
-  font-family: var(--font-display);
-  font-size: 1.2rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  color: var(--green-900);
-}
 
 /* Patrocinadores */
 .sponsors {
