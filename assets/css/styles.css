@@ -821,26 +821,18 @@ a:hover { color: var(--green-100); }
 .pillar p { color: var(--text-secondary); font-size: .99rem; }
 
 /* ── 10. PILOTOS ────────────────────────────────────────────────────────── */
-/* Tres columnas fijas: los 9 pilotos quedan en tres filas exactas de 3, sin
-   hueco suelto al final. Por debajo pasa a 2 y luego a 1 (ver media queries). */
-/* La sección ocupa el ancho normal de la web, como las demás: el título
-   arranca donde todos y el mecánico va de lado a lado. Las tarjetas, en
-   cambio, no se estiran (a todo el ancho salían enormes): tienen un tope y
-   el sitio que sobra se reparte entre columnas, con la primera a ras del
-   título y la última a ras del borde derecho. */
-/* La separación entre filas es la misma que entre columnas. La de columnas
-   sale de lo que sobra del ancho, así que se calcula con el ancho del
-   contenedor (cqw) y se aplica igual en las dos direcciones. */
-#pilotos .wrap { container-type: inline-size; }
+/* Misma regla que el resto de rejillas de la web: ancho completo de .wrap y
+   24px de separación en las dos direcciones. Tres columnas, así que los 9
+   pilotos quedan en tres filas exactas; por debajo pasa a 2 y luego a 1.
+   Para que no se vean enormes se baja la altura de la foto (ver
+   .driver__photo), no el ancho. */
 .drivers {
-  --card: 310px;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, var(--card)));
-  justify-content: space-between;
-  gap: max(24px, (100cqw - 3 * var(--card)) / 2);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
 }
 @media (max-width: 900px) {
-  .drivers { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+  .drivers { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 580px) {
   .drivers { grid-template-columns: minmax(0, 1fr); }
@@ -891,7 +883,7 @@ a:hover { color: var(--green-100); }
 /* Marcador de foto: sustituir por <img> del piloto */
 .driver__photo {
   position: relative;
-  aspect-ratio: 4 / 3.4;
+  aspect-ratio: 16 / 10;
   overflow: hidden;
   background:
     radial-gradient(80% 70% at 50% 8%, var(--green-800) 0%, transparent 62%),
@@ -952,8 +944,8 @@ a:hover { color: var(--green-100); }
 
 .driver__silhouette {
   position: absolute;
-  left: 50%; bottom: -9%;
-  width: 62%;
+  left: 50%; bottom: -10%;
+  width: 46%;
   transform: translateX(-50%) translate3d(var(--phx, 0px), var(--phy, 0px), 0)
              translateY(var(--hy, 0px)) scale(var(--hs, 1));
   filter: drop-shadow(0 10px 20px rgba(10, 22, 15, .8));
