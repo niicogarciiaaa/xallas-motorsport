@@ -2054,11 +2054,20 @@ a:hover { color: var(--green-100); }
 }
 
 /* Bloque de seguimiento */
+/* Ocupa todo el ancho bajo el texto, en filas de 4 (8 enlaces = 2 filas).
+   En medianas pasa a 2 por fila y en móvil a 1. */
 .follow {
   display: grid;
-  gap: 10px;
-  width: min(100%, 372px);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  width: 100%;
 }
+/* En filas de 4 cada tarjeta es más estrecha: se aprieta un poco el interior
+   para que quepan nombres de canal largos sin partirse. */
+.follow .follow__item { gap: 12px; padding: 12px 14px; }
+.follow .follow__text b { letter-spacing: .05em; }
+@media (max-width: 1000px) { .follow { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px)  { .follow { grid-template-columns: minmax(0, 1fr); } }
 .follow__item {
   display: flex;
   align-items: center;
@@ -2075,7 +2084,7 @@ a:hover { color: var(--green-100); }
   color: var(--paper);
   background: var(--green-800);
   border-color: var(--green-600);
-  transform: translateX(5px);
+  transform: translateY(-3px);
 }
 
 .follow__icon {
@@ -2121,7 +2130,7 @@ a:hover { color: var(--green-100); }
 }
 .follow__item:hover .follow__go { transform: translateX(4px); opacity: 1; }
 
-.follow__mail { margin-top: 6px; justify-content: center; }
+.follow__mail { grid-column: 1 / -1; justify-self: center; margin-top: 10px; justify-content: center; }
 
 /* ── 17. FOOTER ─────────────────────────────────────────────────────────── */
 .footer { background: var(--background-secondary); }
