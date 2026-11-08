@@ -823,27 +823,21 @@ a:hover { color: var(--green-100); }
 /* ── 10. PILOTOS ────────────────────────────────────────────────────────── */
 /* Tres columnas fijas: los 9 pilotos quedan en tres filas exactas de 3, sin
    hueco suelto al final. Por debajo pasa a 2 y luego a 1 (ver media queries). */
-/* Con un ancho máximo las tarjetas no pasan de ~290px: a todo el ancho
-   salían enormes. --ancho-pilotos lo comparten el título, la rejilla y el
-   mecánico, para que los tres empiecen y acaben a ras. */
-#pilotos { --ancho-pilotos: 910px; }
-#pilotos .section__head,
-#pilotos .drivers,
-#pilotos .crew {
-  max-width: var(--ancho-pilotos);
-  margin-inline: auto;
-}
+/* La sección ocupa el ancho normal de la web, como las demás: el título
+   arranca donde todos y el mecánico va de lado a lado. Las tarjetas, en
+   cambio, no se estiran (a todo el ancho salían enormes): tienen un tope y
+   el sitio que sobra se reparte entre columnas, con la primera a ras del
+   título y la última a ras del borde derecho. */
 .drivers {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(3, minmax(0, 310px));
+  justify-content: space-between;
+  gap: 28px 24px;
 }
 @media (max-width: 900px) {
-  #pilotos { --ancho-pilotos: 620px; }
-  .drivers { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .drivers { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 }
 @media (max-width: 580px) {
-  #pilotos { --ancho-pilotos: 320px; }
   .drivers { grid-template-columns: minmax(0, 1fr); }
 }
 .driver {
