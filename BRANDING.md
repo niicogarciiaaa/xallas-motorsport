@@ -248,15 +248,16 @@ Tres piezas son puramente visuales y no llevan datos:
 
 Contenido **de ejemplo**, marcado con comentarios en `index.html`:
 
-- **Pilotos**: los 8 nombres son reales; **los dorsales siguen siendo
+- **Pilotos**: los 9 nombres son reales; **los dorsales siguen siendo
   provisionales**. Si se abre una plaza, basta con añadir `.driver--tbd` a la
   tarjeta para que se vea claramente como pendiente.
 - **El box** (`.crew`): Jasaca, mecánico. Va fuera de la rejilla y con otra
   forma —horizontal y sin dorsal— porque no es piloto y no debe leerse como
   uno. Ahí se añade el resto del equipo de boxes cuando lo haya.
 - Etiquetas de piloto: La rejilla está calculada
-  (`minmax(262px, 1fr)`) para que los 8 caigan en dos filas exactas a ancho
-  completo; si cambia el número de pilotos, revisa ese valor. Para poner foto,
+  (`repeat(3, …)`, 2 columnas por debajo de 900px y 1 por debajo de 580px)
+  para que los 9 caigan en tres filas exactas de 3 a ancho completo; si cambia
+  el número de pilotos, revisa ese valor. Para poner foto,
   sustituye el bloque `.driver__photo` por una `<img>` con la misma proporción.
 - **Cifras**: `data-count` en las dos primeras `.stat` (año y pilotos). La
   tercera es `.stat--text`: muestra «iRacing» en vez de un número, con cuerpo
@@ -428,7 +429,7 @@ adelantarlo mejora el LCP.
 
 ### Datos estructurados
 
-El JSON-LD de `SportsTeam` incluye ahora los ocho pilotos y el mecánico como
+El JSON-LD de `SportsTeam` incluye ahora los nueve pilotos y el mecánico como
 `member`, la ubicación en Galicia y `knowsAbout` con la disciplina. Ayuda a que
 los buscadores entiendan qué es el equipo y con quién se relaciona.
 

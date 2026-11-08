@@ -36,7 +36,8 @@
     { nombre: "María Montenegro",       dorsal: "21", twitch: "" },
     { nombre: "Nicolás García",         dorsal: "22", twitch: "" },
     { nombre: "Borex Cholakov",         dorsal: "25", twitch: "" },
-    { nombre: "Juanma Sierra",          dorsal: "28", twitch: "" }
+    { nombre: "Juanma Sierra",          dorsal: "28", twitch: "" },
+    { nombre: "Francisco José Martínez", dorsal: "33", twitch: "neumothork" }
   ];
 
   var API = "https://decapi.me/twitch/";

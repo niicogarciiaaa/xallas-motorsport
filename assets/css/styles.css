@@ -815,12 +815,18 @@ a:hover { color: var(--green-100); }
 .pillar p { color: var(--text-secondary); font-size: .99rem; }
 
 /* ── 10. PILOTOS ────────────────────────────────────────────────────────── */
-/* 262px hace que a ancho completo entren 4 columnas: los 8 pilotos
-   quedan en dos filas exactas, sin hueco suelto al final. */
+/* Tres columnas fijas: los 9 pilotos quedan en tres filas exactas de 3, sin
+   hueco suelto al final. Por debajo pasa a 2 y luego a 1 (ver media queries). */
 .drivers {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(262px, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
+}
+@media (max-width: 900px) {
+  .drivers { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 580px) {
+  .drivers { grid-template-columns: minmax(0, 1fr); }
 }
 .driver {
   position: relative;
@@ -1010,6 +1016,13 @@ a:hover { color: var(--green-100); }
   --h-visor-line: var(--green-400);
   --h-bars: var(--green-200);
 }
+.drivers .driver:nth-child(9) .driver__silhouette {
+  --h-shell: var(--ink-950);
+  --h-stroke: var(--green-300);
+  --h-visor: var(--green-900);
+  --h-visor-line: var(--sage);
+  --h-bars: var(--paper);
+}
 
 .driver__body {
   display: flex;
@@ -1026,6 +1039,16 @@ a:hover { color: var(--green-100); }
   margin-bottom: 8px;
 }
 .driver__name { font-size: 1.42rem; margin-bottom: 20px; }
+/* Apodo opcional bajo el nombre. Recoge el margen del nombre para que vaya
+   pegado a él; las etiquetas siguen alineadas abajo en toda la fila. */
+.driver__alias {
+  margin: -16px 0 20px;
+  font-weight: 600;
+  font-size: .98rem;
+  letter-spacing: .02em;
+  color: var(--green-300);
+}
+.driver--tbd .driver__alias { color: var(--text-muted); }
 
 /* El box. No son pilotos, así que va aparte de la rejilla y con otra forma:
    horizontal en vez de tarjeta vertical, y sin dorsal. */
