@@ -1426,7 +1426,7 @@ a:hover { color: var(--green-100); }
     align-items: start;
   }
   .directos__cuerpo.tiene-player .directos__player { margin: 0; max-width: none; }
-  .directos__cuerpo.tiene-player .directos { grid-template-columns: minmax(0, 1fr); }
+  .directos__cuerpo.tiene-player .directos { --cols: 1; }
 }
 
 /* Un único reproductor para toda la sección; las tarjetas de al lado lo cambian */
@@ -1465,13 +1465,25 @@ a:hover { color: var(--green-100); }
 }
 .directos__barra a:hover { border-bottom-color: var(--green-200); }
 
+/* Flex y no grid: con un número de canales que cambia, la rejilla dejaba
+   filas cojas (con cinco salían 4 + 1). Así, en ancho entran los cinco en una
+   fila y, si no caben, la fila de abajo se centra (3 + 2) en vez de quedarse
+   pegada a la izquierda. --cols marca cuántos caben por fila. */
 .directos {
-  display: grid;
-  /* auto-fit y no auto-fill: los canales son pocos y variables, y con auto-fill
-     las tarjetas se apelotonaban a la izquierda dejando columnas vacías. */
-  grid-template-columns: repeat(auto-fit, minmax(248px, 1fr));
-  gap: 16px;
+  --cols: 5;
+  --gap: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--gap);
 }
+.directos > * {
+  flex: 0 0 calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols));
+  min-width: 0;
+}
+@media (max-width: 1100px) { .directos { --cols: 3; } }
+@media (max-width: 760px)  { .directos { --cols: 2; } }
+@media (max-width: 520px)  { .directos { --cols: 1; } }
 .directos[data-estado="sin-canales"] { display: none; }
 
 .canal {
