@@ -50,14 +50,43 @@ consentimiento. Las visitas desde `localhost` o abriendo el archivo no cuentan.
 
 ```
 index.html                 Toda la página
+404.html                   Página de error de GitHub Pages
 site.webmanifest           Icono y color al guardar en el móvil
+robots.txt, sitemap.xml    Para buscadores
+CNAME                      Dominio propio de GitHub Pages
 BRANDING.md                De dónde sale cada color, y qué queda pendiente
 assets/
   css/styles.css           Sistema visual completo, con los tokens arriba
+  css/fonts.css            Archivo y Barlow, servidas desde aquí
+  fonts/                   Las tipografías (.woff2) y su licencia OFL
   js/main.js               Navbar, contadores, scrollspy y menú móvil
-  img/                     Logo recortado, iconos y tarjeta social
+  js/directos.js           Aviso de quién está en directo en Twitch
+  img/                     Logo, iconos, tarjeta social, patrocinadores
+                           y los carteles y fotos de cada carrera
 WhatsApp Image 2026-…jpeg  Logo original, sin modificar
 ```
+
+Las imágenes en bruto (capturas de iRacing, carteles a tamaño completo,
+logos recibidos) van en `originales/`, que **no se sube**: está en el
+`.gitignore`. Ahí se guardan por carrera; a la web solo pasan las versiones
+convertidas.
+
+## Añadir una carrera
+
+1. Guardar el cartel y las capturas en `originales/<carrera>/`.
+2. Convertirlos a JPG en `assets/img/`: el cartel con su tamaño
+   (`resultados-<carrera>-<año>.jpg`) y las fotos a 1400 px de ancho
+   (`<carrera>-<coche>-<algo>.jpg`). En macOS vale `sips`:
+
+   ```bash
+   sips -s format jpeg -s formatOptions 80 -Z 1400 originales/nurburgring/foto.webp --out assets/img/nurburgring-porsche-foto.jpg
+   ```
+
+3. En `index.html`, sección `#resultado`, copiar la `<article class="carrera">`
+   más reciente, pegarla la primera y cambiar fecha, nombre, posiciones,
+   pilotos, imágenes (con su `width`/`height` reales y un `alt` que diga el
+   resultado) y el enlace a la noticia.
+4. Actualizar la entradilla de la sección y el `lastmod` de `sitemap.xml`.
 
 ## Identidad visual
 
