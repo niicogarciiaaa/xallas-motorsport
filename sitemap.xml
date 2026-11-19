@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Una sola página: todas las secciones viven en index.html.
+     Las <image:image> ayudan a que los carteles y las fotos salgan en Google
+     Imágenes. Al añadir una carrera: su cartel y una o dos fotos aquí, y
+     poner lastmod a la fecha del cambio.
      Si cambia el dominio, cambiar la URL aquí y en robots.txt. -->
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://xallasmotorsport.com/</loc>
     <lastmod>2026-11-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image><image:loc>https://xallasmotorsport.com/assets/img/og-card.png</image:loc></image:image>
+    <image:image><image:loc>https://xallasmotorsport.com/assets/img/resultados-nurburgring-2026.jpg</image:loc></image:image>
+    <image:image><image:loc>https://xallasmotorsport.com/assets/img/nurburgring-bmw-lluvia.jpg</image:loc></image:image>
+    <image:image><image:loc>https://xallasmotorsport.com/assets/img/nurburgring-porsche-vuelo.jpg</image:loc></image:image>
+    <image:image><image:loc>https://xallasmotorsport.com/assets/img/resultados-petit-le-mans-2026.jpg</image:loc></image:image>
+    <image:image><image:loc>https://xallasmotorsport.com/assets/img/petitlemans-34-trompos.jpg</image:loc></image:image>
+    <image:image><image:loc>https://xallasmotorsport.com/assets/img/resultados-suzuka-2026.jpg</image:loc></image:image>
+    <image:image><image:loc>https://xallasmotorsport.com/assets/img/podio-lemans-2026.jpg</image:loc></image:image>
+    <image:image><image:loc>https://xallasmotorsport.com/assets/img/lemans-34-atardecer.jpg</image:loc></image:image>
   </url>
 </urlset>

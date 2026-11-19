@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Xallas MotorSport | Resistencia y sprint en iRacing</title>
-<meta name="description" content="Escudería gallega de simracing en iRacing: carreras de resistencia y sprint. Fundada en 2026, con nueve pilotos y un P3 en las 24 h de Le Mans en su carrera de debut.">
+<title>Xallas MotorSport | Escudería gallega de simracing en iRacing</title>
+<meta name="description" content="Escudería gallega de simracing en iRacing, de la comarca del Xallas. Resistencia y sprint: victoria en Petit Le Mans, podio en las 24 h de Le Mans y más.">
 <meta name="theme-color" content="#0B100D">
 
 <link rel="icon" href="assets/img/favicon.ico" sizes="any">
@@ -33,24 +33,40 @@
 
 <!-- Tarjeta al compartir el enlace (Discord, WhatsApp, X…).
      Las rutas de imagen van en ABSOLUTO porque los rastreadores no siempre
-     resuelven las relativas. Apuntan a GitHub Pages, que es donde vive la web.
-     SI SE COMPRA UN DOMINIO: cambiar aquí las tres URLs (canonical, og:url y
-     las dos imágenes) y la del JSON-LD de abajo. Ver BRANDING.md §10. -->
+     resuelven las relativas. Apuntan al dominio, xallasmotorsport.com.
+     Si cambia el dominio: canonical, og:url, las dos imágenes y el JSON-LD
+     de abajo. Ver BRANDING.md §10. -->
+<meta name="robots" content="index, follow, max-image-preview:large">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Xallas MotorSport">
 <meta property="og:locale" content="es_ES">
 <meta property="og:url" content="https://xallasmotorsport.com/">
-<meta property="og:title" content="Xallas MotorSport — Resistencia y sprint en iRacing">
-<meta property="og:description" content="Escudería gallega de simracing en iRacing: carreras de resistencia y sprint. Fundada en 2026, con nueve pilotos y un P3 en las 24 h de Le Mans en su carrera de debut.">
+<meta property="og:title" content="Xallas MotorSport — Escudería gallega de simracing en iRacing">
+<meta property="og:description" content="Escudería gallega de simracing en iRacing, de la comarca del Xallas. Resistencia y sprint: victoria en Petit Le Mans, podio en las 24 h de Le Mans y más.">
 <meta property="og:image" content="https://xallasmotorsport.com/assets/img/og-card.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Emblema de Xallas MotorSport sobre fondo verde oscuro">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Xallas MotorSport — Resistencia y sprint en iRacing">
-<meta name="twitter:description" content="Escudería gallega de simracing en iRacing: carreras de resistencia y sprint. Fundada en 2026, con nueve pilotos y un P3 en las 24 h de Le Mans en su carrera de debut.">
+<meta name="twitter:title" content="Xallas MotorSport — Escudería gallega de simracing en iRacing">
+<meta name="twitter:description" content="Escudería gallega de simracing en iRacing, de la comarca del Xallas. Resistencia y sprint: victoria en Petit Le Mans, podio en las 24 h de Le Mans y más.">
 <meta name="twitter:image" content="https://xallasmotorsport.com/assets/img/og-card.png">
 
+<!-- Dos bloques: WebSite le dice a Google cómo llamar a la web en los
+     resultados («Xallas MotorSport» y no el dominio), y SportsTeam describe
+     al equipo. subjectOf enlaza las noticias de Diario de Santiago: que un
+     medio hable del equipo es lo que más autoridad le da. Al publicar una
+     noticia nueva, añadirla también aquí. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Xallas MotorSport",
+  "alternateName": ["Xallas MS", "Xallas Motorsport"],
+  "url": "https://xallasmotorsport.com/",
+  "inLanguage": "es"
+}
+</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -62,7 +78,7 @@
   "url": "https://xallasmotorsport.com/",
   "logo": "https://xallasmotorsport.com/assets/img/favicon-512.png",
   "image": "https://xallasmotorsport.com/assets/img/og-card.png",
-  "description": "Escudería gallega de simracing en iRacing: carreras de resistencia y sprint. Fundada en 2026, con nueve pilotos y un P3 en las 24 h de Le Mans en su carrera de debut.",
+  "description": "Escudería gallega de simracing en iRacing, de la comarca del Xallas. Resistencia y sprint: victoria en Petit Le Mans, podio en las 24 h de Le Mans y más.",
   "areaServed": {
     "@type": "Place",
     "name": "Galicia, España"
@@ -88,6 +104,32 @@
     "https://www.instagram.com/xallasmotorsport/",
     "https://x.com/XallasMS",
     "https://www.youtube.com/@Xallasmotorsport"
+  ],
+  "subjectOf": [
+    {
+      "@type": "NewsArticle",
+      "headline": "Xallas MotorSport logra un sexto puesto en Nürburgring y anuncia un nuevo fichaje para las 12 Horas de Spa",
+      "url": "https://www.diariodesantiago.es/deportes/xallas-motorsport-logra-un-sexto-puesto-en-nurburgring-y-anuncia-un-nuevo-fichaje-para-las-12-horas-de-spa/",
+      "publisher": { "@type": "Organization", "name": "Diario de Santiago" }
+    },
+    {
+      "@type": "NewsArticle",
+      "headline": "Xallas MotorSport conquista las 10 horas de Petit Le Mans tras una gran remontada bajo la lluvia",
+      "url": "https://www.diariodesantiago.es/deportes/xallas-motorsport-conquista-las-10-horas-de-petit-le-mans-tras-una-gran-remontada-bajo-la-lluvia/",
+      "publisher": { "@type": "Organization", "name": "Diario de Santiago" }
+    },
+    {
+      "@type": "NewsArticle",
+      "headline": "Xallas MotorSport roza el top 5 en los 1000 kilómetros virtuales de Suzuka",
+      "url": "https://www.diariodesantiago.es/tendencias/xallas-motorsport-roza-el-top-5-en-los-1000-kilometros-virtuales-de-suzuka/",
+      "publisher": { "@type": "Organization", "name": "Diario de Santiago" }
+    },
+    {
+      "@type": "NewsArticle",
+      "headline": "Xallas MotorSport lleva a Santa Comba al podio de las 24 Horas de Le Mans virtuales",
+      "url": "https://www.diariodesantiago.es/deportes/xallas-motorsport-lleva-a-santa-comba-al-podio-de-las-24-horas-de-le-mans-virtuales/",
+      "publisher": { "@type": "Organization", "name": "Diario de Santiago" }
+    }
   ],
   "numberOfEmployees": {
     "@type": "QuantitativeValue",
@@ -231,6 +273,7 @@
       </p>
 
       <h1 class="hero__title reveal">
+        <span class="sr-only">Xallas MotorSport, escudería gallega de simracing en iRacing:</span>
         <span class="linea"><span>Empezamos</span></span>
         <span class="linea"><span>de <em class="grad">cero</em>.</span></span>
         <span class="linea"><span>Y en serio.</span></span>
