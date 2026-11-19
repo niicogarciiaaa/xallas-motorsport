@@ -11,3 +11,7 @@ Desktop.ini
 .idea/
 *.swp
 *~
+
+# Imágenes en bruto (capturas, carteles a tamaño completo, logos recibidos).
+# A la web solo pasan las versiones convertidas de assets/img/.
+originales/
