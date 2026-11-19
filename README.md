@@ -6,7 +6,7 @@ fundada en 2026 en la comarca del Xallas (Galicia).
 HTML, CSS y JavaScript sin dependencias ni compilación: no hay `npm install` ni
 paso de build. Se abre y funciona.
 
-**→ [Ver la web](https://niicogarciiaaa.github.io/xallas-motorsport/)**
+**→ [Ver la web](https://xallasmotorsport.com/)**
 
 ## Verla en local
 
@@ -26,8 +26,10 @@ Y entrar en `http://localhost:5173`.
 
 ## Publicación
 
-Está en GitHub Pages, servida desde la rama `main`. Cualquier `push` a `main`
-se publica solo en un par de minutos.
+Está en GitHub Pages, servida desde la rama `main`, con el dominio propio
+**xallasmotorsport.com** (archivo `CNAME`). La dirección antigua de github.io
+redirige sola al dominio. Cualquier `push` a `main` se publica en un par de
+minutos.
 
 Para activarlo (una única vez): **Settings → Pages → Source: Deploy from a
 branch → Branch: `main` / `(root)` → Save**.
@@ -107,8 +109,6 @@ traduce cada elemento del logo a la interfaz están en
       son de resistencia y van etiquetadas como tales)
 - [ ] Saber qué canal de Twitch es de cada piloto, para enlazarlos desde su
       ficha en vez de sueltos en el bloque de contacto
-- [ ] Si se compra dominio: cambiar las cuatro URLs del `<head>` y la del
-      JSON-LD (ver BRANDING.md §10)
 
 ## Accesibilidad y rendimiento
 

@@ -294,9 +294,10 @@ clase `js` del `<html>` es la que activa el ocultado inicial.
 
 ## 10. Publicación y URLs
 
-La web vive en **GitHub Pages**, servida desde `main`:
+La web vive en **GitHub Pages**, servida desde `main` con dominio propio
+(archivo `CNAME`; la dirección de github.io redirige aquí):
 
-    https://niicogarciiaaa.github.io/xallas-motorsport/
+    https://xallasmotorsport.com/
 
 Pages sólo sirve archivos estáticos —no ejecuta Python ni ningún lenguaje de
 servidor— y a esta web le sobra con eso: no tiene backend. El
@@ -324,10 +325,11 @@ ninguna imagen. GitHub Pages la sirve para cualquier ruta inexistente, también
 `/algo/muy/profundo`, y desde ahí una ruta relativa a `assets/` no resolvería.
 Por eso no depende de nada externo salvo las tipografías.
 
-### Si algún día hay dominio propio
+### Si cambia el dominio
 
-Cambiar esas cinco por el dominio nuevo y, en GitHub, **Settings → Pages →
-Custom domain**. Nada más: el resto del sitio no sabe dónde está alojado.
+Cambiar esas cinco (más `sitemap.xml` y `robots.txt`) por el dominio nuevo,
+el `CNAME` y, en GitHub, **Settings → Pages → Custom domain**. Nada más: el
+resto del sitio no sabe dónde está alojado.
 
 Para comprobar que la miniatura sale bien, pega el enlace en un canal de
 Discord: es el rastreador más rápido de los tres. Si ya lo habías compartido
