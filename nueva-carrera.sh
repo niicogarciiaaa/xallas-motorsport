@@ -107,13 +107,32 @@ echo "  Fecha:      $cuando"
 [ -n "$resumen" ] && echo "  Resultado:  $resumen"
 echo "  Imagen:     $(basename "$imagen")"
 echo
-read -r -p "¿Publicar en la web? [S/n] " ok
+read -r -p "¿Seguimos? Antes de publicar verás cómo queda [S/n] " ok
 case "$ok" in [nN]*) echo "Cancelado, no se ha tocado nada."; exit 0 ;; esac
 
 # ── El repo al día ────────────────────────────────────────────────────────
 echo
 echo "Actualizando el repo…"
 git pull -q --rebase --autostash origin main || error "No se pudo actualizar el repo (git pull)."
+
+# Copia de lo que se va a tocar, para dejarlo como estaba si al final no se
+# publica (o se corta con Ctrl+C).
+copia="$(mktemp -d)"
+cp index.html sitemap.xml "$copia/"
+servidor=""
+parar_servidor() {
+  [ -n "$servidor" ] || return 0
+  kill "$servidor" 2>/dev/null
+  wait "$servidor" 2>/dev/null   # sin esto bash avisa con un "Terminated"
+  servidor=""
+}
+deshacer() {
+  parar_servidor
+  cp "$copia/index.html" "$copia/sitemap.xml" .
+  rm -f "${destino:-}" index.html.tmp sitemap.xml.tmp
+  rm -rf "$copia"
+}
+trap 'echo; deshacer; echo "Cortado, la web no ha cambiado."; exit 1' INT TERM
 
 # ── La imagen ─────────────────────────────────────────────────────────────
 destino="assets/img/resultados-$(slug "$nombre")-$fecha.jpg"
@@ -174,6 +193,30 @@ rm -f "$ficha"
 sed -i '' -E "s#<lastmod>[0-9-]+</lastmod>#<lastmod>$(date +%F)</lastmod>#" sitemap.xml
 awk -v l="    <image:image><image:loc>https://xallasmotorsport.com/$destino</image:loc></image:image>" \
   '/<\/url>/ && !h { print l; h = 1 } { print }' sitemap.xml >sitemap.xml.tmp && mv sitemap.xml.tmp sitemap.xml
+
+# ── Vista previa ──────────────────────────────────────────────────────────
+# La web tal cual quedaría, servida solo en este Mac: nadie más la ve.
+echo
+if command -v python3 >/dev/null 2>&1; then
+  puerto=8765
+  while lsof -nP -iTCP:"$puerto" -sTCP:LISTEN >/dev/null 2>&1; do puerto=$((puerto + 1)); done
+  python3 -m http.server "$puerto" --bind 127.0.0.1 >/dev/null 2>&1 &
+  servidor=$!
+  sleep 1
+  open "http://localhost:$puerto/#resultado"
+  echo "Vista previa abierta en el navegador (http://localhost:$puerto/#resultado)."
+else
+  echo "No hay python3 para la vista previa; se publica sin ella."
+fi
+
+read -r -p "¿Se ve bien? ¿Lo publico? [S/n] " ok
+parar_servidor
+servidor=""
+case "$ok" in
+  [nN]*) deshacer; echo "Cancelado, la web no ha cambiado."; exit 0 ;;
+esac
+trap - INT TERM
+rm -rf "$copia"
 
 # ── Commit y push ─────────────────────────────────────────────────────────
 mensaje="Añadir el resultado de $nombre"

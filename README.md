@@ -82,8 +82,10 @@ convertidas.
 ```
 
 Pregunta por consola la imagen (se arrastra a la ventana), el nombre, la
-fecha, la categoría y los resultados; la pone la primera en la sección y la
-sube a GitHub. Se ejecuta desde el repo, en `main`.
+fecha, la categoría y los resultados; la pone la primera en la sección, abre
+una vista previa en el navegador (solo en tu Mac) y, si das el visto bueno, la
+sube a GitHub. Si no, lo deja todo como estaba. Se ejecuta desde el repo, en
+`main`.
 
 Para quitar una (sus imágenes también):
 
