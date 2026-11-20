@@ -75,6 +75,18 @@ convertidas.
 
 ## Añadir una carrera
 
+**Lo rápido**, solo con la imagen del resultado:
+
+```bash
+./nueva-carrera.sh
+```
+
+Pregunta por consola la imagen (se arrastra a la ventana), el nombre, la
+fecha, la categoría y los resultados; la pone la primera en la sección y la
+sube a GitHub. Se ejecuta desde el repo, en `main`.
+
+**Con fotos y galería**, a mano:
+
 1. Guardar el cartel y las capturas en `originales/<carrera>/`.
 2. Convertirlos a JPG en `assets/img/`: el cartel con su tamaño
    (`resultados-<carrera>-<año>.jpg`) y las fotos a 1400 px de ancho
