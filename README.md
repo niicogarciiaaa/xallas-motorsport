@@ -85,6 +85,15 @@ Pregunta por consola la imagen (se arrastra a la ventana), el nombre, la
 fecha, la categoría y los resultados; la pone la primera en la sección y la
 sube a GitHub. Se ejecuta desde el repo, en `main`.
 
+Para quitar una (sus imágenes también):
+
+```bash
+./borrar-carrera.sh
+```
+
+Enseña la lista numerada, preguntas cuál y lo sube. Si fue un error:
+`git revert HEAD && git push`.
+
 **Con fotos y galería**, a mano:
 
 1. Guardar el cartel y las capturas en `originales/<carrera>/`.
