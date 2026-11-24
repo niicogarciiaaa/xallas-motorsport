@@ -905,6 +905,18 @@ a:hover { color: var(--green-100); }
   transition: opacity .45s var(--ease);
 }
 .driver:hover .driver__photo::before { opacity: .13; }
+/* Con foto: la tarjeta del piloto ya trae dorsal, nombre y bandera, así que
+   va entera (sin aspa, cuadros ni casco) y en su propia proporción */
+.driver__photo--foto { aspect-ratio: 760 / 832; background: var(--ink-950); }
+.driver__photo--foto::before { content: none; }
+.driver__photo--foto img {
+  display: block;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: transform .6s var(--ease);
+}
+.driver:hover .driver__photo--foto img { transform: scale(1.04); }
 .driver__checker {
   position: absolute;
   inset: auto 0 0 0;
@@ -1078,22 +1090,14 @@ a:hover { color: var(--green-100); }
 }
 .crew:hover { transform: translateX(4px); border-left-color: var(--green-300); }
 
-.crew__icono {
-  display: grid;
-  place-items: center;
-  width: 54px; height: 54px;
+.crew__foto {
+  width: 96px; height: 128px;
   flex-shrink: 0;
-  background: rgba(30, 90, 55, .22);
+  object-fit: cover;
+  object-position: top;
   border: 1px solid var(--green-800);
   border-radius: var(--r-md);
 }
-.crew__icono svg {
-  width: 26px; height: 26px;
-  fill: none; stroke: var(--green-200); stroke-width: 1.7;
-  stroke-linecap: round; stroke-linejoin: round;
-  transition: transform .45s var(--ease);
-}
-.crew:hover .crew__icono svg { transform: rotate(-18deg); }
 
 .crew__texto { display: flex; flex-direction: column; }
 .crew__rol {
@@ -2169,6 +2173,11 @@ a:hover { color: var(--green-100); }
 }
 .follow__item:hover .follow__go { transform: translateX(4px); opacity: 1; }
 
+.follow__item--apoyo {
+  grid-column: 1 / -1;
+  border-color: var(--green-700);
+  background-image: linear-gradient(90deg, rgba(30, 90, 55, .35) 0%, transparent 70%);
+}
 .follow__mail { grid-column: 1 / -1; justify-self: center; margin-top: 10px; justify-content: center; }
 
 /* ── 17. FOOTER ─────────────────────────────────────────────────────────── */

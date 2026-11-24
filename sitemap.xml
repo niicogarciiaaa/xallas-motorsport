@@ -8,7 +8,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://xallasmotorsport.com/</loc>
-    <lastmod>2026-11-19</lastmod>
+    <lastmod>2026-11-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image><image:loc>https://xallasmotorsport.com/assets/img/og-card.png</image:loc></image:image>
@@ -20,5 +20,15 @@
     <image:image><image:loc>https://xallasmotorsport.com/assets/img/resultados-suzuka-2026.jpg</image:loc></image:image>
     <image:image><image:loc>https://xallasmotorsport.com/assets/img/podio-lemans-2026.jpg</image:loc></image:image>
     <image:image><image:loc>https://xallasmotorsport.com/assets/img/lemans-34-atardecer.jpg</image:loc></image:image>
+    <image:image><image:loc>https://xallasmotorsport.com/assets/img/piloto-manuel-muniz.webp</image:loc></image:image>
+    <image:image><image:loc>https://xallasmotorsport.com/assets/img/piloto-jose-calvin.webp</image:loc></image:image>
+    <image:image><image:loc>https://xallasmotorsport.com/assets/img/piloto-maria-montenegro.webp</image:loc></image:image>
+    <image:image><image:loc>https://xallasmotorsport.com/assets/img/piloto-nicolas-garcia.webp</image:loc></image:image>
+    <image:image><image:loc>https://xallasmotorsport.com/assets/img/piloto-francisco-javier-otero.webp</image:loc></image:image>
+    <image:image><image:loc>https://xallasmotorsport.com/assets/img/piloto-jorge-ibarra.webp</image:loc></image:image>
+    <image:image><image:loc>https://xallasmotorsport.com/assets/img/piloto-juanma-sierra.webp</image:loc></image:image>
+    <image:image><image:loc>https://xallasmotorsport.com/assets/img/piloto-borex-cholakov.webp</image:loc></image:image>
+    <image:image><image:loc>https://xallasmotorsport.com/assets/img/piloto-francisco-jose-martinez.webp</image:loc></image:image>
+    <image:image><image:loc>https://xallasmotorsport.com/assets/img/box-jasaca.webp</image:loc></image:image>
   </url>
 </urlset>
